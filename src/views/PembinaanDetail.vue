@@ -59,7 +59,7 @@
             </tr>
           </table>
 
-          <div class="mt-4 text-right">
+          <!-- <div class="mt-4 text-right">
             <div class="alert alert-warning">
               Daftar akun terlebih dahulu untuk mendaftar pembinaan. Jika sudah
               punya, silahkan login.
@@ -67,7 +67,7 @@
             <a href="http://sibi.local/user/login" class="btn btn-warning"
               >Login &nbsp;&nbsp;<i class="fas fa-sign-in-alt"></i
             ></a>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

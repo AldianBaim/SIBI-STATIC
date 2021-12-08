@@ -22,7 +22,7 @@
               tautan untuk memperbaharui kata sandi.
             </p>
             <form
-              action="https://app.buku.kemdikbud.go.id/user/recovery_action"
+              action="api.buku.kemdikbud.cloudapp.web.id/user/recovery_action"
               class="margin-lg-top"
               method="post"
               accept-charset="utf-8"
