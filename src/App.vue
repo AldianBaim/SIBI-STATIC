@@ -1,7 +1,9 @@
 <template>
   <div>
     <Navbar></Navbar>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -33,3 +35,13 @@ export default {
   },
 };
 </script>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateX(30px);
+  opacity: 0.1;
+}
+</style>

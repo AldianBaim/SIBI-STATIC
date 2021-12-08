@@ -6,9 +6,11 @@ import router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/assets/styles/main.css";
 import store from "./store";
+import VueSkeletonLoader from "skeleton-loader-vue";
 
 Vue.use(axios);
 Vue.config.productionTip = false;
+Vue.component("vue-skeleton-loader", VueSkeletonLoader);
 
 new Vue({
   router,

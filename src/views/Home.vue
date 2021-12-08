@@ -182,9 +182,9 @@
         </div>
 
         <p class="text-center mt-5">
-          <a href="http://sibi.local/manfaat" class="btn btn-warning"
-            >Dan masih banyak lagi ...</a
-          >
+          <router-link to="/manfaat">
+            <a class="btn btn-warning">Dan masih banyak lagi ...</a>
+          </router-link>
         </p>
       </div>
     </div>
@@ -352,9 +352,9 @@
         <div class="row"></div>
 
         <p class="text-center mt-5">
-          <a href="http://sibi.local/kebijakan" class="btn btn-warning"
-            >Baca <u>selengkapnya</u> ...</a
-          >
+          <router-link to="/kebijakan">
+            <a class="btn btn-warning">Baca <u>selengkapnya</u> ...</a>
+          </router-link>
         </p>
       </div>
     </div>
@@ -631,19 +631,5 @@
 </template>
 
 <script>
-import axios from "axios";
-export default {
-  mounted() {
-    axios
-      .get("http://localhost:8000/api/users")
-      .then((response) => {
-        console.log(response);
-        console.log("success");
-      })
-      .catch((err) => {
-        console.log("failed");
-        console.log(err);
-      });
-  },
-};
+export default {};
 </script>

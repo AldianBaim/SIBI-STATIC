@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -8,21 +8,106 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../views/Home.vue"),
   },
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import("../views/About.vue"),
   },
   {
     path: "/penilaian",
     name: "Penilaian",
     component: () => import("../views/Penilaian.vue"),
+  },
+  {
+    path: "/kebijakan",
+    name: "Kebijakan",
+    component: () => import("../views/Kebijakan.vue"),
+  },
+  {
+    path: "/pelaku",
+    redirect: "/pelaku/pembinaan",
+    name: "parent-pelaku",
+    component: () => import("../views/Pelaku.vue"),
+    children: [
+      {
+        path: "pembinaan",
+        name: "Pembinaan",
+        component: () => import("../views/Pembinaan.vue"),
+      },
+      {
+        path: "sertifikasi",
+        name: "Sertifikasi",
+        component: () => import("../views/Sertifikasi.vue"),
+      },
+    ],
+  },
+  {
+    path: "/pembinaanDetail",
+    name: "PembinaanDetail",
+    component: () => import("../views/PembinaanDetail.vue"),
+  },
+  {
+    path: "/manfaat",
+    name: "Manfaat",
+    component: () => import("../views/Manfaat.vue"),
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/auth/Login.vue"),
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: () => import("../views/auth/Register.vue"),
+  },
+  {
+    path: "/recovery",
+    name: "Recovery",
+    component: () => import("../views/auth/Recovery.vue"),
+  },
+  {
+    path: "/user",
+    component: () => import("../components/DashboardLayout.vue"),
+    children: [
+      {
+        path: "home",
+        name: "UserHome",
+        component: () => import("../views/dashboard/Home.vue"),
+      },
+      {
+        path: "lapor",
+        name: "Lapor",
+        component: () => import("../views/dashboard/Lapor.vue"),
+      },
+      {
+        path: "portfolio",
+        name: "Portfolio",
+        component: () => import("../views/dashboard/Portfolio.vue"),
+      },
+      {
+        path: "portfolio/add",
+        name: "Portfolio Add",
+        component: () => import("../views/dashboard/PortfolioAdd.vue"),
+      },
+      {
+        path: "portfolio/edit/:id",
+        name: "Portfolio-Edit",
+        component: () => import("../views/dashboard/PortfolioEdit.vue"),
+      },
+      {
+        path: "profil",
+        name: "Profil",
+        component: () => import("../views/dashboard/Profil.vue"),
+      },
+      {
+        path: "unduh",
+        name: "Unduh",
+        component: () => import("../views/dashboard/Unduh.vue"),
+      },
+    ],
   },
 ];
 
