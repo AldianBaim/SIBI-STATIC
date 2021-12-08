@@ -2,7 +2,7 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
-const BASE_URL = "https://app.buku.kemdikbud.go.id/";
+const BASE_URL = "https://api.buku.kemdikbud.cloudapp.web.id/";
 const d = new Date();
 const today = d.toString();
 const day = today.slice(0, 3);
