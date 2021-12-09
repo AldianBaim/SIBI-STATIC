@@ -17,6 +17,7 @@
         <div class="row">
           <div class="col-md-5 offset-md-3">
             <h2>Mendaftar</h2>
+            <p>Daftar untuk melihat riwayat data dan aktifitas lainnya</p>
             <!-- <script
               type="text/javascript"
               src="https://www.google.com/recaptcha/api.js?render=onload&amp;hl=en"
