@@ -23,26 +23,7 @@
               async=""
               defer=""
             ></script> -->
-            <div class="mb-3">Daftar sebagai :</div>
-            <div class="mb-4">
-              <div
-                class="choice btn-role active"
-                data-type="umum"
-                style="background: rgb(241, 196, 15)"
-              >
-                <i class="fas fa-user-friends"></i>&nbsp; Umum
-              </div>
-              <div class="choice btn-role" data-type="siswa">
-                <i class="fas fa-child"></i>&nbsp; Siswa
-              </div>
-              <div class="choice btn-role" data-type="guru">
-                <i class="fas fa-chalkboard-teacher"></i>&nbsp; Guru
-              </div>
-              <div class="choice btn-role" data-type="pelaku">
-                <i class="fas fa-briefcase"></i>&nbsp; Lainnya
-              </div>
-              <div style="clear: both"></div>
-            </div>
+
             <div
               v-if="!$store.state.loadPage"
               v-show="$store.state.messageStatus"
@@ -50,13 +31,7 @@
             >
               {{ $store.state.message }}
             </div>
-            <form
-              @submit.prevent="
-                setRole();
-                doRegister();
-              "
-              accept-charset="utf-8"
-            >
+            <form @submit.prevent="doRegister()" accept-charset="utf-8">
               <input
                 type="hidden"
                 name="csrf_test_name"
@@ -92,11 +67,7 @@
                   placeholder="Email"
                 />
               </div>
-              <div
-                class="form-group optional"
-                id="role_option"
-                style="display: none"
-              >
+              <div class="form-group" id="">
                 <select
                   v-model="user.specificField"
                   name="role_option"
@@ -114,30 +85,6 @@
                   <option value="19">Toko Buku</option>
                   <option value="20">Penerjemah</option>
                 </select>
-              </div>
-              <div
-                class="form-group optional"
-                id="school"
-                style="display: none"
-              >
-                <input
-                  v-model="user.school"
-                  type="text"
-                  class="form-control"
-                  placeholder="Sekolah"
-                />
-              </div>
-              <div
-                class="form-group optional"
-                id="subject"
-                style="display: none"
-              >
-                <input
-                  v-model="user.lesson"
-                  type="text"
-                  class="form-control"
-                  placeholder="Mata pelajaran"
-                />
               </div>
               <div class="form-group">
                 <input
@@ -166,7 +113,7 @@
                   placeholder="Konfirmasi kata sandi"
                 />
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <div
                   class="g-recaptcha"
                   data-sitekey="6LcFfVkUAAAAAKqPOitOzthA88792BCihdH5sk4P"
@@ -205,7 +152,7 @@
                   </div>
                   <iframe style="display: none"></iframe>
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <button
                   v-if="!$store.state.loadPage"
@@ -246,10 +193,8 @@ export default {
         phone: "",
         password: "",
         confirm_password: "",
-        school: "",
-        lesson: "",
         specificField: "",
-        role_id: 3,
+        // role_id: 3,
       },
     };
   },
@@ -258,9 +203,9 @@ export default {
     doRegister() {
       this.register(this.user);
     },
-    setRole() {
-      this.user.role_id = $("#role").val();
-    },
+    // setRole() {
+    //   this.user.role_id = $("#role").val();
+    // },
   },
   created() {
     this.$store.state.messageStatus = false;

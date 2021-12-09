@@ -14,6 +14,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    totalCatalogue: null,
+    totalAssesment: null,
+    totalRead: null,
+    totalDownload: null,
     today: `${day}, ${date} ${month} ${year}`,
     books: [],
     portfolios: [],
@@ -79,6 +83,12 @@ export default new Vuex.Store({
     setBookDownload(state, payload) {
       state.bookDownload = payload;
     },
+    setStatistic(state, payload) {
+      state.totalCatalogue = payload.total_book;
+      state.totalAssesment = payload.total_assessment;
+      state.totalRead = payload.total_read;
+      state.totalDownload = payload.total_download;
+    },
   },
   actions: {
     logout({ state }) {
@@ -111,6 +121,7 @@ export default new Vuex.Store({
         });
     },
     register(context, payload) {
+      console.log(payload);
       context.state.loadPage = true;
       axios
         .post(BASE_URL + "/api/user/register", payload, {
@@ -460,6 +471,17 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err);
           context.state.loadPage = false;
+        });
+    },
+    fetchTotalCatalogue(context) {
+      axios
+        .get(BASE_URL + "api/statistic/getSummary")
+        .then((res) => {
+          console.log(res);
+          context.commit("setStatistic", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
   },

@@ -565,20 +565,28 @@
             </div>
             <div class="row">
               <div class="col-6 col-md-3 my-2">
-                <h2><span>1809</span></h2>
-                <p><small>Pelaku Perbukuan Bergabung</small></p>
+                <h2>
+                  <span>{{ $store.state.totalRead }}</span>
+                </h2>
+                <p><small>Total Baca</small></p>
               </div>
               <div class="col-6 col-md-3 my-2">
-                <h2><span>274</span></h2>
+                <h2>
+                  <span>{{ $store.state.totalCatalogue }}</span>
+                </h2>
                 <p><small>Katalog Buku</small></p>
               </div>
               <div class="col-6 col-md-3 my-2">
-                <h2><span>398</span></h2>
-                <p><small>Hasil Penilaian</small></p>
+                <h2>
+                  <span>{{ $store.state.totalAssesment }}</span>
+                </h2>
+                <p><small>Buku Lulus Penilaian</small></p>
               </div>
               <div class="col-6 col-md-3 my-2">
-                <h2><span>10</span></h2>
-                <p><small>Pengumuman Kebijakan</small></p>
+                <h2>
+                  <span>{{ $store.state.totalDownload }}</span>
+                </h2>
+                <p><small>Total Download</small></p>
               </div>
             </div>
           </div>
@@ -631,5 +639,14 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+export default {
+  name: "Home",
+  methods: {
+    ...mapActions(["fetchTotalCatalogue"]),
+  },
+  created() {
+    this.fetchTotalCatalogue();
+  },
+};
 </script>

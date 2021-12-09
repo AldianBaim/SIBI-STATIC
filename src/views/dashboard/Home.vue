@@ -10,25 +10,26 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="https://via.placeholder.com/200x80?text=Slide1"
+            src="https://i.ibb.co/4sJX5JM/images-35.jpg"
             class="d-block w-100"
             alt="..."
           />
         </div>
         <div class="carousel-item">
           <img
-            src="https://via.placeholder.com/200x80?text=Slide2"
+            src="https://i.ibb.co/2706hFB/penilaian.webp"
             class="d-block w-100"
             alt="..."
+            style="height: 372px"
           />
         </div>
-        <div class="carousel-item">
+        <!-- <div class="carousel-item">
           <img
             src="https://via.placeholder.com/200x80?text=Slide3"
             class="d-block w-100"
             alt="..."
           />
-        </div>
+        </div> -->
       </div>
       <a
         class="carousel-control-prev"
