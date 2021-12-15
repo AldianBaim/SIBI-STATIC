@@ -33,7 +33,7 @@ export default new Vuex.Store({
     totalRows: 0,
     pagination: null,
     loadPage: false,
-    loadUploadImage: false,
+    loadUploadFile: false,
     messageStatus: false,
     messageStatusReport: false,
     messageStatusPortfolio: false,
@@ -366,24 +366,28 @@ export default new Vuex.Store({
       body.append("description", payload.description);
       body.append("attachment", payload.attachment);
       body.append("year", payload.year);
-      axios({
-        url: BASE_URL + "api/portfolio/insert",
-        method: "POST",
-        data: body,
-        headers: {
-          Authorization: context.state.token,
-          "Content-type": "multipart/form-data",
-        },
-      })
-        .then((res) => {
-          context.state.loadPage = false;
-          context.state.messageStatusPortfolio = true;
-          console.log(res);
+
+      return new Promise((resolve, reject) => {
+        axios({
+          url: BASE_URL + "api/portfolio/insert",
+          method: "POST",
+          data: body,
+          headers: {
+            Authorization: context.state.token,
+            "Content-type": "multipart/form-data",
+          },
         })
-        .catch((err) => {
-          context.state.loadPage = false;
-          console.log(err);
-        });
+          .then((res) => {
+            context.state.messageStatusPortfolio = true;
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+          .finally(() => {
+            context.state.loadPage = false;
+          });
+      });
     },
     fetchAllPortfolio(context) {
       context.state.loadPage = true;
@@ -397,7 +401,6 @@ export default new Vuex.Store({
         .then((res) => {
           context.commit("setDataPortfolio", res.data);
           context.state.loadPage = false;
-          console.log(res);
         })
         .catch((err) => console.log(err));
     },
@@ -429,7 +432,6 @@ export default new Vuex.Store({
             },
           })
           .then((res) => {
-            console.log(res);
             context.commit("setDetailPortfolio", res.data);
             resolve(res.data.result);
           })
@@ -439,28 +441,33 @@ export default new Vuex.Store({
     updateDetailPortfolio(context, payload) {
       context.state.loadPage = true;
       var body = new FormData();
+      body.append("id", payload.id);
       body.append("title", payload.title);
       body.append("description", payload.description);
       body.append("attachment", payload.attachment);
       body.append("year", payload.year);
-      axios({
-        method: "post",
-        url: BASE_URL + "api/portfolio/update",
-        data: body,
-        headers: {
-          Authorization: context.state.token,
-          "Content-type": "multipart/form-data",
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          context.state.messageStatus = true;
-          context.state.loadPage = false;
+
+      return new Promise((resolve, rejected) => {
+        axios({
+          method: "post",
+          url: BASE_URL + "api/portfolio/update",
+          data: body,
+          headers: {
+            Authorization: context.state.token,
+            "Content-type": "multipart/form-data",
+          },
         })
-        .catch((err) => {
-          context.state.loadPage = false;
-          console.log(err);
-        });
+          .then((res) => {
+            resolve(res);
+            context.state.messageStatus = true;
+          })
+          .catch((err) => {
+            rejected(err);
+          })
+          .finally(() => {
+            context.state.loadPage = false;
+          });
+      });
     },
     filterSearchBook(context, payload) {
       context.state.loadPage = true;
@@ -492,7 +499,7 @@ export default new Vuex.Store({
         });
     },
     uploadImage(context, image) {
-      context.state.loadUploadImage = true;
+      context.state.loadUploadFile = true;
       const formData = new FormData();
       formData.append("image", image);
 
@@ -515,7 +522,34 @@ export default new Vuex.Store({
             reject(err);
           })
           .finally(() => {
-            context.state.loadUploadImage = false;
+            context.state.loadUploadFile = false;
+          });
+      });
+    },
+    uploadFilePDF(context, file) {
+      context.state.loadUploadFile = true;
+      const formData = new FormData();
+      formData.append("image", file);
+
+      return new Promise((resolve, reject) => {
+        axios
+          .post(
+            "https://api.imgbb.com/1/upload?key=0622add0e6f04d563c9eb6ba6c3f40c0",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((res) => {
+            resolve(res.data.data);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+          .finally(() => {
+            context.state.loadUploadFile = false;
           });
       });
     },

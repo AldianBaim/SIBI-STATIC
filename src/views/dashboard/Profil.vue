@@ -58,7 +58,7 @@
           <div class="row">
             <div class="col-md-4">
               <button
-                v-if="!$store.state.loadUploadImage"
+                v-if="!$store.state.loadUploadFile"
                 @click="uploadingImage()"
                 type="button"
                 class="btn btn-primary btn-block"
@@ -67,7 +67,7 @@
               </button>
               <button
                 type="button"
-                v-if="$store.state.loadUploadImage"
+                v-if="$store.state.loadUploadFile"
                 class="btn btn-primary btn-block"
               >
                 <span class="spinner-border spinner-border-sm"></span>

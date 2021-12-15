@@ -5,7 +5,7 @@
       class="alert alert-success"
       role="alert"
     >
-      Successfully inserted. <i class="fa fa-check"></i>
+      Berhasil ditambahkan. <i class="fa fa-check"></i>
       <button
         type="button"
         class="close"
@@ -54,19 +54,44 @@
               <div class="help-block with-errors"></div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>File/Attachment ~ Maks 2MB</label
-              ><input
-                v-model="portfolio.attachment"
-                type="text"
-                accept="application/pdf"
-                class="form-control"
-                placeholder="File url in here.."
-                data-error="File is required."
-                required="required"
-              />
-              <div class="help-block with-errors"></div>
+          <div class="col-md-6 mb-5">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Lampiran ~ PDF Maks 2MB</label>
+                  <input
+                    v-model="portfolio.attachment"
+                    type="hidden"
+                    class="form-control"
+                  />
+                  <input
+                    @change="selectFile"
+                    type="file"
+                    class="form-control"
+                    required="required"
+                  />
+                  <div class="help-block with-errors"></div>
+                </div>
+                <div v-show="messageStatus" class="mt-2 alert alert-success">
+                  {{ message }}
+                </div>
+                <button
+                  v-if="!$store.state.loadUploadFile"
+                  @click="uploadingFile()"
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  Upload
+                </button>
+                <button
+                  type="button"
+                  v-if="$store.state.loadUploadFile"
+                  class="btn btn-primary btn-block"
+                >
+                  <span class="spinner-border spinner-border-sm"></span>
+                  Sedang diproses
+                </button>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -111,15 +136,29 @@ export default {
         description: "",
         year: "",
       },
+      file: null,
+      messageStatus: false,
+      message: "",
     };
   },
   methods: {
-    ...mapActions(["addNewPortfolio"]),
+    ...mapActions(["addNewPortfolio", "uploadFilePDF"]),
+    selectFile(e) {
+      const file = e.target.files[0];
+      this.file = file;
+    },
+    uploadingFile() {
+      this.uploadFilePDF(this.file).then((res) => {
+        this.portfolio.attachment = res.url;
+        this.messageStatus = true;
+        this.message =
+          "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
+      });
+    },
     portfolioAdd() {
-      this.addNewPortfolio(this.portfolio);
-      setTimeout(() => {
+      this.addNewPortfolio(this.portfolio).then(() => {
         this.$router.push("/user/portfolio");
-      }, 4000);
+      });
     },
   },
 };

@@ -5,7 +5,7 @@
       class="alert alert-success"
       role="alert"
     >
-      Successfully inserted. <i class="fa fa-check"></i>
+      Berhasil diupdate. <i class="fa fa-check"></i>
       <button
         type="button"
         class="close"
@@ -23,11 +23,7 @@
         enctype="multipart/form-data"
         accept-charset="utf-8"
       >
-        <input
-          type="hidden"
-          name="csrf_test_name"
-          value="44c8529798bd8316b2483295c17206d9"
-        /><input type="hidden" name="status" value="draft" />
+        <input type="hidden" v-model="portfolio.id" />
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -54,19 +50,53 @@
               <div class="help-block with-errors"></div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>File/Attachment ~ Maks 2MB</label
-              ><input
-                v-model="portfolio.attachment"
-                type="text"
-                accept="application/pdf"
-                class="form-control"
-                placeholder="File url in here.."
-                data-error="File is required."
-                required="required"
-              />
-              <div class="help-block with-errors"></div>
+          <div class="col-md-6 mb-5">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <a :href="portfolio.attachment"
+                    ><i
+                      class="fa fa-file-pdf text-danger"
+                      style="font-size: 3rem"
+                    ></i
+                  ></a>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Lampiran ~ PDF Maks 2MB</label>
+                  <input
+                    v-model="portfolio.attachment"
+                    type="hidden"
+                    class="form-control"
+                  />
+                  <input
+                    @change="selectFile"
+                    type="file"
+                    class="form-control"
+                  />
+                  <div class="help-block with-errors"></div>
+                </div>
+                <div v-show="messageStatus" class="mt-2 alert alert-success">
+                  {{ message }}
+                </div>
+                <button
+                  v-if="!$store.state.loadUploadFile"
+                  @click="uploadingFile()"
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  Upload
+                </button>
+                <button
+                  type="button"
+                  v-if="$store.state.loadUploadFile"
+                  class="btn btn-primary btn-block"
+                >
+                  <span class="spinner-border spinner-border-sm"></span>
+                  Sedang diproses
+                </button>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -105,25 +135,48 @@ export default {
   data() {
     return {
       portfolio: {
+        id: "",
         title: "",
         description: "",
         attachment: "",
         year: "",
       },
+      file: null,
+      messageStatus: false,
+      message: "",
     };
   },
   name: "Portfolio Detail",
   methods: {
-    ...mapActions(["fetchDetailPortfolio", "updateDetailPortfolio"]),
+    ...mapActions([
+      "fetchDetailPortfolio",
+      "updateDetailPortfolio",
+      "uploadFilePDF",
+    ]),
+    selectFile(e) {
+      const file = e.target.files[0];
+      this.file = file;
+    },
+    uploadingFile() {
+      this.uploadFilePDF(this.file).then((res) => {
+        this.portfolio.attachment = res.url;
+        this.messageStatus = true;
+        this.message =
+          "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
+      });
+    },
     setValue(portfolio) {
       portfolio = portfolio || this.$store.state.portfolio;
+      this.portfolio.id = portfolio.id;
       this.portfolio.title = portfolio.title;
       this.portfolio.description = portfolio.description;
       this.portfolio.attachment = portfolio.attachment;
       this.portfolio.year = portfolio.year;
     },
     updatePortfolio() {
-      this.updateDetailPortfolio(this.portfolio);
+      this.updateDetailPortfolio(this.portfolio).then(() => {
+        this.$router.push("/user/portfolio");
+      });
     },
   },
   beforeCreate() {
