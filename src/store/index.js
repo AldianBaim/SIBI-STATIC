@@ -33,6 +33,7 @@ export default new Vuex.Store({
     totalRows: 0,
     pagination: null,
     loadPage: false,
+    loadUploadImage: false,
     messageStatus: false,
     messageStatusReport: false,
     messageStatusPortfolio: false,
@@ -43,8 +44,13 @@ export default new Vuex.Store({
     userProfile: null,
     activeMenu: "",
     token: localStorage.getItem("token") || "",
+
+    image: null,
   },
   mutations: {
+    setImage(state, image) {
+      state.image = image;
+    },
     setDataAssesment(state, payload) {
       state.perPage += payload.results.length;
       payload.results.forEach((el) => {
@@ -283,6 +289,7 @@ export default new Vuex.Store({
       body.append("name", payload.name);
       body.append("username", payload.username);
       body.append("email", payload.email);
+      body.append("avatar", payload.avatar);
       body.append("password", payload.password);
       body.append("confirm_password", payload.confirm_password);
       body.append("profile", payload.profile);
@@ -483,6 +490,34 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err);
         });
+    },
+    uploadImage(context, image) {
+      context.state.loadUploadImage = true;
+      const formData = new FormData();
+      formData.append("image", image);
+
+      return new Promise((resolve, reject) => {
+        axios
+          .post(
+            "https://api.imgbb.com/1/upload?key=0622add0e6f04d563c9eb6ba6c3f40c0",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((res) => {
+            resolve(res.data);
+            context.commit("setImage", res.data.data.image.url);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+          .finally(() => {
+            context.state.loadUploadImage = false;
+          });
+      });
     },
   },
   modules: {},
