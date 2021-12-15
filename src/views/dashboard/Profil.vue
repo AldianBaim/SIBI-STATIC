@@ -219,7 +219,7 @@ export default {
     },
     uploadingImage() {
       this.uploadImage(this.fileImage).then((res) => {
-        this.user.avatar = res.data.medium.url;
+        this.user.avatar = res.data.url;
       });
     },
     setValue(user) {
