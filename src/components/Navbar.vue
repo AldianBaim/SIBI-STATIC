@@ -136,7 +136,7 @@
         <div v-if="isLoggin" class="text-right">
           <router-link to="/user/home">
             <a class="btn btn-sm btn-primary rounded-pill py-1 px-3 mr-2"
-              >Ke Beranda <i class="fa fa-door-open"></i
+              >Ke Dasbor <i class="fa fa-door-open"></i
             ></a>
           </router-link>
           <a

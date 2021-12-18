@@ -54,7 +54,7 @@
     <div class="alert alert-info">
       Info terbaru : Selamat datang di dashboard Pelaku Perbukuan. Untuk panduan
       lengkap silakan unduh materi berikut ini
-      <a href="#">Buku Panduan</a>
+      <a href="https://bit.ly/ManualBookSibi" target="blank">Buku Panduan</a>
     </div>
   </div>
 </template>
