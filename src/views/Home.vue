@@ -56,7 +56,7 @@
                     <p>Pelajari dan dapatkan manfaat lebih lanjut.</p>
                     <a
                       class="btn btn-danger rounded-pill py-2 px-4"
-                      href="http://sibi.local/user/register"
+                      href="/register"
                       >Daftar sekarang &nbsp;&nbsp;<i
                         class="fas fa-user-plus"
                       ></i
