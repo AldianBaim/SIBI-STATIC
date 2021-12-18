@@ -1,119 +1,125 @@
 <template>
   <div>
     <div class="jumbotron-home d-none d-sm-block">
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <div style="padding-left: 17%">
-            <div
-              id="carouselExampleIndicators"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <ol class="carousel-indicators">
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="0"
-                  class="active"
-                ></li>
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="1"
-                ></li>
-              </ol>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div>
               <div
-                class="carousel-inner"
-                style="padding-left: 70px; padding-right: 70px"
+                id="carouselExampleIndicators"
+                class="carousel slide"
+                data-ride="carousel"
               >
-                <div class="carousel-item active pb-5">
-                  <h2 class="mb-4">Selamat datang, Pelaku Perbukuan</h2>
-                  <p>
-                    SIBI adalah ekosistem <b>digital</b> untuk mewadahi
-                    teman-teman penulis, penelaah, penerbit, dan lainnya.
-                  </p>
-                  <p>
-                    Dengan tujuan menjadi pusat informasi dan komunikasi dua
-                    arah terkait kegiatan perbukuan nasional.
-                  </p>
-                  <div class="mt-4">
+                <ol class="carousel-indicators">
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="0"
+                    class="active"
+                  ></li>
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="1"
+                  ></li>
+                </ol>
+                <div
+                  class="carousel-inner"
+                  style="padding-left: 70px; padding-right: 70px"
+                >
+                  <div class="carousel-item active pb-5">
+                    <h2 class="mb-4">Selamat datang, Pelaku Perbukuan</h2>
+                    <p>
+                      SIBI adalah ekosistem <b>digital</b> untuk mewadahi
+                      teman-teman penulis, penelaah, penerbit, dan lainnya.
+                    </p>
+                    <p>
+                      Dengan tujuan menjadi pusat informasi dan komunikasi dua
+                      arah terkait kegiatan perbukuan nasional.
+                    </p>
+                    <div class="mt-4">
+                      <a
+                        href="#manfaat"
+                        class="btn btn-danger rounded-pill py-2 px-4"
+                        >Pelajari lebih lanjut &nbsp;&nbsp;<i
+                          class="fas fa-chevron-down"
+                        ></i
+                      ></a>
+                    </div>
+                  </div>
+                  <div class="carousel-item pb-5">
+                    <h2 class="mb-4">Ruang Lingkup</h2>
+                    <p>
+                      Platform ini mewadahi kegiatan perbukuan seperti manajemen
+                      pembinaan, pusat data pelaku perbukuan, pengumuman
+                      penilaian, penerimaan laporan, serta publikasi berbagai
+                      kebijakan terkait perbukuan
+                    </p>
+                    <p>Pelajari dan dapatkan manfaat lebih lanjut.</p>
                     <a
-                      href="#manfaat"
                       class="btn btn-danger rounded-pill py-2 px-4"
-                      >Pelajari lebih lanjut &nbsp;&nbsp;<i
-                        class="fas fa-chevron-down"
+                      href="http://sibi.local/user/register"
+                      >Daftar sekarang &nbsp;&nbsp;<i
+                        class="fas fa-user-plus"
                       ></i
                     ></a>
                   </div>
                 </div>
-                <div class="carousel-item pb-5">
-                  <h2 class="mb-4">Ruang Lingkup</h2>
-                  <p>
-                    Platform ini mewadahi kegiatan perbukuan seperti manajemen
-                    pembinaan, pusat data pelaku perbukuan, pengumuman
-                    penilaian, penerimaan laporan, serta publikasi berbagai
-                    kebijakan terkait perbukuan
-                  </p>
-                  <p>Pelajari dan dapatkan manfaat lebih lanjut.</p>
-                  <a
-                    class="btn btn-danger rounded-pill py-2 px-4"
-                    href="http://sibi.local/user/register"
-                    >Daftar sekarang &nbsp;&nbsp;<i class="fas fa-user-plus"></i
-                  ></a>
-                </div>
+                <a
+                  class="carousel-control-prev"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    style="color: #444"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a
+                  class="carousel-control-next"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    style="color: #444"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="sr-only">Next</span>
+                </a>
               </div>
-              <a
-                class="carousel-control-prev"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  style="color: #444"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a
-                class="carousel-control-next"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  style="color: #444"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Next</span>
-              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="text-right">
+              <img
+                style="bottom: 0px; width: 100%"
+                src="https://api.buku.kemdikbud.cloudapp.web.id/sites/sibi//themes/default/assets/jumbotron.png"
+              />
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="text-right">
-            <img
-              style="bottom: 0px; width: 100%"
-              src="https://api.buku.kemdikbud.cloudapp.web.id/sites/sibi//themes/default/assets/jumbotron.png"
-            />
-          </div>
-        </div>
       </div>
-    </div>
 
-    <div class="p-4 d-block d-sm-none" style="background: #ebf7ff">
-      <h2 class="mb-4">Selamat datang, Pelaku Perbukuan</h2>
-      <p>
-        SIBI adalah ekosistem <b>digital</b> untuk mewadahi teman-teman penulis,
-        penelaah, penerbit, dan lainnya.
-      </p>
-      <p>
-        Dengan tujuan menjadi pusat informasi dan komunikasi dua arah terkait
-        kegiatan perbukuan nasional.
-      </p>
-      <div class="mt-4">
-        <a href="#manfaat" class="btn btn-danger rounded-pill py-2 px-4"
-          >Pelajari lebih lanjut &nbsp;&nbsp;<i class="fas fa-chevron-down"></i
-        ></a>
+      <div class="p-4 d-block d-sm-none" style="background: #ebf7ff">
+        <h2 class="mb-4">Selamat datang, Pelaku Perbukuan</h2>
+        <p>
+          SIBI adalah ekosistem <b>digital</b> untuk mewadahi teman-teman
+          penulis, penelaah, penerbit, dan lainnya.
+        </p>
+        <p>
+          Dengan tujuan menjadi pusat informasi dan komunikasi dua arah terkait
+          kegiatan perbukuan nasional.
+        </p>
+        <div class="mt-4">
+          <a href="#manfaat" class="btn btn-danger rounded-pill py-2 px-4"
+            >Pelajari lebih lanjut &nbsp;&nbsp;<i
+              class="fas fa-chevron-down"
+            ></i
+          ></a>
+        </div>
       </div>
     </div>
 
