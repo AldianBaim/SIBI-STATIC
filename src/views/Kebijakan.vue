@@ -96,7 +96,7 @@
                     <td>-</td>
                     <td>{{ policy.category.name }}</td>
                     <td>{{ policy.published_at }}</td>
-                    <td>
+                    <td width="75">
                       <a
                         @click="show(policy.featured_image)"
                         class="mr-2 btn-xs btn-read"
@@ -119,12 +119,12 @@
                 <template v-else>
                   <div class="text-center mt-5">
                     <img
-                      width="150"
-                      src="@/assets/book-loading.gif"
+                      width="60"
+                      src="@/assets/not-found.png"
                       class="img-fluid"
                       alt=""
                     />
-                    <h4 class="text-center">Data not found!</h4>
+                    <h4 class="text-center mt-2">Data tidak ditemukan.</h4>
                   </div>
                 </template>
               </table>

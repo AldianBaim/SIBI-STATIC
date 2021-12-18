@@ -109,13 +109,8 @@
 
     <template v-else>
       <div class="text-center mt-5">
-        <img
-          width="150"
-          src="@/assets/book-loading.gif"
-          class="img-fluid"
-          alt=""
-        />
-        <h4 class="text-center">Data not found!</h4>
+        <img width="60" src="@/assets/not-found.png" class="img-fluid" alt="" />
+        <h4 class="text-center mt-2">Data tidak ditemukan.</h4>
       </div>
     </template>
 

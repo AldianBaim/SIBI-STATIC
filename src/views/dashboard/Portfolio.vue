@@ -4,19 +4,14 @@
 
     <div class="mt-4 mb-4 text-right">
       <router-link to="portfolio/add" class="btn btn-primary">
-        <i class="fa fa-pencil"></i> Tambah
+        <i class="fa fa-plus"></i> Tambah
       </router-link>
     </div>
 
     <template v-if="portfolios.length == 0">
       <div class="text-center mt-5">
-        <img
-          width="150"
-          src="@/assets/book-loading.gif"
-          class="img-fluid"
-          alt=""
-        />
-        <h4 class="text-center">Data not found!</h4>
+        <img width="60" src="@/assets/not-found.png" class="img-fluid" alt="" />
+        <h4 class="text-center mt-2">Data tidak ditemukan.</h4>
       </div>
     </template>
     <template v-else>
@@ -43,12 +38,12 @@
             <td v-else>
               <span class="badge badge-danger">{{ portfolio.status }}</span>
             </td>
-            <td>
+            <td align="center">
               <a :href="portfolio.attachment" target="_blank"
                 ><span class="fa fa-download"></span
               ></a>
             </td>
-            <td>
+            <td width="170">
               <router-link
                 :to="{ name: 'Portfolio-Edit', params: { id: portfolio.id } }"
               >
@@ -58,7 +53,7 @@
               </router-link>
               <button
                 @click="deletePortfolio(portfolio.id)"
-                class="btn btn-danger btn-sm"
+                class="btn btn-danger btn-sm ml-1"
               >
                 <i class="fa fa-trash"></i> Hapus
               </button>
