@@ -645,6 +645,7 @@
 </template>
 
 <script>
+import $ from "jquery";
 import { mapActions } from "vuex";
 export default {
   name: "Home",
@@ -653,6 +654,15 @@ export default {
   },
   created() {
     this.fetchTotalCatalogue();
+  },
+  mounted() {
+    $(".btn-read").click(function () {
+      let url = $(this).attr("data-url");
+
+      $("#embed").attr("src", url);
+      $("#modal").modal("show");
+      return false;
+    });
   },
 };
 </script>
