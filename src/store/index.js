@@ -2,7 +2,7 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
-const BASE_URL = "https://api.buku.kemdikbud.cloudapp.web.id/";
+const BASE_URL = "https://api.development.buku.kemdikbud.cloudapp.web.id/";
 const d = new Date();
 const today = d.toString();
 const day = today.slice(0, 3);
@@ -64,7 +64,6 @@ export default new Vuex.Store({
       });
     },
     setDataUser(state, payload) {
-      console.log(payload);
       let user = {
         user_id: payload.user_id,
         fullname: payload.fullname,
@@ -121,13 +120,11 @@ export default new Vuex.Store({
             router.push("/user/home");
           }
         })
-        .catch((err) => {
+        .catch(() => {
           context.state.loadPage = false;
-          console.log(err);
         });
     },
     register(context, payload) {
-      console.log(payload);
       context.state.loadPage = true;
       axios
         .post(BASE_URL + "/api/user/register", payload, {
@@ -149,9 +146,6 @@ export default new Vuex.Store({
             context.state.loadPage = false;
             router.push("/login");
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     fetchAllAssesment(context) {
@@ -225,10 +219,10 @@ export default new Vuex.Store({
       axios
         .get(BASE_URL + "api/training/training_report/1?name=&role=")
         .then((res) => {
-          console.log(res);
           context.state.certifications = res.data.results;
           context.state.totalRows = res.data.total_rows;
           context.state.perPage = res.data.per_page;
+          context.state.pagination = res.data.pagination;
           context.state.loadPage = false;
         })
         .catch((err) => console.log(err));
@@ -302,8 +296,7 @@ export default new Vuex.Store({
           "Content-type": "multipart/form-data",
         },
       })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           context.state.messageStatus = true;
           context.state.loadPage = false;
         })
@@ -316,7 +309,6 @@ export default new Vuex.Store({
       axios
         .get(BASE_URL + "api/catalogue/getLatest?qty=100")
         .then((res) => {
-          console.log(res);
           context.state.books = res.data.results;
         })
         .catch((err) => {
@@ -351,7 +343,6 @@ export default new Vuex.Store({
       axios
         .get(BASE_URL + "/api/catalogue")
         .then((res) => {
-          console.log(res);
           context.state.bookDownload = res.data.results;
           context.state.loadPage = false;
         })
@@ -412,12 +403,11 @@ export default new Vuex.Store({
             Authorization: context.state.token,
           },
         })
-        .then((res) => {
+        .then(() => {
           context.dispatch("fetchAllPortfolio");
           setTimeout(() => {
             context.state.loadPage = false;
           }, 2000);
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -478,7 +468,6 @@ export default new Vuex.Store({
         method: "GET",
       })
         .then((res) => {
-          console.log(res);
           context.state.loadPage = false;
           context.commit("setBookDownload", res.data.results);
         })
@@ -491,7 +480,6 @@ export default new Vuex.Store({
       axios
         .get(BASE_URL + "api/statistic/getSummary")
         .then((res) => {
-          console.log(res);
           context.commit("setStatistic", res.data);
         })
         .catch((err) => {

@@ -40,7 +40,8 @@ export default {
 .fade-leave-active {
   transition: all 0.3s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
   transform: translateX(30px);
   opacity: 0.1;
 }
