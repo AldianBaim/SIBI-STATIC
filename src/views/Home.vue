@@ -198,27 +198,31 @@
     <div class="section-pengumuman py-5">
       <div class="container">
         <h3 class="text-center mb-4">Pengumuman</h3>
-        <div id="carouselPengumuman" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <a type="button" data-toggle="modal" data-target="#hetModal">
-                <img src="../assets/banner-penilaian-sibi.png" class="d-block w-100 rounded" alt="../assets/banner-penilaian-sibi.png">
-              </a>
-            </div>
-            <div class="carousel-item">
-              <a type="button" data-toggle="modal" data-target="#hetModal">
-                <img src="../assets/banner-penilaian-sibi.png" class="d-block w-100 rounded" alt="../assets/banner-penilaian-sibi.png">
-              </a>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div id="carouselPengumuman" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a type="button" data-toggle="modal" data-target="#hetModal">
+                    <img src="../assets/banner-penilaian-sibi.png" class="d-block w-100 rounded" alt="../assets/banner-penilaian-sibi.png">
+                  </a>
+                </div>
+                <div class="carousel-item">
+                  <a type="button" data-toggle="modal" data-target="#hetModal">
+                    <img src="../assets/banner-penilaian-sibi.png" class="d-block w-100 rounded" alt="../assets/banner-penilaian-sibi.png">
+                  </a>
+                </div>
+              </div>
+              <button class="carousel-control-prev border-0 bg-transparent" type="button" data-target="#carouselPengumuman" data-slide="prev">
+                <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button class="carousel-control-next border-0 bg-transparent" type="button" data-target="#carouselPengumuman" data-slide="next">
+                <span class="carousel-control-next-icon text-dark" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </button>
             </div>
           </div>
-          <button class="carousel-control-prev border-0 bg-transparent" type="button" data-target="#carouselPengumuman" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </button>
-          <button class="carousel-control-next border-0 bg-transparent" type="button" data-target="#carouselPengumuman" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </button>
         </div>
       </div>
     </div>

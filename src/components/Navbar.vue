@@ -128,10 +128,9 @@
                 >Pembinaan
               </router-link>
               
-              <div class="dropdown-divider"></div>
-                <button type="button" class="dropdown-item" exact-active-class="active" data-toggle="modal" data-target="#hetModal">
-                  Pengajuan HET
-                </button>
+              <button type="button" class="dropdown-item" exact-active-class="active" data-toggle="modal" data-target="#hetModal">
+                Pengajuan HET
+              </button>
             </div>
           </li>
           <router-link class="nav-link" active-class="active" to="/kebijakan">
@@ -174,7 +173,7 @@
           </div>
           <div class="modal-body">
             <div class="row justify-content-center">
-              <div class="col-md-6">
+              <div class="col-md-6 my-2">
                 <a 
                   href="https://forms.gle/WnwvRcVzorPq2Pck7" 
                   class="btn btn-info btn-block"
@@ -183,7 +182,7 @@
                   HET Hardcover
                 </a>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 my-2">
                 <a 
                   href="https://forms.gle/Vb2Wv5XP6otZNjWk6" 
                   class="btn btn-info btn-block"
