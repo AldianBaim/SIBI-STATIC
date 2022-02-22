@@ -195,8 +195,9 @@
       </div>
     </div>
 
-    <div class="section-pengumuman pb-5">
+    <div class="section-pengumuman py-5">
       <div class="container">
+        <h3 class="text-center mb-4">Pengumuman</h3>
         <div id="carouselPengumuman" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
