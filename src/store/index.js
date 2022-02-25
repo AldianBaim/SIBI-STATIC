@@ -64,11 +64,11 @@ export default new Vuex.Store({
       });
     },
     setDataUser(state, payload) {
-      console.log(payload);
       let user = {
         user_id: payload.user_id,
         fullname: payload.fullname,
         avatar: payload.avatar,
+        role_name: payload.role_name
       };
       localStorage.setItem("user", JSON.stringify(user));
     },
@@ -207,7 +207,7 @@ export default new Vuex.Store({
       axios
         .get(
           BASE_URL +
-            `assessment/json/0?filter[assessment][type]=${payload.type}&filter[assessment][title]=${payload.title}&filter[assessment][author]=${payload.author}&filter[assessment][publisher]=${payload.publisher}&filter[assessment][edu_stage]=${payload.edu_stage}&filter[assessment][no_sk]=${payload.no_sk}`
+          `assessment/json/0?filter[assessment][type]=${payload.type}&filter[assessment][title]=${payload.title}&filter[assessment][author]=${payload.author}&filter[assessment][publisher]=${payload.publisher}&filter[assessment][edu_stage]=${payload.edu_stage}&filter[assessment][no_sk]=${payload.no_sk}`
         )
         .then((res) => {
           context.state.assesments = res.data.results;
@@ -238,7 +238,7 @@ export default new Vuex.Store({
       axios
         .get(
           BASE_URL +
-            `api/training/training_report/0?name=${payload.name}&role=${payload.penelaah}`
+          `api/training/training_report/0?name=${payload.name}&role=${payload.penelaah}`
         )
         .then((res) => {
           context.state.certifications = res.data.results;

@@ -7,7 +7,9 @@
         >Halo, <b>{{ username }}</b></span
       >
     </div>
-    <div><small>Penerbit</small></div>
+    <div>
+      <small>{{ roleName }}</small>
+    </div>
 
     <ul class="mt-4">
       <li class="active">
@@ -15,8 +17,13 @@
           <a><i class="fas fa-home fa-fw"></i> Beranda</a>
         </router-link>
       </li>
-      <li>
+      <li v-if="roleName != 'Penerbit'">
         <router-link to="/user/profil">
+          <a><i class="fas fa-fw fa-user"></i> Profil</a>
+        </router-link>
+      </li>
+      <li v-else>
+        <router-link to="/user/profil/publisher">
           <a><i class="fas fa-fw fa-user"></i> Profil</a>
         </router-link>
       </li>
@@ -45,6 +52,7 @@ export default {
   data() {
     return {
       username: "",
+      roleName: "",
     };
   },
   created() {
@@ -52,6 +60,7 @@ export default {
     var parse = JSON.parse(user);
 
     this.username = parse.fullname;
+    this.roleName = parse.role_name;
   },
 };
 </script>
