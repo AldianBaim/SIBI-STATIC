@@ -341,9 +341,10 @@ export default new Vuex.Store({
           if (res.data.status == 'failed') {
             context.state.messageStatusErrorPublisher = true;
             context.state.messageErrorPublisher = res.data.message
+          } else {
+            context.state.messageStatusPublisher = true;
+            context.state.loadPage = false;
           }
-          context.state.messageStatusPublisher = true;
-          context.state.loadPage = false;
         })
         .catch((err) => {
           context.state.loadPage = false;
