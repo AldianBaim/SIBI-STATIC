@@ -142,7 +142,7 @@ export default new Vuex.Store({
       console.log(payload);
       context.state.loadPage = true;
       axios
-        .post(API_DEV + "/api/user/register", payload, {
+        .post(API_DEV + "api/user/register", payload, {
           headers: {
             "content-type": "application/json",
           },
