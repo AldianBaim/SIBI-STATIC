@@ -22,6 +22,7 @@
             <div class="form-group">
               <label for="provinsi" class="form-label">Provinsi</label>
               <select
+                required
                 class="form-control"
                 id="provinsi"
                 v-model="publisher.province"
@@ -34,7 +35,12 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="kota" class="form-label">Kota</label>
-              <select class="form-control" id="kota" v-model="publisher.city">
+              <select
+                required
+                class="form-control"
+                id="kota"
+                v-model="publisher.city"
+              >
                 <option value="" selected disabled>Pilih Kota</option>
                 <option value="Bandung">Bandung</option>
               </select>
@@ -643,6 +649,7 @@ export default {
     },
     updateProfile() {
       this.updatePublisherProfile(this.publisher);
+      this.$store.state.loadPage = false;
     },
     setValue(publisher) {
       this.publisher.name = publisher.name;
