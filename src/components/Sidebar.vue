@@ -42,6 +42,11 @@
           <a><i class="fa fa-download fa-fw"></i> Unduh Buku</a>
         </router-link>
       </li>
+      <li>
+        <a href="https://odk.101.my.id/"
+          ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+        >
+      </li>
     </ul>
   </div>
 </template>

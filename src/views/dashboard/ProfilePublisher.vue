@@ -73,7 +73,7 @@
                   <div class="input-group-text">@</div>
                 </div>
                 <input
-                  required
+                  readonly
                   type="email"
                   class="form-control"
                   id="email"
@@ -184,8 +184,8 @@
         <h6 class="font-weight-bold mb-2"><u>Data Berkas</u></h6>
         <p class="mb-4">Silahkan isi data-data terkait berkas</p>
         <div
-          v-if="$store.state.messageStatus"
-          v-html="$store.state.message"
+          v-if="$store.state.messageStatusErrorPublisher"
+          v-html="$store.state.messageErrorPublisher"
           class="alert alert-danger"
         >
           <button
@@ -212,13 +212,13 @@
                 class="form-control"
                 @change="selectFile"
               />
-              <input type="text" v-model="publisher.surat_pengajuan" />
+              <input type="hidden" v-model="publisher.surat_pengajuan" />
               <div class="my-1">
                 <button
                   v-if="!$store.state.loadPengajuan"
                   type="button"
                   id="uploadPengajuan"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-info btn-sm"
                   @click="uploadData"
                 >
                   {{ loading.pengajuan ? "sedang diproses.." : "Upload" }}
@@ -254,12 +254,12 @@
                 class="form-control"
                 @change="selectFile"
               />
-              <input type="text" v-model="publisher.surat_pernyataan" />
+              <input type="hidden" v-model="publisher.surat_pernyataan" />
               <div class="my-1">
                 <button
                   v-if="!$store.state.loadPernyataan"
                   type="button"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-info btn-sm"
                   id="uploadPernyataan"
                   @click="uploadData"
                 >
@@ -294,12 +294,12 @@
                 class="form-control"
                 @change="selectFile"
               />
-              <input type="text" v-model="publisher.kta_ikapi" />
+              <input type="hidden" v-model="publisher.kta_ikapi" />
               <div class="my-1">
                 <button
                   v-if="!$store.state.loadKta"
                   type="button"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-info btn-sm"
                   id="uploadKTA"
                   @click="uploadData"
                 >
@@ -331,12 +331,12 @@
                 class="form-control"
                 @change="selectFile"
               />
-              <input type="text" v-model="publisher.akta" />
+              <input type="hidden" v-model="publisher.akta" />
               <div class="my-1">
                 <button
                   v-if="!$store.state.loadAkta"
                   type="button"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-info btn-sm"
                   id="uploadAkta"
                   @click="uploadData"
                 >
@@ -371,12 +371,12 @@
                 class="form-control"
                 @change="selectFile"
               />
-              <input type="text" v-model="publisher.npwp" />
+              <input type="hidden" v-model="publisher.npwp" />
               <div class="my-1">
                 <button
                   v-if="!$store.state.loadNpwp"
                   type="button"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-info btn-sm"
                   id="uploadNPWP"
                   @click="uploadData"
                 >
@@ -411,12 +411,12 @@
                 class="form-control"
                 @change="selectFile"
               />
-              <input type="text" v-model="publisher.siup" />
+              <input type="hidden" v-model="publisher.siup" />
               <div class="my-1">
                 <button
                   v-if="!$store.state.loadSiup"
                   type="button"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-info btn-sm"
                   id="uploadSIUP"
                   @click="uploadData"
                 >
@@ -440,9 +440,27 @@
             </div>
           </div>
         </div>
+        <div
+          v-if="$store.state.messageStatusPublisher"
+          class="alert alert-success"
+        >
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span
+            >Berhasil memperbaharui data profil penerbit. Selanjutnya silahkan
+            klik <a href="https://odk.101.my.id/">tautan ini</a> untuk
+            mendaftarkan buku.</span
+          >
+        </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">
-            Submit
+            {{ $store.state.loadPage ? "Sedang diproses.." : "Submit" }}
           </button>
         </div>
       </form>
@@ -627,6 +645,7 @@ export default {
       this.updatePublisherProfile(this.publisher);
     },
     setValue(publisher) {
+      this.publisher.name = publisher.name;
       this.publisher.province = publisher.province;
       this.publisher.city = publisher.city;
       this.publisher.address = publisher.address;
@@ -648,7 +667,6 @@ export default {
   created() {
     let user = JSON.parse(localStorage.getItem("user"));
 
-    this.publisher.name = user.fullname;
     this.publisher.email = user.email;
   },
   mounted() {

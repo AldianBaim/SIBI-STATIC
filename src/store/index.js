@@ -39,6 +39,9 @@ export default new Vuex.Store({
     messageStatusReport: false,
     messageStatusPortfolio: false,
     message: "",
+    messageStatusPublisher: false,
+    messageStatusErrorPublisher: false,
+    messageErrorPublisher: "",
     msgcolor: "",
 
     user: [],
@@ -336,9 +339,10 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res);
           if (res.data.status == 'failed') {
-            context.state.messageStatus = true;
-            context.state.message = res.data.message
+            context.state.messageStatusErrorPublisher = true;
+            context.state.messageErrorPublisher = res.data.message
           }
+          context.state.messageStatusPublisher = true;
           context.state.loadPage = false;
         })
         .catch((err) => {
