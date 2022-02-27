@@ -3,6 +3,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
 const BASE_URL = "https://api.buku.kemdikbud.cloudapp.web.id/";
+const API_DEV = "https://api.development.buku.kemdikbud.cloudapp.web.id/api"
 const d = new Date();
 const today = d.toString();
 const day = today.slice(0, 3);
@@ -46,6 +47,13 @@ export default new Vuex.Store({
     token: localStorage.getItem("token") || "",
 
     image: null,
+
+    loadPengajuan: false,
+    loadPernyataan: false,
+    loadNpwp: false,
+    loadAkta: false,
+    loadKta: false,
+    loadSiup: false
   },
   mutations: {
     setImage(state, image) {
@@ -68,7 +76,8 @@ export default new Vuex.Store({
         user_id: payload.user_id,
         fullname: payload.fullname,
         avatar: payload.avatar,
-        role_name: payload.role_name
+        role_name: payload.role_name,
+        email: payload.email
       };
       localStorage.setItem("user", JSON.stringify(user));
     },
@@ -312,6 +321,31 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
+    updatePublisherProfile(context, payload) {
+      console.log(payload);
+      context.state.loadPage = true;
+      axios({
+        method: "post",
+        url: API_DEV + "/user/updatePublisherProfile",
+        data: payload,
+        headers: {
+          Authorization: context.state.token,
+          "content-type": "application/json"
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.data.status == 'failed') {
+            context.state.messageStatus = true;
+            context.state.message = res.data.message
+          }
+          context.state.loadPage = false;
+        })
+        .catch((err) => {
+          context.state.loadPage = false;
+          console.log(err);
+        });
+    },
     fetchAllBook(context) {
       axios
         .get(BASE_URL + "api/catalogue/getLatest?qty=100")
@@ -517,6 +551,34 @@ export default new Vuex.Store({
           .then((res) => {
             resolve(res.data);
             context.commit("setImage", res.data.data.image.url);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+          .finally(() => {
+            context.state.loadUploadFile = false;
+          });
+      });
+    },
+    uploadFile(context, file) {
+      context.state.loadUploadFile = true;
+      const formData = new FormData();
+      formData.append("file", file);
+
+      return new Promise((resolve, reject) => {
+        axios
+          .post(
+            "https://upload.cloudapp.web.id/upload.php",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+            resolve(res.data);
           })
           .catch((err) => {
             reject(err);

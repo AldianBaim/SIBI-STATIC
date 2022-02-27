@@ -64,3 +64,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.router-link-exact-active a {
+  font-weight: 700 !important;
+  color: #0b85cc !important;
+}
+</style>
