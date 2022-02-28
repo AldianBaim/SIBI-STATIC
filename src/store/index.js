@@ -3,7 +3,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
 const BASE_URL = "https://api.buku.kemdikbud.cloudapp.web.id/";
-const API_DEV = "https://api.development.buku.kemdikbud.cloudapp.web.id/"
+// const API_DEV = "https://api.development.buku.kemdikbud.cloudapp.web.id/"
 const d = new Date();
 const today = d.toString();
 const day = today.slice(0, 3);
@@ -118,7 +118,7 @@ export default new Vuex.Store({
     login(context, payload) {
       context.state.loadPage = true;
       axios
-        .post(API_DEV + "api/user/login", payload)
+        .post(BASE_URL + "api/user/login", payload)
         .then((res) => {
           if (res.data.status == "failed") {
             context.state.messageStatus = true;
@@ -142,7 +142,7 @@ export default new Vuex.Store({
       console.log(payload);
       context.state.loadPage = true;
       axios
-        .post(API_DEV + "api/user/register", payload, {
+        .post(BASE_URL + "api/user/register", payload, {
           headers: {
             "content-type": "application/json",
           },
@@ -329,7 +329,7 @@ export default new Vuex.Store({
       context.state.loadPage = true;
       axios({
         method: "post",
-        url: API_DEV + "api/user/updatePublisherProfile",
+        url: BASE_URL + "api/user/updatePublisherProfile",
         data: payload,
         headers: {
           Authorization: context.state.token,
