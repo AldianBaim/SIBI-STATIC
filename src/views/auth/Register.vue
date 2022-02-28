@@ -89,6 +89,7 @@
               </div>
               <div class="form-group">
                 <input
+                  required
                   v-model="user.phone"
                   type="text"
                   class="form-control"

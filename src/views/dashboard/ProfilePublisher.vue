@@ -22,13 +22,20 @@
             <div class="form-group">
               <label for="provinsi" class="form-label">Provinsi</label>
               <select
-                required
-                class="form-control"
-                id="provinsi"
                 v-model="publisher.province"
+                id="provinsi"
+                class="form-control"
+                required
+                @change="getCity($event)"
               >
-                <option value="" selected disabled>Pilih Provinsi</option>
-                <option value="Jawa Barat">Jawa Barat</option>
+                <option value="" disabled>Pilih ..</option>
+                <option
+                  v-for="(province, index) of provinces"
+                  :key="index"
+                  :value="province.id"
+                >
+                  {{ province.name }}
+                </option>
               </select>
             </div>
           </div>
@@ -42,7 +49,12 @@
                 v-model="publisher.city"
               >
                 <option value="" selected disabled>Pilih Kota</option>
-                <option value="Bandung">Bandung</option>
+                <option
+                  v-for="(city, index) in cities"
+                  :key="index"
+                  :value="city.id"
+                  >{{ city.name }}</option
+                >
               </select>
             </div>
           </div>
@@ -238,7 +250,7 @@
                   Uploaded
                 </button>
                 <a
-                  v-if="link.pengajuan != ''"
+                  v-if="link.pengajuan != '' || publisher.pengajuan != ''"
                   :href="link.pengajuan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -480,6 +492,12 @@ import axios from "axios";
 export default {
   data() {
     return {
+      API_KEY:
+        "a0a39455c89dadd653f4a0f4a1748df3aa5c92448396881214a47d90547494fa",
+      API_PROVINCE: "https://api.binderbyte.com",
+      provinces: [],
+      cities: [],
+
       publisher: {
         name: "",
         address: "",
@@ -669,6 +687,25 @@ export default {
       this.publisher.kta_ikapi = publisher.kta_ikapi;
       this.publisher.siup = publisher.siup;
       this.publisher.akta = publisher.akta;
+
+      // Set link state
+      this.link.pengajuan = publisher.surat_pengajuan;
+      this.link.pernyataan = publisher.surat_pernyataan;
+      this.link.npwp = publisher.npwp;
+      this.link.kta = publisher.kta_ikapi;
+      this.link.siup = publisher.siup;
+      this.link.akta = publisher.akta;
+    },
+    getCity(e) {
+      axios({
+        method: "get",
+        url:
+          this.API_PROVINCE +
+          `/wilayah/kabupaten?api_key=${this.API_KEY}&id_provinsi=${e.target.value}`,
+      }).then((res) => {
+        console.log(res);
+        this.cities = res.data.value;
+      });
     },
   },
   created() {
@@ -688,8 +725,26 @@ export default {
         },
       )
       .then((res) => {
+        console.log(res);
         this.setValue(res.data.result);
+        axios({
+          method: "get",
+          url:
+            this.API_PROVINCE +
+            `/wilayah/kabupaten?api_key=${this.API_KEY}&id_provinsi=${res.data.result.province}`,
+        }).then((res) => {
+          console.log(res);
+          this.cities = res.data.value;
+        });
       });
+
+    // Get Province
+    axios({
+      method: "get",
+      url: this.API_PROVINCE + `/wilayah/provinsi?api_key=${this.API_KEY}`,
+    }).then((res) => {
+      this.provinces = res.data.value;
+    });
   },
 };
 </script>
