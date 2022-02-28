@@ -42,22 +42,70 @@
           <a><i class="fa fa-download fa-fw"></i> Unduh Buku</a>
         </router-link>
       </li>
-      <li>
+      <li v-if="showDaftarBuku">
         <a href="https://odk.101.my.id/"
           ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
         >
       </li>
+      <li v-else>
+        <a href="" data-toggle="modal" data-target="#exampleModal"
+          ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+        >
+      </li>
     </ul>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Penilaian Buku</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Silahkan lengkapi data profil penerbit terlebih dahulu, terutama
+              berkas-berkas untuk mendaftar penilaian buku.
+            </p>
+            <router-link to="/user/profil/publisher">
+              <a type="button" data-dismiss="modal"
+                ><i class="fas fa-fw fa-edit"></i> Lengkapi profil</a
+              >
+            </router-link>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Sidebar",
   data() {
     return {
       username: "",
       roleName: "",
+      showDaftarBuku: false,
     };
   },
   created() {
@@ -66,6 +114,24 @@ export default {
 
     this.username = parse.fullname;
     this.roleName = parse.role_name;
+
+    const token = localStorage.getItem("token");
+    axios
+      .get(
+        "https://api.development.buku.kemdikbud.cloudapp.web.id/api/user/getPublisherProfile",
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      )
+      .then((res) => {
+        if (res.data.result.siup != "") {
+          this.showDaftarBuku = true;
+        } else {
+          this.showDaftarBuku = false;
+        }
+      });
   },
 };
 </script>
