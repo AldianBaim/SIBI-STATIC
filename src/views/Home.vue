@@ -96,7 +96,7 @@
             <div class="text-right">
               <img
                 style="bottom: 0px; width: 100%"
-                src="https://api.buku.kemdikbud.cloudapp.web.id/sites/sibi//themes/default/assets/jumbotron.png"
+                src="https://api.buku.kemdikbud.go.id/sites/sibi/themes/default/assets/jumbotron.png"
               />
             </div>
           </div>
