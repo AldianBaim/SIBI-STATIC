@@ -717,7 +717,7 @@ export default {
     const token = localStorage.getItem("token");
     axios
       .get(
-        "https://api.development.buku.kemdikbud.cloudapp.web.id/api/user/getPublisherProfile",
+        "https://api.buku.kemdikbud.cloudapp.web.id/api/user/getPublisherProfile",
         {
           headers: {
             Authorization: token,
