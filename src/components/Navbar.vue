@@ -132,7 +132,7 @@
                 target="_blank"
                 class="dropdown-item"
                 exact-active-class="active"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSd2t5XGrlZUqPEAyBFWlDh1VJFwDZFyI4qJUoyuCBDKLAveTw/viewform"
+                href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
               >
                 Pengajuan HET
               </a>

@@ -209,7 +209,7 @@
                 <div class="carousel-item active">
                   <a
                     target="_blank"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSd2t5XGrlZUqPEAyBFWlDh1VJFwDZFyI4qJUoyuCBDKLAveTw/viewform"
+                    href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
                   >
                     <img
                       src="../assets/banner-penilaian-sibi-rev-b.png"
@@ -221,7 +221,7 @@
                 <div class="carousel-item">
                   <a
                     target="_blank"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSd2t5XGrlZUqPEAyBFWlDh1VJFwDZFyI4qJUoyuCBDKLAveTw/viewform"
+                    href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
                   >
                     <img
                       src="../assets/banner-penilaian-sibi-rev-b.png"
