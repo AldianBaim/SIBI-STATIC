@@ -17,37 +17,57 @@
         <div class="row">
           <div class="col-md-5 offset-md-3">
             <h2>Lupa kata sandi?</h2>
+            <template v-if="$store.state.messageRecovery == ''">
+              <div
+                v-if="$store.state.messageRecoveryError != ''"
+                class="alert alert-warning"
+              >
+                {{ $store.state.messageRecoveryError }}
+              </div>
+            </template>
+            <template v-else>
+              <div
+                v-if="$store.state.messageRecovery != ''"
+                class="alert alert-success"
+              >
+                {{ $store.state.messageRecovery }}
+              </div>
+            </template>
             <p class="mb-3">
               Masukan email yang terdaftar pada situs ini, kami akan mengirimkan
               tautan untuk memperbaharui kata sandi.
             </p>
             <form
-              action="api.buku.kemdikbud.cloudapp.web.id/user/recovery_action"
+              @submit.prevent="submit()"
               class="margin-lg-top"
               method="post"
               accept-charset="utf-8"
             >
-              <input
-                type="hidden"
-                name="csrf_test_name"
-                value="fc780e4b7335ee1e9e1333e69d3bb3e3"
-              />
               <div class="form-group">
                 <input
+                  v-model="email"
                   type="email"
-                  name="email"
                   class="form-control"
                   placeholder="Email"
-                  required=""
+                  required
                 />
               </div>
               <div class="form-group">
                 <button
+                  v-if="!$store.state.loadPage"
                   type="submit"
                   id="btn-submit-login"
                   class="btn btn-primary register-submit"
                 >
-                  Kirim <i class="fas fa-paper-plane"></i>
+                  Kirim
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+                <button
+                  v-else
+                  type="button"
+                  class="btn btn-primary register-submit"
+                >
+                  Tunggu sebentar..
                 </button>
               </div>
             </form>
@@ -65,5 +85,19 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+export default {
+  data() {
+    return {
+      email: "",
+    };
+  },
+  methods: {
+    ...mapActions(["recoveryAccount"]),
+    submit() {
+      this.recoveryAccount(this.email);
+      this.email = "";
+    },
+  },
+};
 </script>

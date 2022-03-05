@@ -49,6 +49,8 @@ export default new Vuex.Store({
     messageStatusErrorPublisher: false,
     messageErrorPublisher: "",
     msgcolor: "",
+    messageRecovery: "",
+    messageRecoveryError: "",
 
     user: [],
     userProfile: null,
@@ -626,6 +628,31 @@ export default new Vuex.Store({
           });
       });
     },
+    recoveryAccount(context, email) {
+      context.state.loadPage = true
+      context.state.messageRecovery = ""
+      context.state.messageRecoveryError = ""
+
+      const body = new FormData()
+      body.append("email", email)
+
+      axios({
+        method: "POST",
+        url: BASE_URL + 'api/user/reset_password',
+        data: body,
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      }).then(res => {
+        console.log(res);
+        context.state.messageRecovery = res.data.message
+      }).catch(err => {
+        console.log(err);
+        context.state.messageRecoveryError = "Email tidak ditemukan"
+      })
+        .finally(() => context.state.loadPage = false)
+
+    }
   },
   modules: {},
 });
