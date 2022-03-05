@@ -256,6 +256,29 @@
                 <span class="sr-only">Next</span>
               </button>
             </div>
+            <div class="text-center my-3">
+              <a
+                href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view"
+                class="btn btn-sm btn-primary mb-2 mb-md-0"
+                target="_blank"
+              >
+                <span class="h5">Pengumuman HET</span>
+              </a>
+              <a
+                href="http://ringkas.kemdikbud.go.id/daftarisianHET"
+                class="btn btn-sm btn-primary mx-2"
+                target="_blank"
+              >
+                <span class="h5">Format HET</span>
+              </a>
+              <a
+                href="http://ringkas.kemdikbud.go.id/daftarisianHET"
+                class="btn btn-sm btn-primary"
+                target="_blank"
+              >
+                <span class="h5">Formulir HET</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
