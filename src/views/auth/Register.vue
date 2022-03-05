@@ -195,6 +195,7 @@ export default {
         phone: "",
         password: "",
         confirm_password: "",
+        source: "platform",
         role_id: "",
         // role_id: 3,
       },

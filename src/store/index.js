@@ -635,6 +635,7 @@ export default new Vuex.Store({
 
       const body = new FormData()
       body.append("email", email)
+      body.append("source", "platform")
 
       axios({
         method: "POST",
