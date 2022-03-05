@@ -99,5 +99,9 @@ export default {
       this.email = "";
     },
   },
+  created() {
+    this.$store.state.messageRecovery = "";
+    this.$store.state.messageRecoveryError = "";
+  },
 };
 </script>
