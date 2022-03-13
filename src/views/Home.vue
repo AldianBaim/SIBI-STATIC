@@ -272,7 +272,7 @@
                 <span class="h5">Format HET</span>
               </a>
               <a
-                href="http://ringkas.kemdikbud.go.id/daftarisianHET"
+                href="http://ringkas.kemdikbud.go.id/formulirlampiranHET"
                 class="btn btn-sm btn-primary"
                 target="_blank"
               >
