@@ -2,7 +2,7 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
-const environment = 'development';
+const environment = 'production';
 
 let BASE_URL = 'https://api.buku.kemdikbud.go.id/';
 

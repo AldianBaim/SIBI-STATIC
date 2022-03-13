@@ -43,7 +43,7 @@
         </router-link>
       </li>
       <li v-if="showDaftarBuku">
-        <a href="https://odk.101.my.id/"
+        <a v-bind:href="'https://bntp.buku.kemdikbud.go.id/daftar/buku?id_penerbit='+user_id+'&penerbit='+username+'&email='+email"
           ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
         >
       </li>
@@ -103,6 +103,8 @@ export default {
   name: "Sidebar",
   data() {
     return {
+      user_id: "",
+      email: "",
       username: "",
       roleName: "",
       showDaftarBuku: false,
@@ -112,7 +114,9 @@ export default {
     var user = localStorage.getItem("user");
     var parse = JSON.parse(user);
 
+    this.user_id = parse.user_id;
     this.username = parse.fullname;
+    this.email = parse.email;
     this.roleName = parse.role_name;
 
     const token = localStorage.getItem("token");
