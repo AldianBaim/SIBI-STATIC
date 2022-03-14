@@ -219,7 +219,10 @@
           <div class="col-12">
             <div class="form-group">
               <label for="pengajuan" class="form-label"
-                >Surat Pengajuan Penilaian Buku</label
+                >Surat Pengajuan Penilaian Buku
+                <span class="text-muted"
+                  >(PDF/Zip, ukuran maks 5mb)</span
+                ></label
               >
               <small v-if="validation.pengajuan" class="text-danger d-block"
                 >Berkas harus diisi</small
@@ -261,7 +264,10 @@
           <div class="col-12">
             <div class="form-group">
               <label for="pernyataan" class="form-label"
-                >Surat Pernyataan Kebenaran Informasi</label
+                >Surat Pernyataan Kebenaran Informasi
+                <span class="text-muted"
+                  >(PDF/Zip, ukuran maks 5mb)</span
+                ></label
               >
               <small v-if="validation.pernyataan" class="text-danger d-block"
                 >Berkas harus diisi</small
@@ -302,7 +308,12 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label for="kta" class="form-label">KTA IKAPI</label>
+              <label for="kta" class="form-label"
+                >KTA IKAPI
+                <span class="text-muted"
+                  >(PDF/Zip, ukuran maks 5mb)</span
+                ></label
+              >
               <small v-if="validation.kta" class="text-danger d-block"
                 >Berkas harus diisi</small
               >
@@ -339,7 +350,12 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label for="akta" class="form-label">Akta</label>
+              <label for="akta" class="form-label"
+                >Akta
+                <span class="text-muted"
+                  >(PDF/Zip, ukuran maks 5mb)</span
+                ></label
+              >
               <small v-if="validation.akta" class="text-danger d-block"
                 >Berkas harus diisi</small
               >
@@ -379,7 +395,12 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label for="npwp" class="form-label">NPWP</label>
+              <label for="npwp" class="form-label"
+                >NPWP
+                <span class="text-muted"
+                  >(PDF/Zip, ukuran maks 5mb)</span
+                ></label
+              >
               <small v-if="validation.npwp" class="text-danger d-block"
                 >Berkas harus diisi</small
               >
@@ -419,7 +440,12 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label for="siup" class="form-label">SIUP</label>
+              <label for="siup" class="form-label"
+                >SIUP
+                <span class="text-muted"
+                  >(PDF/Zip, ukuran maks 5mb)</span
+                ></label
+              >
               <small v-if="validation.siup" class="text-danger d-block"
                 >Berkas harus diisi</small
               >
@@ -716,14 +742,11 @@ export default {
   mounted() {
     const token = localStorage.getItem("token");
     axios
-      .get(
-        "https://api.buku.kemdikbud.go.id/api/user/getPublisherProfile",
-        {
-          headers: {
-            Authorization: token,
-          },
+      .get("https://api.buku.kemdikbud.go.id/api/user/getPublisherProfile", {
+        headers: {
+          Authorization: token,
         },
-      )
+      })
       .then((res) => {
         this.setValue(res.data.result);
         axios({

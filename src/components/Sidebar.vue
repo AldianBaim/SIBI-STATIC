@@ -42,16 +42,26 @@
           <a><i class="fa fa-download fa-fw"></i> Unduh Buku</a>
         </router-link>
       </li>
-      <li v-if="showDaftarBuku">
-        <a v-bind:href="'https://bntp.buku.kemdikbud.go.id/daftar/buku?id_penerbit='+user_id+'&penerbit='+username+'&email='+email"
-          ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
-        >
-      </li>
-      <li v-else>
-        <a href="" data-toggle="modal" data-target="#exampleModal"
-          ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
-        >
-      </li>
+      <span v-show="checkRole">
+        <li v-if="showDaftarBuku">
+          <a
+            v-bind:href="
+              'https://bntp.buku.kemdikbud.go.id/daftar/buku?id_penerbit=' +
+                user_id +
+                '&penerbit=' +
+                username +
+                '&email=' +
+                email
+            "
+            ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+          >
+        </li>
+        <li v-else>
+          <a href="" data-toggle="modal" data-target="#exampleModal"
+            ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+          >
+        </li>
+      </span>
     </ul>
     <!-- Modal -->
     <div
@@ -108,6 +118,7 @@ export default {
       username: "",
       roleName: "",
       showDaftarBuku: false,
+      checkRole: false,
     };
   },
   created() {
@@ -119,19 +130,22 @@ export default {
     this.email = parse.email;
     this.roleName = parse.role_name;
 
+    if (this.roleName == "Penerbit") {
+      this.checkRole = true;
+    }
+
     const token = localStorage.getItem("token");
     axios
-      .get(
-        "https://api.buku.kemdikbud.go.id/api/user/getPublisherProfile",
-        {
-          headers: {
-            Authorization: token,
-          },
+      .get("https://api.buku.kemdikbud.go.id/api/user/getPublisherProfile", {
+        headers: {
+          Authorization: token,
         },
-      )
+      })
       .then((res) => {
         if (res.data.result.siup != "") {
-          this.showDaftarBuku = true;
+          if (res.data.result.role_name == "penerbit") {
+            this.showDaftarBuku = true;
+          }
         } else {
           this.showDaftarBuku = false;
         }
