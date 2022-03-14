@@ -220,13 +220,13 @@
             <div class="form-group">
               <label for="pengajuan" class="form-label"
                 >Surat Pengajuan Penilaian Buku
-                <span class="text-muted"
-                  >(PDF/Zip, ukuran maks 5mb)</span
-                ></label
+                <span class="text-muted">(PDF, ukuran maks 1mb)</span></label
               >
-              <small v-if="validation.pengajuan" class="text-danger d-block"
-                >Berkas harus diisi</small
-              >
+              <small v-if="validation.pengajuan" class="text-danger d-block">{{
+                validation.message == ""
+                  ? "Berkas harus diisi"
+                  : validation.message
+              }}</small>
               <input
                 type="file"
                 id="pengajuan"
@@ -250,7 +250,7 @@
                   class="btn btn-secondary btn-sm"
                   disabled
                 >
-                  Uploaded
+                  Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
                   v-if="link.pengajuan != '' || publisher.pengajuan != ''"
@@ -265,13 +265,13 @@
             <div class="form-group">
               <label for="pernyataan" class="form-label"
                 >Surat Pernyataan Kebenaran Informasi
-                <span class="text-muted"
-                  >(PDF/Zip, ukuran maks 5mb)</span
-                ></label
+                <span class="text-muted">(PDF, ukuran maks 1mb)</span></label
               >
-              <small v-if="validation.pernyataan" class="text-danger d-block"
-                >Berkas harus diisi</small
-              >
+              <small v-if="validation.pernyataan" class="text-danger d-block">{{
+                validation.message == ""
+                  ? "Berkas harus diisi"
+                  : validation.message
+              }}</small>
               <input
                 type="file"
                 id="pernyataan"
@@ -295,7 +295,7 @@
                   class="btn btn-secondary btn-sm"
                   disabled
                 >
-                  Uploaded
+                  Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
                   v-if="link.pernyataan != ''"
@@ -310,13 +310,13 @@
             <div class="form-group">
               <label for="kta" class="form-label"
                 >KTA IKAPI
-                <span class="text-muted"
-                  >(PDF/Zip, ukuran maks 5mb)</span
-                ></label
+                <span class="text-muted">(PDF, ukuran maks 1mb)</span></label
               >
-              <small v-if="validation.kta" class="text-danger d-block"
-                >Berkas harus diisi</small
-              >
+              <small v-if="validation.kta" class="text-danger d-block">{{
+                validation.message == ""
+                  ? "Berkas harus diisi"
+                  : validation.message
+              }}</small>
               <input
                 type="file"
                 id="kta"
@@ -340,7 +340,7 @@
                   class="btn btn-secondary btn-sm"
                   disabled
                 >
-                  Uploaded
+                  Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a v-if="link.kta != ''" :href="link.kta" class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -352,13 +352,13 @@
             <div class="form-group">
               <label for="akta" class="form-label"
                 >Akta
-                <span class="text-muted"
-                  >(PDF/Zip, ukuran maks 5mb)</span
-                ></label
+                <span class="text-muted">(PDF, ukuran maks 1mb)</span></label
               >
-              <small v-if="validation.akta" class="text-danger d-block"
-                >Berkas harus diisi</small
-              >
+              <small v-if="validation.akta" class="text-danger d-block">{{
+                validation.message == ""
+                  ? "Berkas harus diisi"
+                  : validation.message
+              }}</small>
               <input
                 type="file"
                 id="akta"
@@ -382,7 +382,7 @@
                   class="btn btn-secondary btn-sm"
                   disabled
                 >
-                  Uploaded
+                  Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
                   v-if="link.akta != ''"
@@ -397,13 +397,13 @@
             <div class="form-group">
               <label for="npwp" class="form-label"
                 >NPWP
-                <span class="text-muted"
-                  >(PDF/Zip, ukuran maks 5mb)</span
-                ></label
+                <span class="text-muted">(PDF, ukuran maks 1mb)</span></label
               >
-              <small v-if="validation.npwp" class="text-danger d-block"
-                >Berkas harus diisi</small
-              >
+              <small v-if="validation.npwp" class="text-danger d-block">{{
+                validation.message == ""
+                  ? "Berkas harus diisi"
+                  : validation.message
+              }}</small>
               <input
                 type="file"
                 id="npwp"
@@ -427,7 +427,7 @@
                   class="btn btn-secondary btn-sm"
                   disabled
                 >
-                  Uploaded
+                  Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
                   v-if="link.npwp != ''"
@@ -442,13 +442,13 @@
             <div class="form-group">
               <label for="siup" class="form-label"
                 >SIUP
-                <span class="text-muted"
-                  >(PDF/Zip, ukuran maks 5mb)</span
-                ></label
+                <span class="text-muted">(PDF, ukuran maks 1mb)</span></label
               >
-              <small v-if="validation.siup" class="text-danger d-block"
-                >Berkas harus diisi</small
-              >
+              <small v-if="validation.siup" class="text-danger d-block">{{
+                validation.message == ""
+                  ? "Berkas harus diisi"
+                  : validation.message
+              }}</small>
               <input
                 type="file"
                 id="siup"
@@ -472,7 +472,7 @@
                   class="btn btn-secondary btn-sm"
                   disabled
                 >
-                  Uploaded
+                  Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
                   v-if="link.siup != ''"
@@ -561,6 +561,7 @@ export default {
         siup: false,
       },
       validation: {
+        message: "",
         pengajuan: false,
         pernyataan: false,
         siup: false,
@@ -590,7 +591,6 @@ export default {
       event.target.id == "kta" && (this.file.kta_ikapi = file);
     },
     uploadData(event) {
-      console.log(this.file.surat_pengajuan);
       let file = null;
 
       // Conditional event button click
@@ -651,42 +651,78 @@ export default {
       // Upload file to server
       if (file !== null) {
         this.uploadFile(file).then((res) => {
-          console.log(res);
+          console.log(res.message);
           if (event.target.id == "uploadPengajuan") {
-            this.publisher.surat_pengajuan = res.file;
-            this.link.pengajuan = res.file;
-            this.$store.state.loadPengajuan = true;
-            this.validation.pengajuan = false;
+            if (res.status == "success") {
+              this.publisher.surat_pengajuan = res.file;
+              this.link.pengajuan = res.file;
+              this.$store.state.loadPengajuan = true;
+              this.validation.pengajuan = false;
+            } else {
+              this.loading.pengajuan = false;
+              this.validation.message = res.message;
+              this.validation.pengajuan = true;
+            }
           }
           if (event.target.id == "uploadPernyataan") {
-            this.publisher.surat_pernyataan = res.file;
-            this.link.pernyataan = res.file;
-            this.$store.state.loadPernyataan = true;
-            this.validation.pernyataan = false;
+            if (res.status == "success") {
+              this.publisher.surat_pernyataan = res.file;
+              this.link.pernyataan = res.file;
+              this.$store.state.loadPernyataan = true;
+              this.validation.pernyataan = false;
+            } else {
+              this.loading.pernyataan = false;
+              this.validation.message = res.message;
+              this.validation.pernyataan = true;
+            }
           }
           if (event.target.id == "uploadNPWP") {
-            this.publisher.npwp = res.file;
-            this.link.npwp = res.file;
-            this.$store.state.loadNpwp = true;
-            this.validation.npwp = false;
+            if (res.status == "success") {
+              this.publisher.npwp = res.file;
+              this.link.npwp = res.file;
+              this.$store.state.loadNpwp = true;
+              this.validation.npwp = false;
+            } else {
+              this.loading.npwp = false;
+              this.validation.message = res.message;
+              this.validation.npwp = true;
+            }
           }
           if (event.target.id == "uploadSIUP") {
-            this.publisher.siup = res.file;
-            this.link.siup = res.file;
-            this.$store.state.loadSiup = true;
-            this.validation.siup = false;
+            if (res.status == "success") {
+              this.publisher.siup = res.file;
+              this.link.siup = res.file;
+              this.$store.state.loadSiup = true;
+              this.validation.siup = false;
+            } else {
+              this.loading.siup = false;
+              this.validation.message = res.message;
+              this.validation.siup = true;
+            }
           }
           if (event.target.id == "uploadAkta") {
-            this.publisher.akta = res.file;
-            this.link.akta = res.file;
-            this.$store.state.loadAkta = true;
-            this.validation.akta = false;
+            if (res.status == "success") {
+              this.publisher.akta = res.file;
+              this.link.akta = res.file;
+              this.$store.state.loadAkta = true;
+              this.validation.akta = false;
+            } else {
+              this.loading.akta = false;
+              this.validation.message = res.message;
+              this.validation.akta = true;
+            }
           }
           if (event.target.id == "uploadKTA") {
-            this.publisher.kta_ikapi = res.file;
-            this.link.kta = res.file;
-            this.$store.state.loadKta = true;
-            this.validation.kta = false;
+            if (res.status == "success") {
+              this.publisher.kta_ikapi = res.file;
+              this.link.kta = res.file;
+              this.$store.state.loadKta = true;
+              this.validation.kta = false;
+            } else {
+              this.loading.kta = false;
+              this.validation.message = res.message;
+              this.validation.kta = true;
+            }
           }
         });
       }
