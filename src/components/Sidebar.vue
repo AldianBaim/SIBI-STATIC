@@ -109,6 +109,7 @@
 
 <script>
 import axios from "axios";
+import { BASE_URL } from "../store";
 export default {
   name: "Sidebar",
   data() {
@@ -136,7 +137,7 @@ export default {
 
     const token = localStorage.getItem("token");
     axios
-      .get("https://api.buku.kemdikbud.go.id/api/user/getPublisherProfile", {
+      .get(`${BASE_URL}api/user/getPublisherProfile`, {
         headers: {
           Authorization: token,
         },
