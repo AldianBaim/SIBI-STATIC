@@ -57,7 +57,7 @@
                 class="dropdown-item"
                 href="https://buku.kemdikbud.go.id/buku-sekolah-penggerak"
                 target="_blank"
-                >Buku Sekolah Penggerak</a
+                >Buku Kurikulum Merdeka</a
               >
             </div>
           </li>

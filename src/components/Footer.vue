@@ -70,7 +70,7 @@
                   class="nav-link"
                   href="https://sibi-prototype.web.app/buku-sekolah-penggerak?role=siswa"
                   target="_blank"
-                  >Buku Penggerak</a
+                  >Buku Kurikulum Merdeka</a
                 >
               </ul>
             </div>
