@@ -2,9 +2,9 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
-const environment = 'production';
+const environment = 'development';
 
-let BASE_URL = 'https://api.buku.kemdikbud.go.id/';
+export let BASE_URL = 'https://api.buku.kemdikbud.go.id/';
 
 if (environment == 'development') {
   BASE_URL = "https://api.development.buku.kemdikbud.cloudapp.web.id/";
@@ -61,8 +61,6 @@ export default new Vuex.Store({
 
     loadPengajuan: false,
     loadPernyataan: false,
-    loadNpwp: false,
-    loadAkta: false,
     loadKta: false,
     loadSiup: false
   },
@@ -327,8 +325,26 @@ export default new Vuex.Store({
         });
     },
     updatePublisherProfile(context, payload) {
-      console.log(payload);
+
+      // Function for rename keys in object
+      function renameKeys(obj, newKeys) {
+        const keyValues = Object.keys(obj).map(key => {
+          const newKey = newKeys[key] || key;
+          return { [newKey]: obj[key] };
+        });
+        return Object.assign({}, ...keyValues);
+      }
+
+      const newKeys = {
+        surat_pengajuan: "surat_perjanjian_penerbitan",
+        surat_pernyataan: "surat_perjanjian_hak_cipta",
+        kta_ikapi: "sertifikat_bnsp"
+      }
+
+      const renamedObj = renameKeys(payload, newKeys);
+      console.log(renamedObj);
       context.state.loadPage = true;
+
       axios({
         method: "post",
         url: BASE_URL + "api/user/updatePublisherProfile",
