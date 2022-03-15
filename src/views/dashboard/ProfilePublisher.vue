@@ -252,12 +252,13 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <a
+                <!--<a
                   v-if="link.siup != null"
                   :href="link.siup"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>
+                ></a>-->
+                &nbsp;&nbsp;<small>{{ link.siup }}</small>
               </div>
             </div>
           </div>
@@ -297,12 +298,13 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <a
+                <!--<a
                   v-if="link.pengajuan != null"
                   :href="link.pengajuan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>
+                ></a>-->
+                &nbsp;&nbsp;<small>{{ link.pengajuan }}</small>
               </div>
             </div>
           </div>
@@ -342,12 +344,13 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <a
+                <!--<a
                   v-if="link.pernyataan != null"
                   :href="link.pernyataan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>
+                ></a>-->
+                &nbsp;&nbsp;<small>{{ link.pernyataan }}</small>
               </div>
             </div>
           </div>
@@ -388,12 +391,13 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <a
+                <!--<a
                   v-if="link.kta != null"
                   :href="link.kta"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>
+                ></a>-->
+                &nbsp;&nbsp;<small>{{ link.kta }}</small>
               </div>
             </div>
           </div>
@@ -411,9 +415,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <span
-            >Berhasil memperbaharui data profil penerbit. Selanjutnya silahkan
-            klik <a href="https://odk.101.my.id/">tautan ini</a> untuk
-            mendaftarkan buku.</span
+            >Terimakasih! Data penerbit berhasil diperbaharui. Untuk tahap selanjutnya silahkan akses menu daftarkan buku.</span
           >
         </div>
         <div class="text-center">
