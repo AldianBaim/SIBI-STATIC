@@ -596,26 +596,23 @@ export default {
           .catch((err) => {
             if (err == 403) {
               if (event.target.id == "uploadKTA") {
-                this.validation.message.kta =
-                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.message.kta = "Ukuran file terlalu besar";
                 this.validation.kta = true;
               }
 
               if (event.target.id == "uploadPengajuan") {
-                this.validation.message.pengajuan =
-                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.message.pengajuan = "Ukuran file terlalu besar";
                 this.validation.pengajuan = true;
               }
 
               if (event.target.id == "uploadPernyataan") {
                 this.validation.message.pernyataan =
-                  "File terlalu besar. silahkan coba upload kembali";
+                  "Ukuran file terlalu besar";
                 this.validation.pernyataan = true;
               }
 
               if (event.target.id == "uploadSIUP") {
-                this.validation.message.siup =
-                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.message.siup = "Ukuran file terlalu besar";
                 this.validation.siup = true;
               }
             }
