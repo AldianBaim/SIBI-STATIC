@@ -2,7 +2,14 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "@/router";
-const BASE_URL = "https://api.development.buku.kemdikbud.cloudapp.web.id/";
+const environment = 'production';
+
+let BASE_URL = 'https://api.buku.kemdikbud.go.id/';
+
+if (environment == 'development') {
+  BASE_URL = "https://api.development.buku.kemdikbud.cloudapp.web.id/";
+}
+
 const d = new Date();
 const today = d.toString();
 const day = today.slice(0, 3);
@@ -38,7 +45,12 @@ export default new Vuex.Store({
     messageStatusReport: false,
     messageStatusPortfolio: false,
     message: "",
+    messageStatusPublisher: false,
+    messageStatusErrorPublisher: false,
+    messageErrorPublisher: "",
     msgcolor: "",
+    messageRecovery: "",
+    messageRecoveryError: "",
 
     user: [],
     userProfile: null,
@@ -46,6 +58,13 @@ export default new Vuex.Store({
     token: localStorage.getItem("token") || "",
 
     image: null,
+
+    loadPengajuan: false,
+    loadPernyataan: false,
+    loadNpwp: false,
+    loadAkta: false,
+    loadKta: false,
+    loadSiup: false
   },
   mutations: {
     setImage(state, image) {
@@ -68,6 +87,8 @@ export default new Vuex.Store({
         user_id: payload.user_id,
         fullname: payload.fullname,
         avatar: payload.avatar,
+        role_name: payload.role_name,
+        email: payload.email
       };
       localStorage.setItem("user", JSON.stringify(user));
     },
@@ -105,7 +126,7 @@ export default new Vuex.Store({
     login(context, payload) {
       context.state.loadPage = true;
       axios
-        .post(BASE_URL + "/api/user/login", payload)
+        .post(BASE_URL + "api/user/login", payload)
         .then((res) => {
           if (res.data.status == "failed") {
             context.state.messageStatus = true;
@@ -127,7 +148,7 @@ export default new Vuex.Store({
     register(context, payload) {
       context.state.loadPage = true;
       axios
-        .post(BASE_URL + "/api/user/register", payload, {
+        .post(BASE_URL + "api/user/register", payload, {
           headers: {
             "content-type": "application/json",
           },
@@ -201,7 +222,7 @@ export default new Vuex.Store({
       axios
         .get(
           BASE_URL +
-            `assessment/json/0?filter[assessment][type]=${payload.type}&filter[assessment][title]=${payload.title}&filter[assessment][author]=${payload.author}&filter[assessment][publisher]=${payload.publisher}&filter[assessment][edu_stage]=${payload.edu_stage}&filter[assessment][no_sk]=${payload.no_sk}`
+          `assessment/json/0?filter[assessment][type]=${payload.type}&filter[assessment][title]=${payload.title}&filter[assessment][author]=${payload.author}&filter[assessment][publisher]=${payload.publisher}&filter[assessment][edu_stage]=${payload.edu_stage}&filter[assessment][no_sk]=${payload.no_sk}`
         )
         .then((res) => {
           context.state.assesments = res.data.results;
@@ -232,7 +253,7 @@ export default new Vuex.Store({
       axios
         .get(
           BASE_URL +
-            `api/training/training_report/0?name=${payload.name}&role=${payload.penelaah}`
+          `api/training/training_report/0?name=${payload.name}&role=${payload.penelaah}`
         )
         .then((res) => {
           context.state.certifications = res.data.results;
@@ -299,6 +320,33 @@ export default new Vuex.Store({
         .then(() => {
           context.state.messageStatus = true;
           context.state.loadPage = false;
+        })
+        .catch((err) => {
+          context.state.loadPage = false;
+          console.log(err);
+        });
+    },
+    updatePublisherProfile(context, payload) {
+      console.log(payload);
+      context.state.loadPage = true;
+      axios({
+        method: "post",
+        url: BASE_URL + "api/user/updatePublisherProfile",
+        data: payload,
+        headers: {
+          Authorization: context.state.token,
+          "content-type": "application/json"
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.data.status == 'failed') {
+            context.state.messageStatusErrorPublisher = true;
+            context.state.messageErrorPublisher = res.data.message
+          } else {
+            context.state.messageStatusPublisher = true;
+            context.state.loadPage = false;
+          }
         })
         .catch((err) => {
           context.state.loadPage = false;
@@ -514,6 +562,33 @@ export default new Vuex.Store({
           });
       });
     },
+    uploadFile(context, file) {
+      context.state.loadUploadFile = true;
+      const formData = new FormData();
+      formData.append("file", file);
+
+      return new Promise((resolve, reject) => {
+        axios
+          .post(
+            "https://upload.cloudapp.web.id/upload.php",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((res) => {
+            resolve(res.data);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+          .finally(() => {
+            context.state.loadUploadFile = false;
+          });
+      });
+    },
     uploadFilePDF(context, file) {
       context.state.loadUploadFile = true;
       const formData = new FormData();
@@ -541,6 +616,32 @@ export default new Vuex.Store({
           });
       });
     },
+    recoveryAccount(context, email) {
+      context.state.loadPage = true
+      context.state.messageRecovery = ""
+      context.state.messageRecoveryError = ""
+
+      const body = new FormData()
+      body.append("email", email)
+      body.append("source", "platform")
+
+      axios({
+        method: "POST",
+        url: BASE_URL + 'api/user/reset_password',
+        data: body,
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      }).then(res => {
+        console.log(res);
+        context.state.messageRecovery = res.data.message
+      }).catch(err => {
+        console.log(err);
+        context.state.messageRecoveryError = "Email tidak ditemukan"
+      })
+        .finally(() => context.state.loadPage = false)
+
+    }
   },
   modules: {},
 });

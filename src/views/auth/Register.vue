@@ -70,7 +70,7 @@
               </div>
               <div class="form-group" id="">
                 <select
-                  v-model="user.specificField"
+                  v-model="user.role_id"
                   name="role_option"
                   class="form-control"
                 >
@@ -89,6 +89,7 @@
               </div>
               <div class="form-group">
                 <input
+                  required
                   v-model="user.phone"
                   type="text"
                   class="form-control"
@@ -194,7 +195,8 @@ export default {
         phone: "",
         password: "",
         confirm_password: "",
-        specificField: "",
+        source: "platform",
+        role_id: "",
         // role_id: 3,
       },
     };
@@ -212,14 +214,14 @@ export default {
     this.$store.state.messageStatus = false;
   },
   mounted() {
-    $(document).ready(function () {
+    $(document).ready(function() {
       $("#role").val(3);
 
       $(".choice.active").css({
         background: "#f1c40f",
       });
 
-      $('select[name="role_option"]').change(function () {
+      $('select[name="role_option"]').change(function() {
         let id = $(this).val();
 
         $("#role").val(id);
@@ -227,7 +229,7 @@ export default {
         return false;
       });
 
-      $(".btn-role").click(function () {
+      $(".btn-role").click(function() {
         let type = $(this).attr("data-type");
 
         $(".optional").hide();

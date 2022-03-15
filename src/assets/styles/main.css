@@ -40,6 +40,7 @@ h3 {
 .jumbotron-home {
   background: #ebf7ff;
   padding-top: 40px;
+  height: 62vh;
 }
 .jumbotron-home p {
   color: #444;
@@ -66,6 +67,11 @@ h3 {
 .carousel-control-prev-icon:after {
   content: "<";
   font-size: 55px;
+}
+
+/* Section Pengumuman */
+.section-penguman {
+  background-color: #ebf7ff;
 }
 
 /* Section Kebijakan */
@@ -304,4 +310,13 @@ footer .nav-link {
 }
 footer .nav-link:hover {
   color: #7099b1;
+}
+
+#profile-publisher .nav-item a {
+  color: #000;
+}
+
+#profile-publisher .nav-item .active {
+  color: #fff;
+  background: #4db995 !important;
 }

@@ -15,7 +15,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="text-right mb-4">Sat, 09 Oct 2021</div>
+    <div class="text-right mb-4">{{ $store.state.today }}</div>
 
     <div class="mt-4">
       <form @submit.prevent="sendReport()" class="form" accept-charset="utf-8">

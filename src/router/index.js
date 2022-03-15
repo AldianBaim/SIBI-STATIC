@@ -103,6 +103,11 @@ const routes = [
         component: () => import("../views/dashboard/Profil.vue"),
       },
       {
+        path: "profil/publisher",
+        name: "Profil-Publisher",
+        component: () => import("../views/dashboard/ProfilePublisher.vue"),
+      },
+      {
         path: "unduh",
         name: "Unduh",
         component: () => import("../views/dashboard/Unduh.vue"),

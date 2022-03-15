@@ -127,6 +127,15 @@
                 to="/pelaku/pembinaan"
                 >Pembinaan
               </router-link>
+
+              <a
+                target="_blank"
+                class="dropdown-item"
+                exact-active-class="active"
+                href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
+              >
+                Pengajuan HET
+              </a>
             </div>
           </li>
           <router-link class="nav-link" active-class="active" to="/kebijakan">
@@ -157,6 +166,61 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+    <!-- <div
+      class="modal fade"
+      id="hetModal"
+      tabindex="-1"
+      aria-labelledby="hetModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hetModalLabel">Pilih Pengajuan HET</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <div class="col-md-6 my-2">
+                <a
+                  href="https://forms.gle/WnwvRcVzorPq2Pck7"
+                  class="btn btn-info btn-block"
+                  target="_blank"
+                >
+                  HET Hardcover
+                </a>
+              </div>
+              <div class="col-md-6 my-2">
+                <a
+                  href="https://forms.gle/Vb2Wv5XP6otZNjWk6"
+                  class="btn btn-info btn-block"
+                  target="_blank"
+                >
+                  HET Softcover
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
   </nav>
 </template>
 

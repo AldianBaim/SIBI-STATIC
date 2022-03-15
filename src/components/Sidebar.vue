@@ -7,7 +7,9 @@
         >Halo, <b>{{ username }}</b></span
       >
     </div>
-    <div><small>Penerbit</small></div>
+    <div>
+      <small>{{ roleName }}</small>
+    </div>
 
     <ul class="mt-4">
       <li class="active">
@@ -15,8 +17,13 @@
           <a><i class="fas fa-home fa-fw"></i> Beranda</a>
         </router-link>
       </li>
-      <li>
+      <li v-if="roleName != 'Penerbit'">
         <router-link to="/user/profil">
+          <a><i class="fas fa-fw fa-user"></i> Profil</a>
+        </router-link>
+      </li>
+      <li v-else>
+        <router-link to="/user/profil/publisher">
           <a><i class="fas fa-fw fa-user"></i> Profil</a>
         </router-link>
       </li>
@@ -35,23 +42,121 @@
           <a><i class="fa fa-download fa-fw"></i> Unduh Buku</a>
         </router-link>
       </li>
+      <span v-show="checkRole">
+        <li v-if="showDaftarBuku">
+          <a
+            v-bind:href="
+              'https://bntp.buku.kemdikbud.go.id/daftar/buku?id_penerbit=' +
+                user_id +
+                '&penerbit=' +
+                username +
+                '&email=' +
+                email
+            "
+            ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+          >
+        </li>
+        <li v-else>
+          <a href="" data-toggle="modal" data-target="#exampleModal"
+            ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+          >
+        </li>
+      </span>
     </ul>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Penilaian Buku</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Silahkan lengkapi data profil penerbit terlebih dahulu, terutama
+              berkas-berkas untuk mendaftar penilaian buku.
+            </p>
+            <router-link to="/user/profil/publisher">
+              <a type="button" data-dismiss="modal"
+                ><i class="fas fa-fw fa-edit"></i> Lengkapi profil</a
+              >
+            </router-link>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Sidebar",
   data() {
     return {
+      user_id: "",
+      email: "",
       username: "",
+      roleName: "",
+      showDaftarBuku: false,
+      checkRole: false,
     };
   },
   created() {
     var user = localStorage.getItem("user");
     var parse = JSON.parse(user);
 
+    this.user_id = parse.user_id;
     this.username = parse.fullname;
+    this.email = parse.email;
+    this.roleName = parse.role_name;
+
+    if (this.roleName == "Penerbit") {
+      this.checkRole = true;
+    }
+
+    const token = localStorage.getItem("token");
+    axios
+      .get("https://api.buku.kemdikbud.go.id/api/user/getPublisherProfile", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        if (res.data.result.siup != "") {
+          if (res.data.result.role_name == "penerbit") {
+            this.showDaftarBuku = true;
+          }
+        } else {
+          this.showDaftarBuku = false;
+        }
+      });
   },
 };
 </script>
+
+<style scoped>
+.router-link-exact-active a {
+  font-weight: 700 !important;
+  color: #0b85cc !important;
+}
+</style>

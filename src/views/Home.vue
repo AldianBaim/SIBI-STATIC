@@ -96,7 +96,7 @@
             <div class="text-right">
               <img
                 style="bottom: 0px; width: 100%"
-                src="https://api.buku.kemdikbud.cloudapp.web.id/sites/sibi//themes/default/assets/jumbotron.png"
+                src="https://api.buku.kemdikbud.go.id/sites/sibi/themes/default/assets/jumbotron.png"
               />
             </div>
           </div>
@@ -192,6 +192,95 @@
             <a class="btn btn-warning">Dan masih banyak lagi ...</a>
           </router-link>
         </p>
+      </div>
+    </div>
+
+    <div class="section-pengumuman py-5">
+      <div class="container">
+        <h3 class="text-center mb-4">Pengumuman</h3>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div
+              id="carouselPengumuman"
+              class="carousel slide"
+              data-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a
+                    target="_blank"
+                    href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
+                  >
+                    <img
+                      src="../assets/banner-penilaian-sibi-rev-b.png"
+                      class="d-block w-100 rounded"
+                      alt="../assets/banner-penilaian-sibi.png"
+                    />
+                  </a>
+                </div>
+                <div class="carousel-item">
+                  <a
+                    target="_blank"
+                    href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
+                  >
+                    <img
+                      src="../assets/banner-penilaian-sibi-rev-b.png"
+                      class="d-block w-100 rounded"
+                      alt="../assets/banner-penilaian-sibi.png"
+                    />
+                  </a>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev border-0 bg-transparent"
+                type="button"
+                data-target="#carouselPengumuman"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon text-dark"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next border-0 bg-transparent"
+                type="button"
+                data-target="#carouselPengumuman"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon text-dark"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Next</span>
+              </button>
+            </div>
+            <div class="text-center my-3">
+              <a
+                href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view"
+                class="btn btn-sm btn-primary mb-2 mb-md-0"
+                target="_blank"
+              >
+                <span class="h5">Pengumuman HET</span>
+              </a>
+              <a
+                href="http://ringkas.kemdikbud.go.id/daftarisianHET"
+                class="btn btn-sm btn-primary mx-2"
+                target="_blank"
+              >
+                <span class="h5">Format HET</span>
+              </a>
+              <a
+                href="http://ringkas.kemdikbud.go.id/formulirlampiranHET"
+                class="btn btn-sm btn-primary"
+                target="_blank"
+              >
+                <span class="h5">Formulir HET</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -656,7 +745,7 @@ export default {
     this.fetchTotalCatalogue();
   },
   mounted() {
-    $(".btn-read").click(function () {
+    $(".btn-read").click(function() {
       let url = $(this).attr("data-url");
 
       $("#embed").attr("src", url);
