@@ -252,13 +252,8 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-<<<<<<< HEAD
                 <!--<a
                   v-if="link.siup != null"
-=======
-                <a
-                  v-if="link.siup != null && publisher.siup != ''"
->>>>>>> 547b3f38a6c67f1db3e8d75a76d362af848dad98
                   :href="link.siup"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -303,15 +298,8 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-<<<<<<< HEAD
                 <!--<a
                   v-if="link.pengajuan != null"
-=======
-                <a
-                  v-if="
-                    link.pengajuan != null && publisher.surat_pengajuan != ''
-                  "
->>>>>>> 547b3f38a6c67f1db3e8d75a76d362af848dad98
                   :href="link.pengajuan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -356,15 +344,8 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-<<<<<<< HEAD
                 <!--<a
                   v-if="link.pernyataan != null"
-=======
-                <a
-                  v-if="
-                    link.pernyataan != null && publisher.surat_pernyataan != ''
-                  "
->>>>>>> 547b3f38a6c67f1db3e8d75a76d362af848dad98
                   :href="link.pernyataan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -410,13 +391,8 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-<<<<<<< HEAD
                 <!--<a
                   v-if="link.kta != null"
-=======
-                <a
-                  v-if="link.kta != null && publisher.kta_ikapi != ''"
->>>>>>> 547b3f38a6c67f1db3e8d75a76d362af848dad98
                   :href="link.kta"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
