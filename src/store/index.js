@@ -348,7 +348,7 @@ export default new Vuex.Store({
       axios({
         method: "post",
         url: BASE_URL + "api/user/updatePublisherProfile",
-        data: payload,
+        data: renamedObj,
         headers: {
           Authorization: context.state.token,
           "content-type": "application/json"
