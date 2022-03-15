@@ -646,7 +646,6 @@ export default {
         },
       })
       .then((res) => {
-        console.log(res.data.result);
         this.setValue(res.data.result);
         axios({
           method: "get",

@@ -341,21 +341,19 @@ export default new Vuex.Store({
         kta_ikapi: "sertifikat_bnsp"
       }
 
-      const renamedObj = renameKeys(payload, newKeys);
-      console.log(renamedObj);
+      const data = renameKeys(payload, newKeys);
       context.state.loadPage = true;
 
       axios({
         method: "post",
         url: BASE_URL + "api/user/updatePublisherProfile",
-        data: renamedObj,
+        data: data,
         headers: {
           Authorization: context.state.token,
           "content-type": "application/json"
         },
       })
         .then((res) => {
-          console.log(res);
           if (res.data.status == 'failed') {
             context.state.messageStatusErrorPublisher = true;
             context.state.messageErrorPublisher = res.data.message
