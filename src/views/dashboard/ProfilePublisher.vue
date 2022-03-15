@@ -253,7 +253,7 @@
                   Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
-                  v-if="link.siup != null"
+                  v-if="link.siup != null && publisher.siup != ''"
                   :href="link.siup"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -298,7 +298,9 @@
                   Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
-                  v-if="link.pengajuan != null"
+                  v-if="
+                    link.pengajuan != null && publisher.surat_pengajuan != ''
+                  "
                   :href="link.pengajuan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -343,7 +345,9 @@
                   Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
-                  v-if="link.pernyataan != null"
+                  v-if="
+                    link.pernyataan != null && publisher.surat_pernyataan != ''
+                  "
                   :href="link.pernyataan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
@@ -389,7 +393,7 @@
                   Uploaded <i class="fas fa-check"></i>
                 </button>
                 <a
-                  v-if="link.kta != null"
+                  v-if="link.kta != null && publisher.kta_ikapi != ''"
                   :href="link.kta"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
