@@ -144,7 +144,7 @@ export default {
       })
       .then((res) => {
         if (res.data.result.siup != "") {
-          if (res.data.result.role_name == "penerbit") {
+          if (this.roleName == "Penerbit") {
             this.showDaftarBuku = true;
           }
         } else {
