@@ -415,7 +415,8 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <span
-            >Terimakasih! Data penerbit berhasil diperbaharui. Untuk tahap selanjutnya silahkan akses menu daftarkan buku.</span
+            >Terimakasih! Data penerbit berhasil diperbaharui. Untuk tahap
+            selanjutnya silahkan akses menu daftarkan buku.</span
           >
         </div>
         <div class="text-center">
@@ -542,58 +543,89 @@ export default {
 
       // Upload file to server
       if (file !== null) {
-        this.uploadFile(file).then((res) => {
-          if (event.target.id == "uploadPengajuan") {
-            if (res.status == "success") {
-              this.publisher.surat_pengajuan = res.file;
-              this.link.pengajuan = res.file;
-              this.$store.state.loadPengajuan = true;
-              this.validation.pengajuan = false;
-            } else {
-              this.loading.pengajuan = false;
-              this.validation.message.pengajuan = res.message;
-              this.validation.pengajuan = true;
+        this.uploadFile(file)
+          .then((res) => {
+            if (event.target.id == "uploadPengajuan") {
+              if (res.status == "success") {
+                this.publisher.surat_pengajuan = res.file;
+                this.link.pengajuan = res.file;
+                this.$store.state.loadPengajuan = true;
+                this.validation.pengajuan = false;
+              } else {
+                this.validation.message.pengajuan = res.message;
+                this.validation.pengajuan = true;
+              }
             }
-          }
-          if (event.target.id == "uploadPernyataan") {
-            if (res.status == "success") {
-              this.publisher.surat_pernyataan = res.file;
-              this.link.pernyataan = res.file;
-              this.$store.state.loadPernyataan = true;
-              this.validation.pernyataan = false;
-            } else {
-              this.loading.pernyataan = false;
-              this.validation.message.pernyataan = res.message;
-              this.validation.pernyataan = true;
-            }
-          }
 
-          if (event.target.id == "uploadSIUP") {
-            if (res.status == "success") {
-              this.publisher.siup = res.file;
-              this.link.siup = res.file;
-              this.$store.state.loadSiup = true;
-              this.validation.siup = false;
-            } else {
-              this.loading.siup = false;
-              this.validation.message.siup = res.message;
-              this.validation.siup = true;
+            if (event.target.id == "uploadPernyataan") {
+              if (res.status == "success") {
+                this.publisher.surat_pernyataan = res.file;
+                this.link.pernyataan = res.file;
+                this.$store.state.loadPernyataan = true;
+                this.validation.pernyataan = false;
+              } else {
+                this.validation.message.pernyataan = res.message;
+                this.validation.pernyataan = true;
+              }
             }
-          }
 
-          if (event.target.id == "uploadKTA") {
-            if (res.status == "success") {
-              this.publisher.kta_ikapi = res.file;
-              this.link.kta = res.file;
-              this.$store.state.loadKta = true;
-              this.validation.kta = false;
-            } else {
-              this.loading.kta = false;
-              this.validation.message.kta = res.message;
-              this.validation.kta = true;
+            if (event.target.id == "uploadSIUP") {
+              if (res.status == "success") {
+                this.publisher.siup = res.file;
+                this.link.siup = res.file;
+                this.$store.state.loadSiup = true;
+                this.validation.siup = false;
+              } else {
+                this.validation.message.siup = res.message;
+                this.validation.siup = true;
+              }
             }
-          }
-        });
+
+            if (event.target.id == "uploadKTA") {
+              if (res.status == "success") {
+                this.publisher.kta_ikapi = res.file;
+                this.link.kta = res.file;
+                this.$store.state.loadKta = true;
+                this.validation.kta = false;
+              } else {
+                this.validation.message.kta = res.message;
+                this.validation.kta = true;
+              }
+            }
+          })
+          .catch((err) => {
+            if (err == 403) {
+              if (event.target.id == "uploadKTA") {
+                this.validation.message.kta =
+                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.kta = true;
+              }
+
+              if (event.target.id == "uploadPengajuan") {
+                this.validation.message.pengajuan =
+                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.pengajuan = true;
+              }
+
+              if (event.target.id == "uploadPernyataan") {
+                this.validation.message.pernyataan =
+                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.pernyataan = true;
+              }
+
+              if (event.target.id == "uploadSIUP") {
+                this.validation.message.siup =
+                  "File terlalu besar. silahkan coba upload kembali";
+                this.validation.siup = true;
+              }
+            }
+          })
+          .finally(() => {
+            this.loading.kta = false;
+            this.loading.siup = false;
+            this.loading.pengajuan = false;
+            this.loading.pernyataan = false;
+          });
       }
     },
     updateProfile() {

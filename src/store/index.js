@@ -596,7 +596,8 @@ export default new Vuex.Store({
             resolve(res.data);
           })
           .catch((err) => {
-            reject(err);
+            console.log(err);
+            reject(403);
           })
           .finally(() => {
             context.state.loadUploadFile = false;
