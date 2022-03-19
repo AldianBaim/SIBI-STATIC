@@ -15,24 +15,24 @@
         <div class="col-md-4 col-lg-3 text-center text-md-end">
           <a
             class="footer-social-icon"
-            href="!#"
+            href="https://www.instagram.com/sibi_kemdikbud/"
             target="_blank"
             rel="noreferrer"
             ><i class="fab fa-instagram"></i
           ></a>
           <a
             class="footer-social-icon"
-            href="!#"
+            href="https://www.facebook.com/SIBIpusbuk/"
             target="_blank"
             rel="noreferrer"
             ><i class="fab fa-facebook"></i
           ></a>
           <a
             class="footer-social-icon"
-            href="!#"
+            href="https://www.youtube.com/channel/UCLm7X0R-hLHArgF88Z6OPQw"
             target="_blank"
             rel="noreferrer"
-            ><i class="fab fa-twitter"></i
+            ><i class="fab fa-youtube"></i
           ></a>
         </div>
       </div>
@@ -41,9 +41,9 @@
         <div class="col-md-4 pe-md-5">
           <p class="text-white">
             <small
-              ><strong>Pusat Kurikulum dan Perbukuan</strong><br />Badan
-              Penelitian dan Pengembangan dan Perbukuan. Kementerian Pendidikan,
-              Kebudayaan, Riset, dan Teknologi</small
+              ><strong class="h6 font-weight-bold">Pusat Perbukuan</strong
+              ><br />Badan Standar, Kurikulum, dan Asesmen Pendidikan.
+              Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi.</small
             >
           </p>
         </div>
@@ -104,8 +104,8 @@
         <div class="col-md-4 mt-4 mt-md-0">
           <h5 class="footer-section-title">Kontak Kami</h5>
           <p>
-            Jalan Gunung Sahari Raya No.4 Jakarta Pusat DKI Jakarta 10002
-            Indonesia.
+            Jalan RS. Fatmawati Gd D Komplek Kemendikbudristek Cipete, Jakarta
+            12410
           </p>
           <a class="nav-link" href="phoneto:021-3804248"
             ><i class="fas fa-fw fa-phone-alt me-3"></i>021-3804248</a
