@@ -10,7 +10,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="https://i.ibb.co/4sJX5JM/images-35.jpg"
+            src="https://i.ibb.co/b6FkPKN/images-35.webp"
             class="d-block w-100"
             alt="..."
           />

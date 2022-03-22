@@ -296,7 +296,7 @@
               <img
                 class="mr-3 d-none d-sm-block"
                 width="200"
-                src="https://i.ibb.co/4sJX5JM/images-35.jpg"
+                src="https://i.ibb.co/b6FkPKN/images-35.webp"
                 alt="Kebijakan"
               />
               <div class="media-body">
@@ -334,7 +334,7 @@
               <img
                 class="mr-3 d-none d-sm-block"
                 width="200"
-                src="https://i.ibb.co/4sJX5JM/images-35.jpg"
+                src="https://i.ibb.co/b6FkPKN/images-35.webp"
                 alt="Kebijakan"
               />
               <div class="media-body">
@@ -373,7 +373,7 @@
               <img
                 class="mr-3 d-none d-sm-block"
                 width="200"
-                src="https://i.ibb.co/4sJX5JM/images-35.jpg"
+                src="https://i.ibb.co/b6FkPKN/images-35.webp"
                 alt="Kebijakan"
               />
               <div class="media-body">
@@ -411,7 +411,7 @@
               <img
                 class="mr-3 d-none d-sm-block"
                 width="200"
-                src="https://i.ibb.co/4sJX5JM/images-35.jpg"
+                src="https://i.ibb.co/b6FkPKN/images-35.webp"
                 alt="Kebijakan"
               />
               <div class="media-body">
