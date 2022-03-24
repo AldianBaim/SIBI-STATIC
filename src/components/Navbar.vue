@@ -85,14 +85,12 @@
               <div class="dropdown-divider"></div>
               <a
                 class="dropdown-item"
-                href="http://penilaian.buku.kemdikbud.go.id"
-                target="_blank"
+                href="/user/home"
                 >Penilaian Buku Teks</a
               >
               <a
                 class="dropdown-item"
-                href="http://penilaian.bukunonteks.kemdikbud.go.id"
-                target="_blank"
+                href="/user/home"
                 >Penilaian Buku Non Teks</a
               >
             </div>
