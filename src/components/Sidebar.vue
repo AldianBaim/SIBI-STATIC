@@ -51,7 +51,9 @@
                 '&penerbit=' +
                 username +
                 '&email=' +
-                email
+                email +
+                '&hash=' +
+                hash
             "
             ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
           >
@@ -117,6 +119,7 @@ export default {
       user_id: "",
       email: "",
       username: "",
+      hash: "",
       roleName: "",
       showDaftarBuku: false,
       checkRole: false,
@@ -128,6 +131,7 @@ export default {
 
     this.user_id = parse.user_id;
     this.username = parse.fullname;
+    this.hash = parse.hash;
     this.email = parse.email;
     this.roleName = parse.role_name;
 
