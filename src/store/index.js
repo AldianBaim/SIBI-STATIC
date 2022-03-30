@@ -86,7 +86,8 @@ export default new Vuex.Store({
         fullname: payload.fullname,
         avatar: payload.avatar,
         role_name: payload.role_name,
-        email: payload.email
+        email: payload.email,
+        hash: payload.hash
       };
       localStorage.setItem("user", JSON.stringify(user));
     },
