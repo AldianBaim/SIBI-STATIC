@@ -207,14 +207,12 @@
             >
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <a
-                    target="_blank"
-                    href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
-                  >
+                  <a target="_blank" href="Dokumen_13100_1648196632.pdf">
                     <img
-                      src="../assets/banner-penilaian-sibi-rev-b.png"
+                      src="../assets/Penilaian.jpg"
                       class="d-block w-100 rounded"
-                      alt="../assets/banner-penilaian-sibi.png"
+                      alt="Banner penilaian"
+                      height="313px"
                     />
                   </a>
                 </div>
@@ -226,7 +224,7 @@
                     <img
                       src="../assets/banner-penilaian-sibi-rev-b.png"
                       class="d-block w-100 rounded"
-                      alt="../assets/banner-penilaian-sibi.png"
+                      alt="Banner penilaian"
                     />
                   </a>
                 </div>
@@ -256,7 +254,7 @@
                 <span class="sr-only">Next</span>
               </button>
             </div>
-            <div class="text-center my-3">
+            <!-- <div class="text-center my-3">
               <a
                 href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view"
                 class="btn btn-sm btn-primary mb-2 mb-md-0"
@@ -278,7 +276,7 @@
               >
                 <span class="h5">Formulir HET</span>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
