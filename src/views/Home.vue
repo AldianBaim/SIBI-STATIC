@@ -212,7 +212,6 @@
                       src="../assets/Penilaian.jpg"
                       class="d-block w-100 rounded"
                       alt="Banner penilaian"
-                      height="313px"
                     />
                   </a>
                 </div>
