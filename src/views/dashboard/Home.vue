@@ -15,14 +15,14 @@
             alt="..."
           />
         </div>
-        <div class="carousel-item">
+        <!-- <div class="carousel-item">
           <img
             src="https://i.ibb.co/2706hFB/penilaian.webp"
             class="d-block w-100"
             alt="..."
             style="height: 372px"
           />
-        </div>
+        </div> -->
         <!-- <div class="carousel-item">
           <img
             src="https://via.placeholder.com/200x80?text=Slide3"
