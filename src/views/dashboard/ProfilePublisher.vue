@@ -262,6 +262,8 @@
               </div>
             </div>
           </div>
+
+          <!--
           <div class="col-12">
             <div class="form-group">
               <label for="pengajuan" class="form-label"
@@ -298,12 +300,12 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <!--<a
+                <a
                   v-if="link.pengajuan != null"
                   :href="link.pengajuan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>-->
+                ></a>
                 &nbsp;&nbsp;<small>{{ link.pengajuan }}</small>
               </div>
             </div>
@@ -344,12 +346,12 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <!--<a
+                <a
                   v-if="link.pernyataan != null"
                   :href="link.pernyataan"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>-->
+                ></a>
                 &nbsp;&nbsp;<small>{{ link.pernyataan }}</small>
               </div>
             </div>
@@ -391,16 +393,17 @@
                 >
                   Uploaded <i class="fas fa-check"></i>
                 </button>
-                <!--<a
+                <a
                   v-if="link.kta != null"
                   :href="link.kta"
                   class="text-dark ml-2"
                   >Lihat berkas <i class="fas fa-external-link-alt"></i
-                ></a>-->
+                ></a>
                 &nbsp;&nbsp;<small>{{ link.kta }}</small>
               </div>
             </div>
           </div>
+          -->
         </div>
         <div
           v-if="$store.state.messageStatusPublisher"
