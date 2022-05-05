@@ -55,7 +55,8 @@
                 '&hash=' +
                 hash
             "
-            target="_blank"><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+            target="_blank"
+            ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
           >
         </li>
         <li v-else>
@@ -63,10 +64,25 @@
             ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
           >
         </li>
+        <li>
+          <router-link to="/user/izin-cetak">
+            <a><i class="fa fa-print fa-fw"></i> Izin Cetak Buku</a>
+          </router-link>
+        </li>
+        <!-- <li>
+          <router-link to="/user/penilaian">
+            <a><i class="fa fa-edit fa-fw"></i> Penilaian Buku</a>
+          </router-link>
+        </li> -->
       </span>
     </ul>
 
-    <div v-if="showDaftarBuku" class="alert alert-warning">Terdapat kesulitan dalam pengisian formulir? <a href="https://wa.me/6285156897664" target="_blank">Tanyakan disini <i class="fab fa-whatsapp"></i></a></div>
+    <div v-if="showDaftarBuku" class="alert alert-warning">
+      Terdapat kesulitan dalam pengisian formulir?
+      <a href="https://wa.me/6285156897664" target="_blank"
+        >Tanyakan disini <i class="fab fa-whatsapp"></i
+      ></a>
+    </div>
 
     <!-- Modal -->
     <div

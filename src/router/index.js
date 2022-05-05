@@ -108,6 +108,16 @@ const routes = [
         component: () => import("../views/dashboard/ProfilePublisher.vue"),
       },
       {
+        path: "/user/penilaian",
+        name: "User-Penilaian",
+        component: () => import("../views/dashboard/Assesment.vue"),
+      },
+      {
+        path: "/user/izin-cetak",
+        name: "Izin-Cetak",
+        component: () => import("../views/dashboard/IzinCetak.vue"),
+      },
+      {
         path: "unduh",
         name: "Unduh",
         component: () => import("../views/dashboard/Unduh.vue"),

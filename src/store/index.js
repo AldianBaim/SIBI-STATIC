@@ -40,6 +40,7 @@ export default new Vuex.Store({
     totalRows: 0,
     pagination: null,
     loadPage: false,
+    loadSubmitAssesment: false,
     loadUploadFile: false,
     messageStatus: false,
     messageStatusReport: false,
@@ -48,6 +49,9 @@ export default new Vuex.Store({
     messageStatusPublisher: false,
     messageStatusErrorPublisher: false,
     messageErrorPublisher: "",
+    messageStatusAssesment: false,
+    messageStatusErrorAssesment: false,
+    messageErrorAssesment: "",
     msgcolor: "",
     messageRecovery: "",
     messageRecoveryError: "",
@@ -62,7 +66,14 @@ export default new Vuex.Store({
     loadPengajuan: false,
     loadPernyataan: false,
     loadKta: false,
-    loadSiup: false
+    loadSiup: false,
+
+    // State load penilaian
+    loadFileOriginal: false,
+    loadFileNoIdentity: false,
+    loadBuktiPerbaikan: false,
+    loadSuratPerjanjianPenerbitan: false,
+    loadSuratPernyataanPenulis: false
   },
   mutations: {
     setImage(state, image) {
@@ -368,6 +379,34 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
+    submitAssesment(context, payload) {
+      context.state.loadSubmitAssesment = true;
+
+      axios({
+        method: "post",
+        url: BASE_URL + "api/assessment/submit",
+        data: payload,
+        headers: {
+          Authorization: context.state.token,
+          "content-type": "application/json"
+        },
+      })
+        .then((res) => {
+          if (res.data.status == 'failed') {
+            context.state.messageStatusErrorAssesment = true;
+            context.state.messageErrorAssesment = res.data.message
+          } else {
+            context.state.messageStatusErrorAssesment = false;
+            context.state.messageErrorAssesment = ''
+            context.state.messageStatusAssesment = true;
+            context.state.loadSubmitAssesment = false;
+          }
+        })
+        .catch((err) => {
+          context.state.loadSubmitAssesment = false;
+          console.log(err);
+        });
+    },
     fetchAllBook(context) {
       axios
         .get(BASE_URL + "api/catalogue/getLatest?qty=100")
@@ -400,6 +439,36 @@ export default new Vuex.Store({
             reject(err);
           });
       });
+    },
+    sendPrintPermission(context) {
+      context.state.loadPage = true;
+
+      const payload = {
+        print_permission: {
+          cover: "yes",
+          identity: "yes",
+          content: "yes"
+        }
+      }
+
+      return new Promise((resolve, reject) => {
+        axios({
+          url: BASE_URL + "api/user/updatePrintPermission",
+          method: "POST",
+          data: JSON.stringify(payload),
+          headers: {
+            Authorization: context.state.token,
+          },
+        })
+          .then((res) => {
+            resolve(res)
+            context.state.loadPage = false;
+          })
+          .catch((err) => {
+            context.state.loadPage = false;
+            reject(err)
+          });
+      })
     },
     fetchBookDownload(context) {
       context.state.loadPage = true;
