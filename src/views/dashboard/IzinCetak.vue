@@ -17,7 +17,11 @@
     </div>
     <div class="text-right mb-4">{{ $store.state.today }}</div>
     <h6 class="font-weight-bold mb-2"><u>Izin Cetak</u></h6>
-    <p>Harap untuk mencentang semua persyaratan.</p>
+    <p>
+      Harap untuk mencentang semua persyaratan dan pastikan data profil sudah
+      dilengkapi. Data belum lengkap?
+      <router-link to="/user/profil/publisher">Lengkapi disini</router-link>
+    </p>
     <div class="mt-4">
       <div v-if="message !== ''" class="alert alert-danger">
         {{ message }}
