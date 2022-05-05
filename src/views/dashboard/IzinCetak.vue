@@ -43,6 +43,45 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
+      <table class="table table-bordered">
+        <tr>
+          <td width="250">Nama Perusahaan</td>
+          <td width="10">:</td>
+          <td>{{ profilePublisher.name }}</td>
+        </tr>
+        <tr>
+          <td>Alamat</td>
+          <td>:</td>
+          <td>{{ profilePublisher.address }}</td>
+        </tr>
+        <tr>
+          <td>No. Telepon</td>
+          <td>:</td>
+          <td>{{ profilePublisher.phone }}</td>
+        </tr>
+        <tr>
+          <td>No Induk Berusaha/NIB</td>
+          <td>:</td>
+          <td>{{ profilePublisher.siup }}</td>
+        </tr>
+        <tr>
+          <td>Narahubung</td>
+          <td>:</td>
+          <td>{{ profilePublisher.contact_person_phone }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>:</td>
+          <td>{{ profilePublisher.email }}</td>
+        </tr>
+        <tr>
+          <td>No Whatsapp</td>
+          <td>:</td>
+          <td>{{ profilePublisher.phone }}</td>
+        </tr>
+      </table>
+
       <form @submit.prevent="sendPermission()" accept-charset="utf-8">
         <div class="form-check">
           <input
@@ -80,7 +119,6 @@
             Buku Teks Pelajaran Kurikulum Merdeka.
           </label>
         </div>
-
         <div class="text-right">
           <button v-if="$store.state.loadPage" class="btn btn-primary">
             <span class="spinner-border spinner-border-sm"></span>
@@ -95,12 +133,13 @@
 
 <script>
 import axios from "axios";
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 import { BASE_URL } from "../../store";
 export default {
   name: "Izin Cetak",
   data() {
     return {
+      profilePublisher: [],
       print_permission: {
         cover: false,
         identity: false,
@@ -110,11 +149,8 @@ export default {
       messageSuccess: "",
     };
   },
-  computed: {
-    ...mapState(["books"]),
-  },
   methods: {
-    ...mapActions(["fetchAllBook", "sendPrintPermission"]),
+    ...mapActions(["sendPrintPermission"]),
     sendPermission() {
       if (
         this.print_permission.cover === false ||
@@ -149,6 +185,7 @@ export default {
         },
       })
       .then((res) => {
+        this.profilePublisher = res.data.result;
         if (res.data.result.print_permission !== null) {
           this.print_permission.cover = true;
           this.print_permission.identity = true;
