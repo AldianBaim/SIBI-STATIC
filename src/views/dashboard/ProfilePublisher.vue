@@ -114,6 +114,19 @@
               ></textarea>
             </div>
           </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nib" class="form-label">NIB</label>
+              <input
+                required
+                id="nib"
+                type="text"
+                class="form-control"
+                placeholder="Masukan nomor induk berusaha"
+                v-model="publisher.nib"
+              />
+            </div>
+          </div>
         </div>
         <hr />
         <h6 class="font-weight-bold mb-2"><u>Data Direktur</u></h6>
@@ -419,7 +432,8 @@
           </button>
           <span
             >Terimakasih! Data penerbit berhasil diperbaharui. Untuk tahap
-            selanjutnya silahkan akses menu daftarkan buku.</span
+            selanjutnya silahkan akses menu daftarkan buku atau izin
+            cetak.</span
           >
         </div>
         <div class="text-center">
@@ -459,6 +473,7 @@ export default {
         contact_person: "",
         contact_person_phone: "",
         siup: "",
+        nib: "",
         kta_ikapi: "",
         surat_pengajuan: "",
         surat_pernyataan: "",
@@ -638,6 +653,7 @@ export default {
       this.publisher.city = publisher.city;
       this.publisher.address = publisher.address;
       this.publisher.phone = publisher.phone;
+      this.publisher.nib = publisher.nib;
       this.publisher.head_office = publisher.head_office;
       this.publisher.director_name = publisher.director_name;
       this.publisher.director_phone = publisher.director_phone;

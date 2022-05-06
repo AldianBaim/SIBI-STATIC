@@ -65,9 +65,18 @@
           <td>{{ profilePublisher.phone }}</td>
         </tr>
         <tr>
-          <td>No Induk Berusaha/NIB</td>
+          <td>NIB</td>
           <td>:</td>
-          <td>{{ profilePublisher.siup }}</td>
+          <td>{{ profilePublisher.nib }}</td>
+        </tr>
+        <tr>
+          <td>Lampiran NIB</td>
+          <td>:</td>
+          <td>
+            <a target="_blank" :href="profilePublisher.siup">{{
+              profilePublisher.siup
+            }}</a>
+          </td>
         </tr>
         <tr>
           <td>Narahubung</td>
