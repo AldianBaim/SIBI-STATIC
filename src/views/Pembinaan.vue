@@ -85,19 +85,33 @@
             </div>
           </template>
           <div
-            class="col-lg-3"
+            class="col-12 col-lg-3"
             v-for="(training, index) in trainings"
             :key="index"
           >
             <div class="card shadow">
-              <div class="card-body">
+              <div class="position-relative bg-success">
                 <img
-                  class="mb-3"
-                  style="width: 100%"
+                  class="card-img-top mb-3 w-100 h-100 position-relative"
                   :src="training.cover"
-                  alt="Logo Kemendikbud"
+                  alt="Image"
                 />
-
+                <div
+                  v-if="training.status == 'publish'"
+                  class="position-absolute btn btn-sm btn-success font-weight-bold"
+                  style="bottom: 5%;left: 3%"
+                >
+                  Pendaftaran dibuka
+                </div>
+                <div
+                  v-else
+                  class="position-absolute btn btn-sm btn-danger font-weight-bold"
+                  style="bottom: 5%;left: 3%"
+                >
+                  Pendaftaran ditutup
+                </div>
+              </div>
+              <div class="card-body p-2">
                 <h5 class="card-title">{{ training.title }}</h5>
                 <p class="card-text">
                   {{ training.description }}
@@ -105,19 +119,32 @@
 
                 <div class="mt-4 mb-4">
                   <span
-                    ><i class="fas fa-clock"></i> {{ training.start }} -
+                    ><i class="fas fa-calendar-alt"></i> {{ training.start }} -
                     {{ training.end }}</span
                   >
                   <br />
                   <span
-                    ><i class="fas fa-search-location"></i>
-                    {{ training.label }}</span
+                    ><i class="fas fa-map-marker-alt"></i>
+                    {{
+                      training.location == null
+                        ? "Belum ditentukan"
+                        : training.location
+                    }}</span
                   >
+                  <br />
+                  <span>
+                    <i class="fas fa-users"></i>
+                    <span class="ml-1 font-weight-bold"
+                      >Kuota :
+                      {{ training.seats - training.registered }} tersisa dari
+                      {{ training.seats }}</span
+                    >
+                  </span>
                 </div>
                 <router-link
                   :to="{ path: '/pembinaanDetail', query: { id: training.id } }"
                 >
-                  <a class="btn btn-primary">Selengkapnya</a>
+                  <a class="btn btn-outline-primary btn-block">Selengkapnya</a>
                 </router-link>
               </div>
             </div>

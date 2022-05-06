@@ -208,7 +208,7 @@ export default new Vuex.Store({
     fetchAllTraining(context) {
       context.state.loadPage = true;
       axios
-        .get(BASE_URL + "api/training")
+        .get(BASE_URL + "api/entry/training_event?perpage=8&page=1")
         .then((res) => {
           context.state.trainings = res.data.results;
           context.state.loadPage = false;
@@ -220,7 +220,7 @@ export default new Vuex.Store({
     fetchDetailTraining(context, id) {
       context.state.loadPage = true;
       axios
-        .get(BASE_URL + "api/training/detail/" + id)
+        .get(BASE_URL + "api/entry/training_event/detail/" + id)
         .then((res) => {
           context.state.policy = res.data;
           context.state.loadPage = false;
