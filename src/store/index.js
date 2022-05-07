@@ -55,6 +55,7 @@ export default new Vuex.Store({
     msgcolor: "",
     messageRecovery: "",
     messageRecoveryError: "",
+    messageRegisterSuccess: "",
 
     user: [],
     userProfile: null,
@@ -725,6 +726,35 @@ export default new Vuex.Store({
         context.state.messageRecoveryError = "Email tidak ditemukan"
       })
         .finally(() => context.state.loadPage = false)
+
+    },
+    registerTraining(context, payload) {
+      context.state.loadUploadFile = true
+
+      const body = new FormData()
+      body.append("training_id", payload.training_id)
+      body.append("user_id", "")
+      body.append("name", payload.name)
+      body.append("email", payload.email)
+      body.append("phone", payload.phone)
+      body.append("address", payload.address)
+      body.append("session", payload.session)
+      body.append("studentMeta", payload.studentMeta)
+
+      axios({
+        method: "POST",
+        url: BASE_URL + 'api/entry/training_student',
+        data: body,
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      }).then(res => {
+        console.log(res);
+        context.state.messageRegisterSuccess = "Berhasil mengajukan pendaftaran event"
+      }).catch(err => {
+        console.log(err);
+      })
+        .finally(() => context.state.loadUploadFile = false)
 
     }
   },
