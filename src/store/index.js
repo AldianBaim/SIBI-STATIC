@@ -42,6 +42,7 @@ export default new Vuex.Store({
     loadPage: false,
     loadSubmitAssesment: false,
     loadUploadFile: false,
+    loadProcess: false,
     messageStatus: false,
     messageStatusReport: false,
     messageStatusPortfolio: false,
@@ -55,7 +56,6 @@ export default new Vuex.Store({
     msgcolor: "",
     messageRecovery: "",
     messageRecoveryError: "",
-    messageRegisterSuccess: "",
 
     user: [],
     userProfile: null,
@@ -729,34 +729,47 @@ export default new Vuex.Store({
 
     },
     registerTraining(context, payload) {
-      context.state.loadUploadFile = true
+      context.state.loadProcess = true
 
       const body = new FormData()
       body.append("training_id", payload.training_id)
-      body.append("user_id", "")
+      body.append("user_id", payload.user_id)
       body.append("name", payload.name)
       body.append("email", payload.email)
       body.append("phone", payload.phone)
       body.append("address", payload.address)
       body.append("session", payload.session)
-      body.append("studentMeta", payload.studentMeta)
+      body.append("studentmeta", payload.studentMeta)
 
-      axios({
-        method: "POST",
-        url: BASE_URL + 'api/entry/training_student',
-        data: body,
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      }).then(res => {
-        console.log(res);
-        context.state.messageRegisterSuccess = "Berhasil mengajukan pendaftaran event"
-      }).catch(err => {
-        console.log(err);
+      return new Promise((resolve, reject) => {
+        axios({
+          method: "POST",
+          url: BASE_URL + 'api/entry/training_student',
+          data: body,
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }).then(res => {
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+          .finally(() => context.state.loadProcess = false)
+
       })
-        .finally(() => context.state.loadUploadFile = false)
 
-    }
+    },
+    fetchRegisterTraining(context, data) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${BASE_URL}api/entry/training_student/detailByField?user_id=${data.user_id}&training_id=${data.training_id}`)
+          .then((res) => {
+            console.log(res);
+            resolve(res)
+          })
+          .catch((err) => reject(err));
+      })
+    },
   },
   modules: {},
 });

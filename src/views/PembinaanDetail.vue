@@ -39,6 +39,41 @@
                     {{ policy.seats - policy.registered }} sisa kursi tersedia
                   </div>
                   <button
+                    v-if="
+                      policy.status == 'publish' &&
+                        userRegisteredStatus.status == 'pending'
+                    "
+                    class="btn btn-block mt-3"
+                    style="background-color: #1aae9f;border-radius: 5px!important;color: white"
+                    disabled
+                  >
+                    Menunggu Konfirmasi
+                  </button>
+                  <button
+                    v-if="
+                      policy.status == 'publish' &&
+                        userRegisteredStatus.status == 'approved'
+                    "
+                    class="btn btn-block mt-3"
+                    style="background-color: #1aae9f;border-radius: 5px!important;color: white"
+                    data-toggle="modal"
+                    data-target="#tiketModal"
+                  >
+                    Lihat Tiket
+                  </button>
+                  <button
+                    v-if="policy.status == 'draft' || policy.status == ''"
+                    class="btn btn-block mt-3"
+                    style="background-color: #1aae9f;border-radius: 5px!important;color: white"
+                    disabled
+                  >
+                    Pendaftaran Ditutup
+                  </button>
+                  <button
+                    v-if="
+                      policy.status == 'publish' &&
+                        userRegisteredStatus.status == 'failed'
+                    "
                     class="btn btn-block mt-3"
                     style="background-color: #1aae9f;border-radius: 5px!important;color: white"
                     data-toggle="modal"
@@ -101,7 +136,10 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form @submit.prevent="postRegisterTraining()">
+            <form
+              v-if="!successRegistered"
+              @submit.prevent="postRegisterTraining()"
+            >
               <div class="modal-body">
                 <div class="mb-3">
                   <span class="font-weight-bold">Judul Event :</span> <br />
@@ -198,16 +236,10 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  v-if="$store.state.messageRegisterSuccess != ''"
-                  class="alert alert-success"
-                >
-                  {{ $store.state.messageRegisterSuccess }}
-                </div>
               </div>
               <div class="modal-footer">
                 <button
-                  v-if="!$store.state.loadUploadFile"
+                  v-if="!$store.state.loadProcess"
                   type="submit"
                   class="btn btn-primary"
                 >
@@ -218,6 +250,67 @@
                 </button>
               </div>
             </form>
+            <div v-else class="modal-body">
+              <div class="alert alert-success">
+                Selamat, pendaftaran berhasil. Selanjutnya silahkan untuk
+                menunggu konfirmasi dari admin. Status pendaftaran dapat dilihat
+                pada halaman ini
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="tiketModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="tiketModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center" id="tiketModalLabel">
+                Tiket
+              </h5>
+              <button
+                @click="$store.state.messageRegisterSuccess = ''"
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Berikut ini informasi tiket anda :</p>
+              <table class="table table-bordered">
+                <tr>
+                  <td width="160">Nama</td>
+                  <td width="20">:</td>
+                  <td>{{ userRegisteredStatus.name }}</td>
+                </tr>
+                <tr>
+                  <td>Nomor Tiket</td>
+                  <td>:</td>
+                  <td>{{ userRegisteredStatus.ticketcode }}</td>
+                </tr>
+                <tr>
+                  <td>Tanggal Daftar</td>
+                  <td>:</td>
+                  <td>{{ registeredDate }}</td>
+                </tr>
+                <tr>
+                  <td>Kode QR</td>
+                  <td>:</td>
+                  <td>
+                    <img :src="qrCode" alt="" />
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -242,7 +335,7 @@ export default {
         email: "",
         phone: "",
         address: "",
-        session: "",
+        session: "online",
         studentMeta: "",
       },
       portfolio: null,
@@ -250,6 +343,8 @@ export default {
         error: "",
         uploaded: false,
       },
+      userRegisteredStatus: [],
+      successRegistered: false,
     };
   },
   computed: {
@@ -263,9 +358,21 @@ export default {
     convertEndDate: function() {
       return moment(this.policy.end).format("LL");
     },
+    registeredDate: function() {
+      return moment(this.userRegisteredStatus.created_at).format("LL");
+    },
+    qrCode: function() {
+      let link = `https://api.buku.kemdikbud.go.id/api/training/ticket/${this.userRegisteredStatus.ticketcode}`;
+      return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link}`;
+    },
   },
   methods: {
-    ...mapActions(["fetchDetailTraining", "uploadImage", "registerTraining"]),
+    ...mapActions([
+      "fetchDetailTraining",
+      "uploadImage",
+      "registerTraining",
+      "fetchRegisterTraining",
+    ]),
     selectImage(e) {
       const file = e.target.files[0];
       this.portfolio = file;
@@ -276,7 +383,6 @@ export default {
       } else {
         this.message.error = "";
         this.uploadImage(this.portfolio).then((res) => {
-          console.log(res);
           this.message.uploaded = true;
           this.register.studentMeta = res.data.url;
         });
@@ -286,11 +392,18 @@ export default {
       if (this.portfolio == null) {
         this.message.error = "File portfolio harus diisi";
       } else {
-        this.registerTraining(this.register);
+        this.registerTraining(this.register).then((res) => {
+          console.log(res);
+          if (res.data.status == "success") {
+            this.successRegistered = true;
+          } else {
+            this.successRegistered = false;
+          }
+        });
       }
     },
     setValue(data) {
-      console.log(data);
+      this.register.user_id = data.user_id;
       this.register.name = data.name;
       this.register.email = data.email;
       this.register.phone = data.phone;
@@ -309,6 +422,15 @@ export default {
         .then((res) => {
           this.setValue(res.data.result);
         });
+      // Handle if status pending
+      const user = JSON.parse(localStorage.getItem("user"));
+      const data = {
+        user_id: user.user_id,
+        training_id: this.$route.query.id,
+      };
+      this.fetchRegisterTraining(data).then((res) => {
+        this.userRegisteredStatus = res.data;
+      });
     }
     this.fetchDetailTraining(this.$route.query.id);
     this.register.training_id = this.$route.query.id;
