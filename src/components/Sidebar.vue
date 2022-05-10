@@ -37,11 +37,13 @@
           <a><i class="fa fa-exclamation-circle fa-fw"></i> Lapor Buku</a>
         </router-link>
       </li>
+      <!--
       <li>
         <router-link to="/user/unduh">
           <a><i class="fa fa-download fa-fw"></i> Unduh Buku</a>
         </router-link>
       </li>
+      -->
       <span v-show="checkRole">
         <li v-if="showDaftarBuku">
           <a
