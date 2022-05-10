@@ -81,6 +81,18 @@
                   >
                     Daftar Event
                   </button>
+                  <button
+                    v-if="
+                      policy.status == 'publish' &&
+                        userRegisteredStatus.status == undefined
+                    "
+                    class="btn btn-block mt-3"
+                    style="background-color: #1aae9f;border-radius: 5px!important;color: white"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    Daftar Event
+                  </button>
                 </div>
               </div>
             </div>
@@ -448,6 +460,7 @@ export default {
         this.userRegisteredStatus = res.data;
       });
     }
+
     this.fetchDetailTraining(this.$route.query.id);
     this.register.training_id = this.$route.query.id;
   },
