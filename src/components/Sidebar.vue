@@ -44,7 +44,7 @@
         </router-link>
       </li>
       -->
-      <span v-show="checkRole">
+      <span v-if="roleName == 'Penerbit'">
         <li v-if="showDaftarBuku">
           <a
             v-bind:href="
@@ -62,24 +62,30 @@
           >
         </li>
         <li v-else>
-          <a href="" data-toggle="modal" data-target="#exampleModal"
-            ><i class="fa fa-book fa-fw"></i> Daftarkan Buku</a
+          <a
+            style="cursor: pointer"
+            data-toggle="modal"
+            data-target="#exampleModal"
           >
+            <i class="fa fa-book fa-fw"></i> Daftarkan Buku
+          </a>
         </li>
+      </span>
+      <span v-if="roleName == 'Pencetak'">
         <li>
           <router-link to="/user/izin-cetak">
             <a><i class="fa fa-print fa-fw"></i> Izin Cetak Buku</a>
           </router-link>
         </li>
-        <!-- <li>
+      </span>
+      <!-- <li>
           <router-link to="/user/penilaian">
             <a><i class="fa fa-edit fa-fw"></i> Penilaian Buku</a>
           </router-link>
         </li> -->
-      </span>
     </ul>
 
-    <div v-if="showDaftarBuku" class="alert alert-warning">
+    <div v-if="roleName == 'Penerbit'" class="alert alert-warning">
       Terdapat kesulitan dalam pengisian formulir?
       <a href="https://wa.me/6285156897664" target="_blank"
         >Tanyakan disini <i class="fab fa-whatsapp"></i
@@ -156,9 +162,9 @@ export default {
     this.email = parse.email;
     this.roleName = parse.role_name;
 
-    if (this.roleName == "Penerbit" || this.roleName == "Pencetak") {
-      this.checkRole = true;
-    }
+    // if (this.roleName == "Penerbit" || this.roleName == "Pencetak") {
+    //   this.checkRole = true;
+    // }
 
     const token = localStorage.getItem("token");
     axios
@@ -169,13 +175,14 @@ export default {
       })
       .then((res) => {
         if (res.data.result.siup != "") {
-          if (this.roleName == "Penerbit" || this.roleName == "Pencetak") {
+          if (this.roleName == "Penerbit") {
             this.showDaftarBuku = true;
           }
         } else {
           this.showDaftarBuku = false;
         }
-      });
+      })
+      .catch((err) => console.log(err));
   },
 };
 </script>

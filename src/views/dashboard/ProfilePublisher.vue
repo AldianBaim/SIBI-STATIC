@@ -13,7 +13,7 @@
                 id="penerbit"
                 type="text"
                 class="form-control"
-                placeholder="Masukan nama penerbit"
+                placeholder="Masukan nama penerbit atau pencetak"
                 v-model="publisher.name"
               />
             </div>
@@ -66,6 +66,7 @@
                 id="alamat"
                 class="form-control"
                 v-model="publisher.address"
+                placeholder="Masukan alamat"
               ></textarea>
             </div>
           </div>
@@ -80,6 +81,7 @@
                 id="noTelp"
                 class="form-control"
                 v-model="publisher.phone"
+                placeholder="Masukan no telepon"
               />
             </div>
           </div>
@@ -111,6 +113,7 @@
                 id="alamatPusat"
                 class="form-control"
                 v-model="publisher.head_office"
+                placeholder="Masukan alamat kantor pusat"
               ></textarea>
             </div>
           </div>
