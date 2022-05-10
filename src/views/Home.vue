@@ -207,25 +207,33 @@
             >
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <a target="_blank" href="Dokumen_13100_1648196632.pdf">
-                    <img
-                      src="../assets/Penilaian.jpg"
-                      class="d-block w-100 rounded"
-                      alt="Banner penilaian"
-                    />
-                  </a>
+                  <img
+                    src="../assets/baner pendaftaran pencetakan buku k merdeka.jpg"
+                    class="d-block w-100 rounded"
+                    alt="Banner penilaian"
+                  />
                 </div>
                 <div class="carousel-item">
-                  <a
-                    target="_blank"
-                    href="https://drive.google.com/file/d/1z4QNcdA5dbFnL21okAHnvUodKtFP5Xbu/view?usp=sharing"
+                  <router-link
+                    :to="{ path: '/pembinaanDetail', query: { id: '3' } }"
                   >
                     <img
-                      src="../assets/banner-penilaian-sibi-rev-b.png"
+                      src="../assets/baner webinar 17 mei 2022.jpg"
                       class="d-block w-100 rounded"
                       alt="Banner penilaian"
                     />
-                  </a>
+                  </router-link>
+                </div>
+                <div class="carousel-item">
+                  <router-link
+                    :to="{ path: '/pembinaanDetail', query: { id: '7' } }"
+                  >
+                    <img
+                      src="../assets/baner workshop 18 mei 2022.jpg"
+                      class="d-block w-100 rounded"
+                      alt="Banner penilaian"
+                    />
+                  </router-link>
                 </div>
               </div>
               <button

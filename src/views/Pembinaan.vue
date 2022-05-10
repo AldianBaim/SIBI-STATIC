@@ -85,12 +85,12 @@
             </div>
           </template>
           <div
-            class="col-12 col-lg-3"
+            class="col-12 col-lg-4"
             v-for="(training, index) in trainings"
             :key="index"
           >
             <div class="card shadow">
-              <div class="position-relative bg-success">
+              <div class="position-relative bg-success" style="height: 270px">
                 <img
                   class="card-img-top mb-3 w-100 h-100 position-relative"
                   :src="training.cover"
@@ -118,28 +118,29 @@
                 </p>
 
                 <div class="mt-4 mb-4">
-                  <span
-                    ><i class="fas fa-calendar-alt"></i> {{ training.start }} -
-                    {{ training.end }}</span
-                  >
-                  <br />
-                  <span
-                    ><i class="fas fa-map-marker-alt"></i>
+                  <div>
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ convertDate(training.start) }} <br />
+                    {{ training.start.substr(10) }} -
+                    {{ training.end.substr(10) }}
+                  </div>
+
+                  <div>
+                    <i class="fas fa-map-marker-alt"></i>
                     {{
                       training.location == null
                         ? "Belum ditentukan"
                         : training.location
-                    }}</span
-                  >
-                  <br />
-                  <span>
+                    }}
+                  </div>
+                  <div>
                     <i class="fas fa-users"></i>
                     <span class="ml-1 font-weight-bold"
                       >Kuota :
                       {{ training.seats - training.registered }} tersisa dari
                       {{ training.seats }}</span
                     >
-                  </span>
+                  </div>
                 </div>
                 <router-link
                   :to="{ path: '/pembinaanDetail', query: { id: training.id } }"
@@ -169,6 +170,8 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import VueSkeletonLoader from "skeleton-loader-vue";
+import moment from "moment";
+moment.locale("id");
 export default {
   components: {
     VueSkeletonLoader,
@@ -178,6 +181,9 @@ export default {
   },
   methods: {
     ...mapActions(["fetchAllTraining"]),
+    convertDate(date) {
+      return moment(date).format("LL");
+    },
   },
 
   created() {

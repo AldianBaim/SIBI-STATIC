@@ -26,7 +26,7 @@
         <div class="card">
           <div class="row">
             <div class="col-lg-7">
-              <img :src="policy.cover" class="w-100 h-100" alt="" />
+              <img :src="policy.cover" class="w-100" alt="" />
             </div>
             <div class="col-lg-5">
               <div class="p-3">
@@ -96,15 +96,33 @@
           <div class="col-lg-5">
             <div class="mb-4">
               <h5>Tanggal dan Waktu</h5>
-              <span>{{ convertStartDate }} - {{ convertEndDate }}</span> <br />
+              <div
+                v-if="policy.start.substr(0, 10) == policy.end.substr(0, 10)"
+              >
+                {{ convertStartDate }}
+              </div>
+              <div v-else>{{ convertStartDate }} - {{ convertEndDate }}</div>
               <span>Pukul {{ policy.start.substr(10) }} - Selesai</span>
             </div>
             <div class="mb-4">
-              <h5>Tanggal dan Waktu</h5>
-              <span>{{ policy.location_address }}</span> <br />
-              <a target="_blank" :href="policy.maps_url">Lihat map</a>
+              <h5>Lokasi</h5>
+              <div>
+                {{
+                  policy.location != null || policy.location != ""
+                    ? policy.location
+                    : "Online (Daring)"
+                }}
+              </div>
+              <div v-if="policy.location_address != ''">
+                {{ policy.location_address }}
+              </div>
+              <div>{{ policy.maps_url }}</div>
+              <!-- <a target="_blank" :href="policy.maps_url">Lihat map</a> -->
             </div>
-            <div class="mb-4">
+            <div
+              v-if="policy.requirement != '' && policy.requirement != null"
+              class="mb-4"
+            >
               <h5>Persyaratan Peserta</h5>
               <p v-html="policy.requirement"></p>
             </div>
@@ -188,14 +206,15 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="portfolio" class="form-label">Portfolio</label>
+                  <label for="portfolio" class="form-label"
+                    >Portfolio *Tidak Wajib</label
+                  >
                   <small
                     v-if="message.error != ''"
                     class="text-danger d-block"
                     >{{ message.error }}</small
                   >
                   <input
-                    required
                     type="file"
                     id="portfolio"
                     class="form-control"
@@ -389,18 +408,15 @@ export default {
       }
     },
     postRegisterTraining() {
-      if (this.portfolio == null) {
-        this.message.error = "File portfolio harus diisi";
-      } else {
-        this.registerTraining(this.register).then((res) => {
-          console.log(res);
-          if (res.data.status == "success") {
-            this.successRegistered = true;
-          } else {
-            this.successRegistered = false;
-          }
-        });
-      }
+      this.registerTraining(this.register).then((res) => {
+        console.log(res);
+        if (res.data.status == "success") {
+          this.successRegistered = true;
+          this.userRegisteredStatus = "pending";
+        } else {
+          this.successRegistered = false;
+        }
+      });
     },
     setValue(data) {
       this.register.user_id = data.user_id;

@@ -115,8 +115,7 @@
             id="defaultCheck2"
           />
           <label class="form-check-label" for="defaultCheck2">
-            Menampilkan identitas penerbit/percetakan pada cover belakang buku
-            yang di cetak.
+            Menampilkan identitas penerbit/percetakan pada halaman hak cipta
           </label>
         </div>
         <div class="form-check">
