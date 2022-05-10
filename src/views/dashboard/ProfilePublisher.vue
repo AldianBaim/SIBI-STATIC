@@ -2,12 +2,12 @@
   <div id="dashboard-content">
     <section id="profile-publisher">
       <form @submit.prevent="updateProfile()">
-        <h6 class="font-weight-bold mb-2"><u>Data Penerbit</u></h6>
-        <p class="mb-4">Silahkan isi data-data terkait penerbit</p>
+        <h6 class="font-weight-bold mb-2"><u>Data Perusahaan</u></h6>
+        <p class="mb-4">Silahkan isi data-data terkait perusahaan</p>
         <div class="row">
           <div class="col-12">
             <div class="form-group">
-              <label for="penerbit" class="form-label">Nama Penerbit</label>
+              <label for="penerbit" class="form-label">Nama Penerbit / Pencetak</label>
               <input
                 required
                 id="penerbit"
@@ -60,7 +60,7 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label for="alamat" class="form-label">Alamat Penerbit</label>
+              <label for="alamat" class="form-label">Alamat Perusahaan</label>
               <textarea
                 required
                 id="alamat"
@@ -73,7 +73,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="noTelp" class="form-label"
-                >No. Telepon Penerbit</label
+                >No. Telepon</label
               >
               <input
                 required
@@ -87,7 +87,7 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label for="email" class="form-label">Email Penerbit</label>
+              <label for="email" class="form-label">Email Perusahaan</label>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text">@</div>
@@ -97,7 +97,7 @@
                   type="email"
                   class="form-control"
                   id="email"
-                  placeholder="Masukan email penerbit"
+                  placeholder="Masukan email perusahaan"
                   v-model="publisher.email"
                 />
               </div>
@@ -434,7 +434,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <span
-            >Terimakasih! Data penerbit berhasil diperbaharui. Untuk tahap
+            >Terimakasih! Data berhasil diperbaharui. Untuk tahap
             selanjutnya silahkan akses menu daftarkan buku atau izin
             cetak.</span
           >
