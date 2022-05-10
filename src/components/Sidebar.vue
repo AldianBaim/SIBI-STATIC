@@ -70,6 +70,11 @@
             <i class="fa fa-book fa-fw"></i> Daftarkan Buku
           </a>
         </li>
+        <li>
+          <router-link to="/user/izin-cetak">
+            <a><i class="fa fa-print fa-fw"></i> Izin Cetak Buku</a>
+          </router-link>
+        </li>
       </span>
       <span v-if="roleName == 'Pencetak'">
         <li>
