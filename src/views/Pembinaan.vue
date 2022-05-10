@@ -99,14 +99,14 @@
                 <div
                   v-if="training.status == 'publish'"
                   class="position-absolute btn btn-sm btn-success font-weight-bold"
-                  style="bottom: 10%;left: 3%"
+                  style="bottom: 13%;left: 3%"
                 >
                   Pendaftaran dibuka
                 </div>
                 <div
                   v-else
                   class="position-absolute btn btn-sm btn-danger font-weight-bold"
-                  style="bottom: 10%;left: 3%"
+                  style="bottom: 13%;left: 3%"
                 >
                   Pendaftaran ditutup
                 </div>
@@ -119,14 +119,14 @@
 
                 <div class="mt-4 mb-4">
                   <div>
-                    <i class="fas fa-calendar-alt"></i>
+                    <i class="fas fa-fw fa-calendar-alt"></i>
                     {{ convertDate(training.start) }}
                     {{ training.start.substr(10) }} -
                     {{ training.end.substr(10) }}
                   </div>
 
                   <div>
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fas fa-fw fa-map-marker-alt"></i>
                     {{
                       training.location == "" || training.location == null
                         ? "Belum ditentukan"
@@ -134,7 +134,7 @@
                     }}
                   </div>
                   <div>
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-fw fa-users"></i>
                     <span class="ml-1 font-weight-bold"
                       >Kuota :
                       {{ training.seats - training.registered }} tersisa dari
