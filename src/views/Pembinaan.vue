@@ -90,23 +90,23 @@
             :key="index"
           >
             <div class="card shadow">
-              <div class="position-relative bg-success">
+              <div class="position-relative">
                 <img
-                  class="card-img-top mb-3 w-100 h-100 position-relative"
+                  class="card-img-top mb-3 w-100 position-relative"
                   :src="training.cover"
                   alt="Image"
                 />
                 <div
                   v-if="training.status == 'publish'"
                   class="position-absolute btn btn-sm btn-success font-weight-bold"
-                  style="bottom: 5%;left: 3%"
+                  style="bottom: 10%;left: 3%"
                 >
                   Pendaftaran dibuka
                 </div>
                 <div
                   v-else
                   class="position-absolute btn btn-sm btn-danger font-weight-bold"
-                  style="bottom: 5%;left: 3%"
+                  style="bottom: 10%;left: 3%"
                 >
                   Pendaftaran ditutup
                 </div>
@@ -114,7 +114,7 @@
               <div class="card-body p-2">
                 <h5 class="card-title">{{ training.title }}</h5>
                 <p class="card-text">
-                  {{ training.description }}
+                  {{ training.subtitle }}
                 </p>
 
                 <div class="mt-4 mb-4">
