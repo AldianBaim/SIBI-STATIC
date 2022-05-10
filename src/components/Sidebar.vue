@@ -156,7 +156,7 @@ export default {
     this.email = parse.email;
     this.roleName = parse.role_name;
 
-    if (this.roleName == "Penerbit") {
+    if (this.roleName == "Penerbit" || this.roleName == "Pencetak") {
       this.checkRole = true;
     }
 
@@ -169,7 +169,7 @@ export default {
       })
       .then((res) => {
         if (res.data.result.siup != "") {
-          if (this.roleName == "Penerbit") {
+          if (this.roleName == "Penerbit" || this.roleName == "Pencetak") {
             this.showDaftarBuku = true;
           }
         } else {
