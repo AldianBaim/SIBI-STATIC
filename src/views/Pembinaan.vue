@@ -114,7 +114,7 @@
               <div class="card-body p-2">
                 <h5 class="card-title">{{ training.title }}</h5>
                 <p class="card-text">
-                  {{ training.description }}
+                  {{ training.subtitle }}
                 </p>
 
                 <div class="mt-4 mb-4">
