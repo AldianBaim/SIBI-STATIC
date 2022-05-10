@@ -92,7 +92,7 @@
             <div class="card shadow">
               <div class="position-relative bg-success">
                 <img
-                  class="card-img-top mb-3 w-100 h-100 position-relative"
+                  class="card-img-top mb-3 w-100 position-relative"
                   :src="training.cover"
                   alt="Image"
                 />
