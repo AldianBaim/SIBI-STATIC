@@ -120,7 +120,7 @@
                 <div class="mt-4 mb-4">
                   <div>
                     <i class="fas fa-calendar-alt"></i>
-                    {{ convertDate(training.start) }} <br />
+                    {{ convertDate(training.start) }}
                     {{ training.start.substr(10) }} -
                     {{ training.end.substr(10) }}
                   </div>
@@ -128,7 +128,7 @@
                   <div>
                     <i class="fas fa-map-marker-alt"></i>
                     {{
-                      training.location == null
+                      training.location == "" || training.location == null
                         ? "Belum ditentukan"
                         : training.location
                     }}
