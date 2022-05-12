@@ -218,6 +218,56 @@
                   />
                 </div>
                 <div class="form-group">
+                  <label for="role" class="form-label">Daftar Sebagai</label>
+                  <select
+                    id="role"
+                    v-model="register.role"
+                    class="form-control"
+                  >
+                    <option value="Desainer">Desainer</option>
+                    <option value="Penulis">Penulis</option>
+                    <option value="Penyadur">Penyadur</option>
+                    <option value="Editor">Editor</option>
+                    <option value="Ilustrator">Ilustrator</option>
+                    <option value="Penerbit">Penerbit</option>
+                    <option value="Pengembang BE">Pengembang BE</option>
+                    <option value="Pencetak">Pencetak</option>
+                    <option value="Toko Buku">Toko Buku</option>
+                    <option value="Penerjemah">Penerjemah</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="eventType" class="form-label"
+                    >Mengikuti Event secara :</label
+                  >
+                  <div class="form-check">
+                    <input
+                      v-model="register.session"
+                      value="online"
+                      class="form-check-input"
+                      type="radio"
+                      name="eventType"
+                      id="online"
+                    />
+                    <label class="form-check-label" for="online">
+                      Online (Zoom)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      v-model="register.session"
+                      value="offline"
+                      class="form-check-input"
+                      type="radio"
+                      id="offline"
+                      name="eventType"
+                    />
+                    <label class="form-check-label" for="offline">
+                      Offline (di lokasi)
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="portfolio" class="form-label"
                     >Portfolio *Tidak Wajib</label
                   >
@@ -267,6 +317,56 @@
                     </div>
                   </div>
                 </div>
+                <!-- <div v-if="policy.metadata != ''" class="form-group">
+                  <label for="kerangka" class="form-label"
+                    >Kerangka Buku Anak</label
+                  >
+                  <small
+                    v-if="message.error != ''"
+                    class="text-danger d-block"
+                    >{{ message.error }}</small
+                  >
+                  <input
+                    type="file"
+                    id="kerangka"
+                    class="form-control"
+                    @change="selectImage"
+                  />
+                  <input type="hidden" v-model="register.studentMeta" />
+                  <div class="my-2">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <button
+                          v-if="
+                            !$store.state.loadUploadFile && !message.uploaded
+                          "
+                          @click="uploadingImage()"
+                          type="button"
+                          class="btn btn-sm btn-primary btn-block"
+                        >
+                          Upload
+                        </button>
+                        <button
+                          type="button"
+                          v-if="message.uploaded"
+                          class="btn btn-secondary btn-sm"
+                        >
+                          Uploaded
+                        </button>
+                        <button
+                          type="button"
+                          v-if="
+                            $store.state.loadUploadFile && !message.uploaded
+                          "
+                          class="btn btn-sm btn-primary btn-block"
+                        >
+                          <span class="spinner-border spinner-border-sm"></span>
+                          Sedang upload..
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
               </div>
               <div class="modal-footer">
                 <button
@@ -368,6 +468,7 @@ export default {
         address: "",
         session: "online",
         studentMeta: "",
+        role: "Desainer",
       },
       portfolio: null,
       message: {
@@ -420,6 +521,7 @@ export default {
       }
     },
     postRegisterTraining() {
+      // console.log(this.register);
       this.registerTraining(this.register).then((res) => {
         console.log(res);
         if (res.data.status == "success") {
@@ -436,6 +538,7 @@ export default {
       this.register.email = data.email;
       this.register.phone = data.phone;
       this.register.address = data.address;
+      this.register.role = data.role;
     },
   },
   created() {
