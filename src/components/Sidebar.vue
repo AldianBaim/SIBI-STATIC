@@ -17,13 +17,13 @@
           <a><i class="fas fa-home fa-fw"></i> Beranda</a>
         </router-link>
       </li>
-      <li v-if="roleName != 'Penerbit'">
-        <router-link to="/user/profil">
+      <li v-if="roleName == 'Penerbit' || roleName == 'Pencetak'">
+        <router-link to="/user/profil/publisher">
           <a><i class="fas fa-fw fa-user"></i> Profil</a>
         </router-link>
       </li>
       <li v-else>
-        <router-link to="/user/profil/publisher">
+        <router-link to="/user/profil">
           <a><i class="fas fa-fw fa-user"></i> Profil</a>
         </router-link>
       </li>
@@ -69,6 +69,11 @@
           >
             <i class="fa fa-book fa-fw"></i> Daftarkan Buku
           </a>
+        </li>
+        <li>
+          <router-link to="/user/izin-cetak">
+            <a><i class="fa fa-print fa-fw"></i> Izin Cetak Buku</a>
+          </router-link>
         </li>
       </span>
       <span v-if="roleName == 'Pencetak'">
