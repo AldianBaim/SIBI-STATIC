@@ -389,36 +389,40 @@
             </form>
             <div v-else class="modal-body">
               <div class="alert alert-success">
-                Selamat, pendaftaran berhasil. Selanjutnya mohon untuk menunggu proses verifikasi.
+                Selamat, pendaftaran berhasil. Selanjutnya mohon untuk menunggu
+                proses verifikasi.
               </div>
 
               <table class="table table-bordered">
                 <tr>
                   <td width="160">Nama</td>
                   <td width="20">:</td>
-                  <td>Sulis</td>
+                  <td>{{ dataRegistered.name }}</td>
                 </tr>
                 <tr>
                   <td>Nomor Tiket</td>
                   <td>:</td>
-                  <td>12345</td>
+                  <td>{{ dataRegistered.ticketcode }}</td>
                 </tr>
                 <tr>
                   <td>Tanggal Daftar</td>
                   <td>:</td>
-                  <td>16 Mei 2021</td>
+                  <td>{{ registeredDate }}</td>
                 </tr>
                 <tr>
                   <td>Kode QR</td>
                   <td>:</td>
                   <td>
-                    QR Disini
+                    <img :src="qrCodeRegistered" alt="" />
                   </td>
                 </tr>
               </table>
 
-              <p>Note : Mohon untuk menyimpan kode tiket pendaftaran untuk keperluan verifikasi. Bukti pendaftaran acara juga sudah kami kirimkan ke email.</p>
-
+              <p>
+                Note : Mohon untuk menyimpan kode tiket pendaftaran untuk
+                keperluan verifikasi. Bukti pendaftaran acara juga sudah kami
+                kirimkan ke email.
+              </p>
             </div>
           </div>
         </div>
@@ -524,6 +528,7 @@ export default {
         portfolio: false,
         kerangka_buku_anak: false,
       },
+      dataRegistered: [],
       userRegisteredStatus: [],
       successRegistered: false,
     };
@@ -545,6 +550,13 @@ export default {
     qrCode: function() {
       let link = `https://api.buku.kemdikbud.go.id/api/training/ticket/${this.userRegisteredStatus.ticketcode}`;
       return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link}`;
+    },
+    qrCodeRegistered: function() {
+      let link = `https://api.buku.kemdikbud.go.id/api/training/ticket/${this.dataRegistered.ticketcode}`;
+      return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link}`;
+    },
+    dateRegistered: function() {
+      return moment(this.dataRegistered.created_at).format("LL");
     },
   },
   methods: {
@@ -604,7 +616,7 @@ export default {
 
       this.registerTraining(this.register).then((res) => {
         if (res.data.status == "success") {
-          console.log(res);
+          this.dataRegistered = res.data.data;
           this.successRegistered = true;
           this.userRegisteredStatus = "pending";
         } else {
