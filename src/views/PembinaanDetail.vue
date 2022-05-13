@@ -272,25 +272,25 @@
                     >Portfolio *Tidak Wajib</label
                   >
                   <small
-                    v-if="message.error != ''"
+                    v-if="message.portfolio.error != ''"
                     class="text-danger d-block"
-                    >{{ message.error }}</small
+                    >{{ message.portfolio.error }}</small
                   >
                   <input
                     type="file"
                     id="portfolio"
                     class="form-control"
-                    @change="selectImage"
+                    @change="selectFilePDF"
                   />
-                  <input type="hidden" v-model="register.studentMeta" />
+                  <input type="hidden" v-model="fileUploaded.portfolio" />
                   <div class="my-2">
                     <div class="row">
                       <div class="col-md-4">
                         <button
                           v-if="
-                            !$store.state.loadUploadFile && !message.uploaded
+                            !loading.portfolio && !message.portfolio.uploaded
                           "
-                          @click="uploadingImage()"
+                          @click="uploadFilePDF()"
                           type="button"
                           class="btn btn-sm btn-primary btn-block"
                         >
@@ -298,7 +298,7 @@
                         </button>
                         <button
                           type="button"
-                          v-if="message.uploaded"
+                          v-if="message.portfolio.uploaded"
                           class="btn btn-secondary btn-sm"
                         >
                           Uploaded
@@ -306,7 +306,7 @@
                         <button
                           type="button"
                           v-if="
-                            $store.state.loadUploadFile && !message.uploaded
+                            loading.portfolio && !message.portfolio.uploaded
                           "
                           class="btn btn-sm btn-primary btn-block"
                         >
@@ -317,30 +317,35 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div v-if="policy.metadata != ''" class="form-group">
+                <div v-if="policy.metadata !== ''" class="form-group">
                   <label for="kerangka" class="form-label"
                     >Kerangka Buku Anak</label
                   >
                   <small
-                    v-if="message.error != ''"
+                    v-if="message.kerangka_buku_anak.error != ''"
                     class="text-danger d-block"
-                    >{{ message.error }}</small
+                    >{{ message.kerangka_buku_anak.error }}</small
                   >
                   <input
                     type="file"
                     id="kerangka"
                     class="form-control"
-                    @change="selectImage"
+                    @change="selectFileKerangkaBuku"
+                    required
                   />
-                  <input type="hidden" v-model="register.studentMeta" />
+                  <input
+                    type="hidden"
+                    v-model="fileUploaded.kerangka_buku_anak"
+                  />
                   <div class="my-2">
                     <div class="row">
                       <div class="col-md-4">
                         <button
                           v-if="
-                            !$store.state.loadUploadFile && !message.uploaded
+                            !loading.kerangka_buku_anak &&
+                              !message.kerangka_buku_anak.uploaded
                           "
-                          @click="uploadingImage()"
+                          @click="uploadFileKerangka()"
                           type="button"
                           class="btn btn-sm btn-primary btn-block"
                         >
@@ -348,7 +353,7 @@
                         </button>
                         <button
                           type="button"
-                          v-if="message.uploaded"
+                          v-if="message.kerangka_buku_anak.uploaded"
                           class="btn btn-secondary btn-sm"
                         >
                           Uploaded
@@ -356,7 +361,8 @@
                         <button
                           type="button"
                           v-if="
-                            $store.state.loadUploadFile && !message.uploaded
+                            loading.kerangka_buku_anak &&
+                              !message.kerangka_buku_anak.uploaded
                           "
                           class="btn btn-sm btn-primary btn-block"
                         >
@@ -366,7 +372,7 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
               </div>
               <div class="modal-footer">
                 <button
@@ -470,10 +476,27 @@ export default {
         studentMeta: "",
         role: "Desainer",
       },
-      portfolio: null,
+      file: {
+        portfolio: null,
+        kerangka_buku_anak: null,
+      },
+      fileUploaded: {
+        portfolio: "",
+        kerangka_buku_anak: "",
+      },
       message: {
-        error: "",
-        uploaded: false,
+        portfolio: {
+          error: "",
+          uploaded: false,
+        },
+        kerangka_buku_anak: {
+          error: "",
+          uploaded: false,
+        },
+      },
+      loading: {
+        portfolio: false,
+        kerangka_buku_anak: false,
       },
       userRegisteredStatus: [],
       successRegistered: false,
@@ -505,26 +528,57 @@ export default {
       "registerTraining",
       "fetchRegisterTraining",
     ]),
-    selectImage(e) {
+    selectFilePDF(e) {
       const file = e.target.files[0];
-      this.portfolio = file;
+      this.file.portfolio = file;
     },
-    uploadingImage() {
-      if (this.portfolio == null) {
-        this.message.error = "File portfolio harus diisi";
+    selectFileKerangkaBuku(e) {
+      const file = e.target.files[0];
+      this.file.kerangka_buku_anak = file;
+    },
+    uploadFilePDF() {
+      if (this.file.portfolio == null) {
+        this.message.portfolio.error = "File portfolio harus diisi";
       } else {
-        this.message.error = "";
-        this.uploadImage(this.portfolio).then((res) => {
-          this.message.uploaded = true;
-          this.register.studentMeta = res.data.url;
+        this.loading.portfolio = true;
+        this.message.portfolio.error = "";
+        this.uploadImage(this.file.portfolio).then((res) => {
+          this.loading.portfolio = false;
+          this.message.portfolio.uploaded = true;
+          this.fileUploaded.portfolio = res.data.url;
         });
       }
     },
+    uploadFileKerangka() {
+      if (this.policy.metadata != "") {
+        if (this.file.kerangka_buku_anak == null) {
+          this.message.kerangka_buku_anak.error =
+            "File kerangka buku anak harus diisi";
+        } else {
+          this.loading.kerangka_buku_anak = true;
+          this.message.kerangka_buku_anak.error = "";
+          this.uploadImage(this.file.kerangka_buku_anak).then((res) => {
+            this.message.kerangka_buku_anak.uploaded = true;
+            this.loading.kerangka_buku_anak = false;
+            this.fileUploaded.kerangka_buku_anak = res.data.url;
+            console.log(res);
+            // this.register.studentMeta = res.data.url;
+          });
+        }
+      }
+    },
     postRegisterTraining() {
-      // console.log(this.register);
+      // Wrap and convert file portfolio & kerangka buku to JSON
+      const files = {
+        portfolio: this.fileUploaded.portfolio,
+        kerangka_buku: this.fileUploaded.kerangka_buku_anak,
+      };
+
+      this.register.studentMeta = JSON.stringify(files);
+
       this.registerTraining(this.register).then((res) => {
-        console.log(res);
         if (res.data.status == "success") {
+          console.log(res);
           this.successRegistered = true;
           this.userRegisteredStatus = "pending";
         } else {
