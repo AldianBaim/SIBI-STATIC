@@ -738,6 +738,7 @@ export default new Vuex.Store({
       body.append("email", payload.email)
       body.append("phone", payload.phone)
       body.append("address", payload.address)
+      body.append("role", payload.role)
       body.append("session", payload.session)
       body.append("studentmeta", payload.studentMeta)
 
