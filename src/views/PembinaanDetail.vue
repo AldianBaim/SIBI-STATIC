@@ -101,9 +101,7 @@
         <div class="row">
           <div class="col-lg-7 pt-3">
             <h5>Tentang Event Ini</h5>
-            <p>
-              {{ policy.description }}
-            </p>
+            <p v-html="policy.description"></p>
           </div>
           <div class="col-lg-5">
             <div class="mb-4">
