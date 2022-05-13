@@ -67,7 +67,6 @@ export default {
           this.notFound = true;
         } else {
           this.ticket = res.data.data;
-          console.log(res);
         }
       })
       .catch((err) => console.log(err));

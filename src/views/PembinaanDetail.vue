@@ -604,7 +604,6 @@ export default {
             this.message.kerangka_buku_anak.uploaded = true;
             this.loading.kerangka_buku_anak = false;
             this.fileUploaded.kerangka_buku_anak = res.data.url;
-            console.log(res);
             // this.register.studentMeta = res.data.url;
           });
         }
