@@ -49,6 +49,11 @@ const routes = [
     component: () => import("../views/PembinaanDetail.vue"),
   },
   {
+    path: "/ticket/:id",
+    name: "Ticket-Detail",
+    component: () => import("../views/TicketDetail.vue"),
+  },
+  {
     path: "/manfaat",
     name: "Manfaat",
     component: () => import("../views/Manfaat.vue"),

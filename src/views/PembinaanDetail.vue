@@ -128,7 +128,12 @@
               <div v-if="policy.location_address != ''">
                 {{ policy.location_address }}
               </div>
-              <div>{{ policy.maps_url }}</div>
+              <a
+                v-if="policy.maps_url != ''"
+                target="_blank"
+                :href="policy.maps_url"
+                >Lihat map</a
+              >
               <!-- <a target="_blank" :href="policy.maps_url">Lihat map</a> -->
             </div>
             <div
