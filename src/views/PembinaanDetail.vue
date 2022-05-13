@@ -551,11 +551,11 @@ export default {
       return moment(this.userRegisteredStatus.created_at).format("LL");
     },
     qrCode: function() {
-      let link = `https://api.buku.kemdikbud.go.id/api/training/ticket/${this.userRegisteredStatus.ticketcode}`;
+      let link = `https://app.buku.kemdikbud.go.id/ticket/${this.userRegisteredStatus.ticketcode}`;
       return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link}`;
     },
     qrCodeRegistered: function() {
-      let link = `https://api.buku.kemdikbud.go.id/api/training/ticket/${this.dataRegistered.ticketcode}`;
+      let link = `https://app.buku.kemdikbud.go.id/ticket/${this.dataRegistered.ticketcode}`;
       return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link}`;
     },
     dateRegistered: function() {
