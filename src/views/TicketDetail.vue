@@ -55,7 +55,7 @@ export default {
       return moment(this.ticket.created_at).format("LL");
     },
     qrCode: function() {
-      let link = `https://api.buku.kemdikbud.go.id/api/training/ticket/${this.ticket.ticketcode}`;
+      let link = `https://app.buku.kemdikbud.go.id/ticket/${this.ticket.ticketcode}`;
       return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link}`;
     },
   },
