@@ -239,7 +239,7 @@
                     <option value="Penerjemah">Penerjemah</option>
                   </select>
                 </div>
-                <div class="form-group">
+                <div v-if="policy.event_type == 'hybrid'" class="form-group">
                   <label for="eventType" class="form-label"
                     >Mengikuti Event secara :</label
                   >
