@@ -389,10 +389,36 @@
             </form>
             <div v-else class="modal-body">
               <div class="alert alert-success">
-                Selamat, pendaftaran berhasil. Selanjutnya silahkan untuk
-                menunggu konfirmasi dari admin. Status pendaftaran dapat dilihat
-                pada halaman ini
+                Selamat, pendaftaran berhasil. Selanjutnya mohon untuk menunggu proses verifikasi.
               </div>
+
+              <table class="table table-bordered">
+                <tr>
+                  <td width="160">Nama</td>
+                  <td width="20">:</td>
+                  <td>Sulis</td>
+                </tr>
+                <tr>
+                  <td>Nomor Tiket</td>
+                  <td>:</td>
+                  <td>12345</td>
+                </tr>
+                <tr>
+                  <td>Tanggal Daftar</td>
+                  <td>:</td>
+                  <td>16 Mei 2021</td>
+                </tr>
+                <tr>
+                  <td>Kode QR</td>
+                  <td>:</td>
+                  <td>
+                    QR Disini
+                  </td>
+                </tr>
+              </table>
+
+              <p>Note : Mohon untuk menyimpan kode tiket pendaftaran untuk keperluan verifikasi. Bukti pendaftaran acara juga sudah kami kirimkan ke email.</p>
+
             </div>
           </div>
         </div>
