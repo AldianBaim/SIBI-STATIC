@@ -272,7 +272,10 @@
                 </div>
                 <div class="form-group">
                   <label for="portfolio" class="form-label"
-                    >Portfolio *Tidak Wajib</label
+                    >{{ rules.portfolio.label }}
+                    {{
+                      rules.portfolio.required ? "*Wajib" : "*Tidak Wajib"
+                    }}</label
                   >
                   <small
                     v-if="message.portfolio.error != ''"
@@ -280,10 +283,11 @@
                     >{{ message.portfolio.error }}</small
                   >
                   <input
-                    type="file"
+                    :type="rules.portfolio.form"
                     id="portfolio"
                     class="form-control"
                     @change="selectFilePDF"
+                    :required="rules.portfolio.required"
                   />
                   <input type="hidden" v-model="fileUploaded.portfolio" />
                   <div class="my-2">
@@ -322,18 +326,19 @@
                 </div>
                 <div v-if="policy.metadata !== ''" class="form-group">
                   <label for="kerangka" class="form-label"
-                    >Kerangka Buku Anak</label
-                  >
+                    >{{ rules.kerangka_buku.label }}
+                  </label>
                   <small
                     v-if="message.kerangka_buku_anak.error != ''"
                     class="text-danger d-block"
                     >{{ message.kerangka_buku_anak.error }}</small
                   >
                   <input
-                    type="file"
+                    :type="rules.kerangka_buku.form"
                     id="kerangka"
                     class="form-control"
                     @change="selectFileKerangkaBuku"
+                    :required="rules.kerangka_buku.required"
                   />
                   <input
                     type="hidden"
@@ -492,6 +497,8 @@ import { mapActions, mapState } from "vuex";
 import moment from "moment";
 import axios from "axios";
 import { BASE_URL } from "../store";
+import YAML from "js-yaml";
+
 moment.locale("id");
 
 export default {
@@ -529,6 +536,18 @@ export default {
       loading: {
         portfolio: false,
         kerangka_buku_anak: false,
+      },
+      rules: {
+        portfolio: {
+          label: "Portfolio",
+          form: "file",
+          required: false,
+        },
+        kerangka_buku: {
+          label: "Kerangka Buku Anak",
+          form: "file",
+          required: false,
+        },
       },
       dataRegistered: [],
       userRegisteredStatus: [],
@@ -657,8 +676,26 @@ export default {
       });
     }
 
-    this.fetchDetailTraining(this.$route.query.id);
     this.register.training_id = this.$route.query.id;
+    this.fetchDetailTraining(this.$route.query.id)
+      .then((res) => {
+        // Handle if metadata exist
+        if (res.data.metadata != "") {
+          const parsedYAML = YAML.loadAll(res.data.metadata);
+
+          // Set rules field kerangka buku
+          this.rules.kerangka_buku.label = parsedYAML[0].kerangka_buku.label;
+          this.rules.kerangka_buku.required =
+            parsedYAML[0].kerangka_buku.required;
+          this.rules.kerangka_buku.form = parsedYAML[0].kerangka_buku.form;
+
+          // Set rules field portfolio
+          this.rules.portfolio.label = parsedYAML[0].portfolio.label;
+          this.rules.portfolio.required = parsedYAML[0].portfolio.required;
+          this.rules.portfolio.form = parsedYAML[0].portfolio.form;
+        }
+      })
+      .catch((err) => console.log(err));
   },
 };
 </script>

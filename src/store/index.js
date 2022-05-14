@@ -126,6 +126,9 @@ export default new Vuex.Store({
       state.totalRead = payload.total_read;
       state.totalDownload = payload.total_download;
     },
+    setDataPolicy(state, payload) {
+      state.policy = payload
+    },
   },
   actions: {
     logout({ state }) {
@@ -220,13 +223,17 @@ export default new Vuex.Store({
     },
     fetchDetailTraining(context, id) {
       context.state.loadPage = true;
-      axios
-        .get(BASE_URL + "api/entry/training_event/detail/" + id)
-        .then((res) => {
-          context.state.policy = res.data;
-          context.state.loadPage = false;
-        })
-        .catch((err) => console.log(err));
+
+      return new Promise((resolve, reject) => {
+        axios
+          .get(BASE_URL + "api/entry/training_event/detail/" + id)
+          .then((res) => {
+            resolve(res)
+            context.commit("setDataPolicy", res.data);
+            context.state.loadPage = false;
+          })
+          .catch((err) => reject(err));
+      })
     },
     filterSearch(context, payload) {
       context.state.loadPage = true;
