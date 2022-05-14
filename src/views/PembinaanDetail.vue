@@ -334,7 +334,6 @@
                     id="kerangka"
                     class="form-control"
                     @change="selectFileKerangkaBuku"
-                    required
                   />
                   <input
                     type="hidden"
