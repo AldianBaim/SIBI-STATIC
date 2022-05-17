@@ -682,7 +682,7 @@ export default {
         // Handle if metadata exist
         if (res.data.metadata != "") {
           const parsedYAML = YAML.loadAll(res.data.metadata);
-
+          console.log(parsedYAML);
           // Set rules field kerangka buku
           this.rules.kerangka_buku.label = parsedYAML[0].kerangka_buku.label;
           this.rules.kerangka_buku.required =

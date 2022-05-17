@@ -5,7 +5,7 @@
         <div class="col-md-8 col-lg-9">
           <img
             class="footer-img"
-            src="https://buku.kemdikbud.go.id/static/media/kemendikbud.16cf9013.webp"
+            src="@/assets/kemendikbud.webp"
             alt="Sistem Informasi Perbukuan Indonesia"
           />
           <h5 class="footer-title">
