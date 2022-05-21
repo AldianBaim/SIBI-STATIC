@@ -32,6 +32,11 @@
           <a><i class="fa fa-camera-retro fa-fw"></i> Portfolio</a>
         </router-link>
       </li>
+      <!-- <li>
+        <router-link to="/user/pembinaan">
+          <a><i class="fa fa-calendar-alt fa-fw"></i> Pembinaan</a>
+        </router-link>
+      </li> -->
       <li>
         <router-link to="/user/lapor">
           <a><i class="fa fa-exclamation-circle fa-fw"></i> Lapor Buku</a>

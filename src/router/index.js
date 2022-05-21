@@ -54,6 +54,11 @@ const routes = [
     component: () => import("../views/TicketDetail.vue"),
   },
   {
+    path: "/sertifikat/:id",
+    name: "Certificate-Detail",
+    component: () => import("../views/CertificateDetail.vue"),
+  },
+  {
     path: "/manfaat",
     name: "Manfaat",
     component: () => import("../views/Manfaat.vue"),
@@ -82,6 +87,11 @@ const routes = [
         name: "UserHome",
         component: () => import("../views/dashboard/Home.vue"),
       },
+      // {
+      //   path: "pembinaan",
+      //   name: "UserPembinaan",
+      //   component: () => import("../views/dashboard/Pembinaan.vue"),
+      // },
       {
         path: "lapor",
         name: "Lapor",
