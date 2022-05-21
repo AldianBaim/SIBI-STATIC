@@ -327,6 +327,9 @@
                 <div v-if="policy.metadata !== ''" class="form-group">
                   <label for="kerangka" class="form-label"
                     >{{ rules.kerangka_buku.label }}
+                    {{
+                      rules.kerangka_buku.required ? "*Wajib" : "*Tidak Wajib"
+                    }}
                   </label>
                   <small
                     v-if="message.kerangka_buku_anak.error != ''"
