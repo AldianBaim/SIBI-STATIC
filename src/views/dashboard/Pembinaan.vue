@@ -10,10 +10,10 @@
         </select>
       </div>
       <div class="col-lg-8">
-        <div class="text-right mb-4">{{ $store.state.today }}</div>
+        <div class="text-right mb-4">{{ timeToday }}</div>
       </div>
     </div>
-    <div class="card mb-3 my-3">
+    <div v-for="index of 5" :key="index" class="card mb-3 my-3 border-0">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img
@@ -24,25 +24,47 @@
         </div>
         <div class="col-md-8">
           <div class="card-body p-2">
-            <h5 class="card-title">LSP Puskurbuk</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
+            <h5 class="card-title text-primary">LSP Puskurbuk</h5>
+            <div>
+              Kamis, 27 Mei 2022 - Sabtu, 28 Mei 2022, pukul 09:00 - selesai
+            </div>
+            <div class="card-text mt-4">
+              <div class="float-left">
+                Status :
+                <span class="badge bg-salmon  font-weight-bold"
+                  >Menunggu Approval</span
+                >
+              </div>
+              <div class="float-right">
+                <a
+                  href=""
+                  class="btn btn-sm btn-outline-primary"
+                  style="border-radius: 5px!important"
+                  ><i class="fa fa-ticket-alt fa-fw mr-1"></i>Lihat tiket</a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <hr />
     </div>
   </div>
 </template>
 
 <script>
+import moment from "moment";
+
+moment.locale("id");
+
 export default {
   name: "Home",
+  computed: {
+    timeToday: function() {
+      const day = moment(this.$store.state.today).format("dddd");
+      return day + ", " + moment(this.$store.state.today).format("LL");
+    },
+  },
   beforeCreate() {
     const logged_in = localStorage.getItem("user");
     if (!logged_in) {

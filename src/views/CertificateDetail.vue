@@ -41,7 +41,7 @@
               <div class="row justify-content-center">
                 <div class="col-lg-9 text-center">
                   <div class="font-cert mt-1 mb-3">
-                    Nomor : {{ certificate.certificate_id }}
+                    Nomor : {{ certificate.certificate_code }}
                   </div>
                   <div class="font-cert">
                     Pusat Perbukuan, Badan Standar, Kurikulum, dan Asesmen
@@ -79,7 +79,7 @@
           </div>
         </section>
       </vue-html2pdf>
-      <div class="mt-3 text-center">
+      <div v-if="!notValid" class="mt-3 text-center">
         <button @click="generatePDF()" class="btn btn-primary">
           Unduh Sertifikat
         </button>

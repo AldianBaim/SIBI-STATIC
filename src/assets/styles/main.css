@@ -4,6 +4,15 @@ body {
   overflow-x: hidden;
 }
 
+.text-salmon {
+  color: salmon;
+}
+
+.bg-salmon {
+  background-color: salmon;
+  color: #fff;
+}
+
 .navbar {
   background-color: #ebf7ff !important;
 }
