@@ -18,17 +18,20 @@
       :key="index"
       class="card mb-3 my-3 border-0"
     >
-      <router-link :to="'/pembinaanDetail?id=' + training.training_id">
-        <div class="row no-gutters text-dark">
-          <div class="col-md-4">
+      
+      <div class="row no-gutters text-dark">
+        <div class="col-md-4 pr-3">
+          <router-link :to="'/pembinaanDetail?id=' + training.training_id">
             <img
-              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVldGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500"
-              class="w-100 h-100"
+              :src="training.training_event.cover"
+              class="w-100"
               alt="..."
             />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body p-2">
+          </router-link>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body p-2">
+            <router-link :to="'/pembinaanDetail?id=' + training.training_id">
               <h5 class="card-title text-primary">
                 {{
                   training.training_event != undefined
@@ -36,42 +39,49 @@
                     : "ss"
                 }}
               </h5>
-              <div>
-                Kamis, 27 Mei 2022 - Sabtu, 28 Mei 2022, pukul 09:00 - selesai
+            </router-link>
+            <div>
+              Kamis, 27 Mei 2022 - Sabtu, 28 Mei 2022, pukul 09:00 - selesai
+            </div>
+            <div class="card-text mt-4">
+              <div class="float-left">
+                Status :
+                <span
+                  v-if="training.status == 'pending'"
+                  class="badge bg-primary text-white font-weight-bold"
+                  >Menunggu Approval</span
+                >
+                <span
+                  v-if="training.status == 'approved'"
+                  class="badge bg-success text-white font-weight-bold"
+                  >Pendaftaran Diterima</span
+                >
+                <span
+                  v-if="training.status == 'canceled'"
+                  class="badge bg-warning text-white font-weight-bold"
+                  >Pendaftaran Ditolak</span
+                >
               </div>
-              <div class="card-text mt-4">
-                <div class="float-left">
-                  Status :
-                  <span
-                    v-if="training.status == 'pending'"
-                    class="badge bg-salmon font-weight-bold"
-                    >Menunggu Approval</span
+              <div v-if="training.status == 'approved'" class="float-right mt-3">
+                <router-link :to="'/ticket/' + training.ticketcode">
+                  <a
+                    class="btn btn-sm btn-outline-primary mr-2"
+                    style="border-radius: 5px!important"
+                    ><i class="fa fa-ticket-alt fa-fw mr-1"></i>Lihat Tiket</a
                   >
-                  <span
-                    v-if="training.status == 'approved'"
-                    class="badge bg-primary text-white font-weight-bold"
-                    >Pendaftaran Diterima</span
+                </router-link>
+                <router-link :to="'/sertifikat/' + training.ticketcode">
+                  <a
+                    class="btn btn-sm btn-outline-success"
+                    style="border-radius: 5px!important"
+                    ><i class="fa fa-award fa-fw mr-1"></i>Lihat Sertifikat</a
                   >
-                  <span
-                    v-if="training.status == 'canceled'"
-                    class="badge bg-danger text-white font-weight-bold"
-                    >Pendaftaran Ditolak</span
-                  >
-                </div>
-                <div v-if="training.status == 'approved'" class="float-right">
-                  <router-link :to="'/ticket/' + training.ticketcode">
-                    <a
-                      class="btn btn-sm btn-outline-primary"
-                      style="border-radius: 5px!important"
-                      ><i class="fa fa-ticket-alt fa-fw mr-1"></i>Lihat tiket</a
-                    >
-                  </router-link>
-                </div>
+                </router-link>
               </div>
             </div>
           </div>
         </div>
-      </router-link>
+      </div>
       <hr />
     </div>
   </div>

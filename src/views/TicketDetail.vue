@@ -126,6 +126,15 @@
               </span>
             </td>
           </tr>
+          <tr v-if="ticket.status == 'approved'">
+            <td>Sertifikat</td>
+            <td>:</td>
+            <td>
+              <router-link :to="'/sertifikat/' + ticket.ticketcode">
+                <a>Lihat Sertifikat</a>
+              </router-link>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
