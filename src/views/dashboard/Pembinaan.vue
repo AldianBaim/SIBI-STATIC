@@ -13,20 +13,19 @@
         <div class="text-right mb-4">{{ timeToday }}</div>
       </div>
     </div>
+    <div v-if="notFound" class="text-center my-5">
+      <h5>Anda belum terdaftar dalam event apapun</h5>
+    </div>
     <div
+      v-else
       v-for="(training, index) of trainings"
       :key="index"
       class="card mb-3 my-3 border-0"
     >
-      
       <div class="row no-gutters text-dark">
         <div class="col-md-4 pr-3">
           <router-link :to="'/pembinaanDetail?id=' + training.training_id">
-            <img
-              :src="training.training_event.cover"
-              class="w-100"
-              alt="..."
-            />
+            <img :src="training.training_event.cover" class="w-100" alt="..." />
           </router-link>
         </div>
         <div class="col-md-8">
@@ -41,7 +40,15 @@
               </h5>
             </router-link>
             <div>
-              Kamis, 27 Mei 2022 - Sabtu, 28 Mei 2022, pukul 09:00 - selesai
+              <span>
+                {{
+                  trainingDate(
+                    training.training_event.start,
+                    training.training_event.end,
+                  )
+                }}
+              </span>
+              , pukul {{ training.training_event.start.substr(11) }} - selesai
             </div>
             <div class="card-text mt-4">
               <div class="float-left">
@@ -52,7 +59,10 @@
                   >Menunggu Approval</span
                 >
                 <span
-                  v-if="training.status == 'approved'"
+                  v-if="
+                    training.status == 'approved' ||
+                      training.status == 'attended'
+                  "
                   class="badge bg-success text-white font-weight-bold"
                   >Pendaftaran Diterima</span
                 >
@@ -62,7 +72,10 @@
                   >Pendaftaran Ditolak</span
                 >
               </div>
-              <div v-if="training.status == 'approved'" class="float-right mt-3">
+              <div
+                v-if="training.status == 'approved'"
+                class="float-right mt-3"
+              >
                 <router-link :to="'/ticket/' + training.ticketcode">
                   <a
                     class="btn btn-sm btn-outline-primary mr-2"
@@ -99,7 +112,21 @@ export default {
   data() {
     return {
       trainings: [],
+      notFound: false,
     };
+  },
+  methods: {
+    trainingDate(start, end) {
+      let momentStart =
+        moment(start).format("dddd") + ", " + moment(start).format("LL");
+      let momentEnd =
+        moment(end).format("dddd") + ", " + moment(end).format("LL");
+      let date =
+        momentStart == momentEnd
+          ? momentStart
+          : momentStart + " - " + momentEnd;
+      return date;
+    },
   },
   computed: {
     timeToday: function() {
@@ -112,7 +139,12 @@ export default {
     axios
       .post(`${BASE_URL}api/training/tickets?email=${email}&limit=10&page=1`)
       .then((res) => {
-        this.trainings = res.data.data;
+        let statusUser = res.data.status;
+        if (statusUser == "failed") {
+          this.notFound = true;
+        } else {
+          this.trainings = res.data.data;
+        }
       })
       .catch((err) => console.log(err));
   },
