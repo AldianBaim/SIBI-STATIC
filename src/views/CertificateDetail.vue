@@ -28,7 +28,7 @@
         <section slot="pdf-content">
           <div
             ref="content"
-            class="col-lg-11 position-relative cert p-0 mx-auto mt-5"
+            class="col-lg-11 position-relative cert p-2 mx-auto mt-5"
           >
             <div class="position-relative">
               <img
