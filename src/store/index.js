@@ -34,12 +34,14 @@ export default new Vuex.Store({
     trainings: [],
     certifications: [],
     policies: [],
+    providers: [],
     policy: [],
     resultRender: {},
     perPage: 0,
     totalRows: 0,
     pagination: null,
     loadPage: false,
+    loadProvider: false,
     loadSubmitAssesment: false,
     loadUploadFile: false,
     loadProcess: false,
@@ -128,6 +130,9 @@ export default new Vuex.Store({
     },
     setDataPolicy(state, payload) {
       state.policy = payload
+    },
+    setDataProvider(state, payload) {
+      state.providers = payload
     },
   },
   actions: {
@@ -778,6 +783,16 @@ export default new Vuex.Store({
           .catch((err) => reject(err));
       })
     },
+    fetchAllProvider(context) {
+      context.state.loadProvider = true
+      axios
+        .get(`${BASE_URL}publishers/permission`)
+        .then((res) => {
+          context.commit('setDataProvider', res.data);
+          context.state.loadProvider = false
+        })
+        .catch((err) => console.log(err));
+    }
   },
   modules: {},
 });

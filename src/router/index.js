@@ -26,6 +26,11 @@ const routes = [
     component: () => import("../views/Kebijakan.vue"),
   },
   {
+    path: "/penyedia-kurikulum-merdeka",
+    name: "Penyedia-Kurikulum-Merdeka",
+    component: () => import("../views/PenyediaKurikulumMerdeka.vue"),
+  },
+  {
     path: "/pelaku",
     redirect: "/pelaku/pembinaan",
     name: "parent-pelaku",
