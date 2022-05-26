@@ -10,7 +10,7 @@
     <section v-else class="my-5">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <h5 class="mb-3">Daftar Penyedia Buku Kurikulum Merdeka</h5>
+          <h5 class="mb-3">Daftar Pencetak Buku Kurikulum Merdeka</h5>
           <h6 v-if="providers.length < 1" class="text-center text-muted">
             Data belum tersedia
           </h6>

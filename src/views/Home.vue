@@ -214,9 +214,9 @@
                   />
                 </div> -->
                 <div class="carousel-item active">
-                  <router-link to="/penyedia-kurikulum-merdeka">
+                  <router-link to="/pencetak-kurikulum-merdeka">
                     <img
-                      src="../assets/banner/Banner Daftar Penyedia Buku Kurikulum Merdeka 700x300.jpg"
+                      src="../assets/banner/Banner Daftar Pencetak Buku Kurikulum Merdeka 700x300.jpg"
                       class="d-block w-100 rounded"
                       alt="Banner penilaian"
                     />

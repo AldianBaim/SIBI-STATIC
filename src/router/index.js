@@ -26,9 +26,9 @@ const routes = [
     component: () => import("../views/Kebijakan.vue"),
   },
   {
-    path: "/penyedia-kurikulum-merdeka",
-    name: "Penyedia-Kurikulum-Merdeka",
-    component: () => import("../views/PenyediaKurikulumMerdeka.vue"),
+    path: "/pencetak-kurikulum-merdeka",
+    name: "pencetak-Kurikulum-Merdeka",
+    component: () => import("../views/PencetakKurikulumMerdeka.vue"),
   },
   {
     path: "/pelaku",
