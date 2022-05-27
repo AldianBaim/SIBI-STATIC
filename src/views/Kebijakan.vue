@@ -37,7 +37,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#" @click="filter = 'undang-undang'"
+                  <a href="#" @click="filter = 'Undang-undang'"
                     ><i class="fas fa-fw fa-gavel"></i> &nbsp;Undang-undang</a
                   >
                 </li>
@@ -54,19 +54,19 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#" @click="filter = 'Kepmen'"
+                  <a href="#" @click.prevent="filter = 'Kepmen'"
                     ><i class="fas fa-fw fa-user-shield"></i> &nbsp;Keputusan
                     Menteri</a
                   >
                 </li>
                 <li>
-                  <a href="#" @click="filter = 'SK'"
+                  <a href="#" @click.prevent="filter = 'Kepmen'"
                     ><i class="fas fa-fw fa-envelope-open-text"></i> &nbsp;Surat
                     Keputusan</a
                   >
                 </li>
                 <li>
-                  <a href="#"
+                  <a href="#" @click.prevent="filter = 'lainnya'"
                     ><i class="fas fa-fw fa-external-link-square-alt"></i>
                     &nbsp;Lainnya</a
                   >
@@ -246,4 +246,3 @@ export default {
   },
 };
 </script>
-
