@@ -299,7 +299,7 @@ export default new Vuex.Store({
     fetchAllPolicy(context) {
       context.state.loadPage = true;
       axios
-        .get(BASE_URL + "api/post")
+        .get(BASE_URL + "api/post?page=1&perpage=50")
         .then((res) => {
           context.state.policies = res.data.posts;
           context.state.loadPage = false;
