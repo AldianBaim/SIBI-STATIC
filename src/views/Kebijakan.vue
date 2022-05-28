@@ -60,7 +60,7 @@
                   >
                 </li>
                 <li>
-                  <a href="#" @click.prevent="filter = 'Kepmen'"
+                  <a href="#" @click.prevent="filter = 'SK'"
                     ><i class="fas fa-fw fa-envelope-open-text"></i> &nbsp;Surat
                     Keputusan</a
                   >
