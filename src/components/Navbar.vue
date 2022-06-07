@@ -130,7 +130,7 @@
                 target="_blank"
                 class="dropdown-item"
                 exact-active-class="active"
-                href="https://static.buku.kemdikbud.go.id/content/pengumuman/Pengumuman%20HET%20Gel.2-compressed.pdf"
+                href="https://drive.google.com/file/d/1DfgXZyyPgqCHCf2w9nq29xwiW2iy_XtC/view?usp=sharing"
               >
                 Pengajuan HET
               </a>
