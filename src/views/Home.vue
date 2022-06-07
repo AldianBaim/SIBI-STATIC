@@ -206,14 +206,17 @@
               data-ride="carousel"
             >
               <div class="carousel-inner">
-                <!-- <div class="carousel-item active">
-                  <img
-                    src="../assets/banner/Banner Daftar Penyedia Buku Kurikulum Merdeka 700x300.jpg"
-                    class="d-block w-100 rounded"
-                    alt="Banner penilaian"
-                  />
-                </div> -->
                 <div class="carousel-item active">
+                  <a target="_blank" href="https://drive.google.com/file/d/1DfgXZyyPgqCHCf2w9nq29xwiW2iy_XtC/view"
+                  >
+                    <img
+                      src="https://image.web.id/images/2022/06/07/6b4311c14e8e8b96e3eb2e67f3739e33.jpg"
+                      class="d-block w-100 rounded"
+                      alt="Banner penilaian"
+                    />
+                  </a>
+                </div>
+                <div class="carousel-item">
                   <router-link to="/pencetak-kurikulum-merdeka">
                     <img
                       src="../assets/banner/Banner Daftar Pencetak Buku Kurikulum Merdeka 700x300.jpg"
@@ -222,17 +225,6 @@
                     />
                   </router-link>
                 </div>
-                <!-- <div class="carousel-item">
-                  <router-link
-                    :to="{ path: '/pembinaanDetail', query: { id: '7' } }"
-                  >
-                    <img
-                      src="../assets/banner/baner workshop 18 mei 2022.jpg"
-                      class="d-block w-100 rounded"
-                      alt="Banner penilaian"
-                    />
-                  </router-link>
-                </div> -->
               </div>
               <button
                 class="carousel-control-prev border-0 bg-transparent"
