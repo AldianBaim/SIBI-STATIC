@@ -206,6 +206,7 @@
               data-ride="carousel"
             >
               <div class="carousel-inner">
+                <!--
                 <div class="carousel-item active">
                   <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSeQiFY5Lo4Jrf_FgXC0ApmFJOzKVvjps9ivjenBgOVl5Dk0pg/viewform?usp=sf_link"
                   >
@@ -216,7 +217,8 @@
                     />
                   </a>
                 </div>
-                <div class="carousel-item">
+                -->
+                <div class="carousel-item active">
                   <router-link to="/pencetak-kurikulum-merdeka">
                     <img
                       src="../assets/banner/Banner Daftar Pencetak Buku Kurikulum Merdeka 700x300.jpg"

@@ -125,7 +125,7 @@
                 to="/pelaku/pembinaan"
                 >Pembinaan
               </router-link>
-
+              <!--
               <a
                 target="_blank"
                 class="dropdown-item"
@@ -134,6 +134,7 @@
               >
                 Pengajuan HET
               </a>
+              -->
             </div>
           </li>
           <router-link class="nav-link" active-class="active" to="/kebijakan">
