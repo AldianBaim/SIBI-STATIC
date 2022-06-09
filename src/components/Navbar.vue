@@ -125,16 +125,14 @@
                 to="/pelaku/pembinaan"
                 >Pembinaan
               </router-link>
-              <!--
               <a
                 target="_blank"
                 class="dropdown-item"
                 exact-active-class="active"
-                href="https://drive.google.com/file/d/1DfgXZyyPgqCHCf2w9nq29xwiW2iy_XtC/view?usp=sharing"
+                href="https://drive.google.com/file/d/1PxpEyDy6XAHNmt208_sbBKnsRYgNRSuA/view?usp=sharing"
               >
                 Pengajuan HET
               </a>
-              -->
             </div>
           </li>
           <router-link class="nav-link" active-class="active" to="/kebijakan">

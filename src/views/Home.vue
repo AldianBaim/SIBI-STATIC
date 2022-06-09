@@ -206,19 +206,19 @@
               data-ride="carousel"
             >
               <div class="carousel-inner">
-                <!--
+                
                 <div class="carousel-item active">
                   <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSeQiFY5Lo4Jrf_FgXC0ApmFJOzKVvjps9ivjenBgOVl5Dk0pg/viewform?usp=sf_link"
                   >
                     <img
                       src="https://image.web.id/images/2022/06/07/6b4311c14e8e8b96e3eb2e67f3739e33.jpg"
                       class="d-block w-100 rounded"
-                      alt="Banner penilaian"
+                      alt="Pengajuan HET"
                     />
                   </a>
                 </div>
-                -->
-                <div class="carousel-item active">
+                
+                <div class="carousel-item">
                   <router-link to="/pencetak-kurikulum-merdeka">
                     <img
                       src="../assets/banner/Banner Daftar Pencetak Buku Kurikulum Merdeka 700x300.jpg"
