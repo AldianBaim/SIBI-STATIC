@@ -54,46 +54,40 @@
             <div class="col">
               <ul class="nav flex-column">
                 <a class="nav-link" href="#">Beranda</a>
-                <a
+                 <a
                   class="nav-link"
-                  href="https://sibi-prototype.web.app/buku-teks"
-                  target="_blank"
-                  >Buku Teks</a
-                >
-                <a
-                  class="nav-link"
-                  href="https://sibi-prototype.web.app/buku-nonteks"
-                  target="_blank"
-                  >Buku Non teks</a
-                >
-                <a
-                  class="nav-link"
-                  href="https://sibi-prototype.web.app/buku-sekolah-penggerak?role=siswa"
+                  href="https://buku.kemdikbud.go.id/katalog/buku-kurikulum-merdeka"
                   target="_blank"
                   >Buku Kurikulum Merdeka</a
+                >
+                <a
+                  class="nav-link"
+                  href="https://buku.kemdikbud.go.id/katalog/buku-teks-k13"
+                  target="_blank"
+                  >Buku Teks K-13</a
+                >
+                <a
+                  class="nav-link"
+                  href="https://buku.kemdikbud.go.id/katalog/buku-non-teks"
+                  target="_blank"
+                  >Buku Non teks</a
                 >
               </ul>
             </div>
             <div class="col">
               <ul class="nav flex-column">
-                <a class="nav-link" href="http://sibi.local/penilaian"
+                <a class="nav-link" href="https://app.buku.kemdikbud.go.id/penilaian"
                   >Penilaian</a
                 >
-                <a class="nav-link" href="http://sibi.local/pembinaan"
+                <a class="nav-link" href="https://app.buku.kemdikbud.go.id/pelaku/pembinaan"
                   >Pembinaan</a
                 >
-                <a class="nav-link" href="http://sibi.local/kebijakan"
+                <a class="nav-link" href="https://app.buku.kemdikbud.go.id/kebijakan"
                   >Kebijakan</a
                 >
                 <a
                   class="nav-link"
-                  href="https://sibi-prototype.web.app/panduan"
-                  target="_blank"
-                  >Panduan</a
-                >
-                <a
-                  class="nav-link"
-                  href="https://sibi-prototype.web.app/tentang-kami"
+                  href="https://pusbuk.kemdikbud.go.id/"
                   target="_blank"
                   >Tentang Kami</a
                 >

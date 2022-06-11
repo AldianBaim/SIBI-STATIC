@@ -43,21 +43,21 @@
               <a
                 class="dropdown-item"
                 target="_blank"
-                href="https://buku.kemdikbud.go.id/buku-teks"
-                >Buku Teks</a
+                href="https://buku.kemdikbud.go.id/katalog/buku-kurikulum-merdeka"
+                >Buku Kurikulum Merdeka</a
               >
               <div class="dropdown-divider"></div>
               <a
                 class="dropdown-item"
-                href="https://buku.kemdikbud.go.id/buku-nonteks"
+                href="https://buku.kemdikbud.go.id/katalog/buku-teks-k13"
                 target="_blank"
-                >Buku Non Teks</a
+                >Buku Teks K-13</a
               >
               <a
                 class="dropdown-item"
-                href="https://buku.kemdikbud.go.id/buku-sekolah-penggerak"
+                href="https://buku.kemdikbud.go.id/katalog/buku-non-teks"
                 target="_blank"
-                >Buku Kurikulum Merdeka</a
+                >Buku Non Teks</a
               >
             </div>
           </li>
