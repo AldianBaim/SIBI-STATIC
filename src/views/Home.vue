@@ -206,9 +206,10 @@
               data-ride="carousel"
             >
               <div class="carousel-inner">
-                
                 <div class="carousel-item active">
-                  <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSeQiFY5Lo4Jrf_FgXC0ApmFJOzKVvjps9ivjenBgOVl5Dk0pg/viewform?usp=sf_link"
+                  <a
+                    target="_blank"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSeQiFY5Lo4Jrf_FgXC0ApmFJOzKVvjps9ivjenBgOVl5Dk0pg/viewform?usp=sf_link"
                   >
                     <img
                       src="https://image.web.id/images/2022/06/07/6b4311c14e8e8b96e3eb2e67f3739e33.jpg"
@@ -217,7 +218,7 @@
                     />
                   </a>
                 </div>
-                
+
                 <div class="carousel-item">
                   <router-link to="/pencetak-kurikulum-merdeka">
                     <img
@@ -566,7 +567,7 @@
                 <div class="card-body">
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="https://buku.kemdikbud.go.id/static/media/ikapi.4a3a47f3.png"
+                    src="https://image.web.id/images/2022/06/14/755362854d13315ac83082c843bc505d.png"
                     alt="IKAPI"
                     loading="lazy"
                   />
@@ -584,7 +585,7 @@
                 <div class="card-body">
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="https://buku.kemdikbud.go.id/static/media/rumah-belajar.43e30afc.png"
+                    src="https://image.web.id/images/2022/06/14/bfb6921b7793201f24d46f3d9d4f18e0.png"
                     alt="Rumah Belajar"
                     loading="lazy"
                   />
@@ -602,7 +603,7 @@
                 <div class="card-body">
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="https://buku.kemdikbud.go.id/static/media/balaipustaka.70792c5b.png"
+                    src="https://image.web.id/images/2022/06/14/842be0d06f50b2a5081501c3d5bd5ae6.png"
                     alt="Perpustakaan Nasional Indonesia"
                     loading="lazy"
                   />
@@ -616,7 +617,7 @@
                 <div class="card-body">
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="https://buku.kemdikbud.go.id/static/media/belajar-id.c4f671e3.png"
+                    src="https://image.web.id/images/2022/06/14/0f75a28fbfc69ce995881e705f13165d.png"
                     alt="Belajar.id"
                     loading="lazy"
                   />
@@ -634,7 +635,7 @@
                 <div class="card-body">
                   <img
                     class="img-fluid d-block mx-auto"
-                    src="https://buku.kemdikbud.go.id/static/media/bukunesia.d17696c6.png"
+                    src="https://image.web.id/images/2022/06/14/cc4e98b7260c17d89405fa38a879d6fb.png"
                     alt="Bukunesia"
                     loading="lazy"
                   />
