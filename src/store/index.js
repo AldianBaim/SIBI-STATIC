@@ -453,7 +453,7 @@ export default new Vuex.Store({
           });
       });
     },
-    sendPrintPermission(context) {
+    sendPrintPermission(context, type) {
       context.state.loadPage = true;
 
       const payload = {
@@ -466,7 +466,7 @@ export default new Vuex.Store({
 
       return new Promise((resolve, reject) => {
         axios({
-          url: BASE_URL + "api/user/updatePrintPermission",
+          url: BASE_URL + "api/user/updatePrintPermission/" + type,
           method: "POST",
           data: JSON.stringify(payload),
           headers: {

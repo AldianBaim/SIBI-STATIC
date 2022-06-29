@@ -171,7 +171,7 @@ export default {
       ) {
         this.message = "Semua syarat harus disetujui";
       } else {
-        this.sendPrintPermission()
+        this.sendPrintPermission("merdeka")
           .then((res) => {
             this.message = "";
             if (res.data.status == "success") {
