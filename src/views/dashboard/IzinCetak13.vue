@@ -198,7 +198,7 @@ export default {
       })
       .then((res) => {
         this.profilePublisher = res.data.result;
-        if (res.data.result.print_permission !== null) {
+        if (res.data.result.print_permission_k13 !== null) {
           this.print_permission.cover = true;
           this.print_permission.identity = true;
           this.print_permission.content = true;
