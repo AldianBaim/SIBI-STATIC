@@ -783,10 +783,10 @@ export default new Vuex.Store({
           .catch((err) => reject(err));
       })
     },
-    fetchAllProvider(context) {
+    fetchAllProvider(context, type) {
       context.state.loadProvider = true
       axios
-        .get(`${BASE_URL}publishers/permission`)
+        .get(`${BASE_URL}publishers/permission/${type}`)
         .then((res) => {
           context.commit('setDataProvider', res.data);
           context.state.loadProvider = false
