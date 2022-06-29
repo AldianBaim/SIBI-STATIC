@@ -228,6 +228,9 @@
                     class="form-control"
                   >
                     <option value="Desainer">Desainer</option>
+                    <option value="Ilustrator">Ilustrator</option>
+                    <!--
+                    <option value="Desainer">Desainer</option>
                     <option value="Penulis">Penulis</option>
                     <option value="Penyadur">Penyadur</option>
                     <option value="Editor">Editor</option>
@@ -237,6 +240,7 @@
                     <option value="Pencetak">Pencetak</option>
                     <option value="Toko Buku">Toko Buku</option>
                     <option value="Penerjemah">Penerjemah</option>
+                    -->
                   </select>
                 </div>
                 <div v-if="policy.event_type == 'hybrid'" class="form-group">
@@ -429,9 +433,9 @@
               </table>
 
               <p>
-                Note : Mohon untuk menyimpan kode tiket pendaftaran untuk
+                <span style="color:red;">Note : Mohon untuk menyimpan nomor tiket pendaftaran untuk
                 keperluan verifikasi. Bukti pendaftaran acara juga sudah kami
-                kirimkan ke email.
+                kirimkan ke email</span>
               </p>
             </div>
           </div>
@@ -542,9 +546,9 @@ export default {
       },
       rules: {
         portfolio: {
-          label: "Portfolio",
+          label: "Portfolio Terbaik",
           form: "file",
-          required: false,
+          required: true,
         },
         kerangka_buku: {
           label: "Kerangka Buku Anak",
