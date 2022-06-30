@@ -546,7 +546,7 @@ export default {
       },
       rules: {
         portfolio: {
-          label: "Portfolio Terbaik",
+          label: "Portfolio terbaik (Cek persyaratan peserta)",
           form: "file",
           required: true,
         },
