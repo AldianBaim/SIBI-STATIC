@@ -227,8 +227,7 @@
                     v-model="register.role"
                     class="form-control"
                   >
-                    <option value="Desainer">Desainer</option>
-                    <option value="Ilustrator">Ilustrator</option>
+                    <option value="Ilustrator" choosen>Ilustrator</option>
                     <!--
                     <option value="Desainer">Desainer</option>
                     <option value="Penulis">Penulis</option>
