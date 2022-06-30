@@ -306,13 +306,17 @@
                         >
                           Upload
                         </button>
-                        <button
-                          type="button"
-                          v-if="message.portfolio.uploaded"
-                          class="btn btn-secondary btn-sm"
-                        >
-                          Uploaded
-                        </button>
+                        <div v-if="message.portfolio.uploaded" class="d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                          >
+                            Uploaded
+                          </button>
+                          <span class="mt-1 ml-2">{{
+                            fileUploaded.portfolio
+                          }}</span>
+                        </div>
                         <button
                           type="button"
                           v-if="
@@ -612,7 +616,7 @@ export default {
         this.uploadFile(this.file.portfolio).then((res) => {
           this.loading.portfolio = false;
           this.message.portfolio.uploaded = true;
-          this.fileUploaded.portfolio = res.data.url;
+          this.fileUploaded.portfolio = res.file;
         });
       }
     },
