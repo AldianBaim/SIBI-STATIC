@@ -433,9 +433,11 @@
               </table>
 
               <p>
-                <span style="color:red;">Note : Mohon untuk menyimpan nomor tiket pendaftaran untuk
-                keperluan verifikasi. Bukti pendaftaran acara juga sudah kami
-                kirimkan ke email</span>
+                <span style="color:red;"
+                  >Note : Mohon untuk menyimpan nomor tiket pendaftaran untuk
+                  keperluan verifikasi. Bukti pendaftaran acara juga sudah kami
+                  kirimkan ke email</span
+                >
               </p>
             </div>
           </div>
@@ -590,7 +592,7 @@ export default {
   methods: {
     ...mapActions([
       "fetchDetailTraining",
-      "uploadImage",
+      "uploadFile",
       "registerTraining",
       "fetchRegisterTraining",
     ]),
@@ -608,7 +610,7 @@ export default {
       } else {
         this.loading.portfolio = true;
         this.message.portfolio.error = "";
-        this.uploadImage(this.file.portfolio).then((res) => {
+        this.uploadFile(this.file.portfolio).then((res) => {
           this.loading.portfolio = false;
           this.message.portfolio.uploaded = true;
           this.fileUploaded.portfolio = res.data.url;
@@ -623,7 +625,7 @@ export default {
         } else {
           this.loading.kerangka_buku_anak = true;
           this.message.kerangka_buku_anak.error = "";
-          this.uploadImage(this.file.kerangka_buku_anak).then((res) => {
+          this.uploadFile(this.file.kerangka_buku_anak).then((res) => {
             this.message.kerangka_buku_anak.uploaded = true;
             this.loading.kerangka_buku_anak = false;
             this.fileUploaded.kerangka_buku_anak = res.data.url;
