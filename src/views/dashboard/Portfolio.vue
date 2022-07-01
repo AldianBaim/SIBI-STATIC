@@ -22,6 +22,7 @@
         <thead>
           <tr>
             <th scope="col">Judul</th>
+            <th scope="col">Type</th>
             <th scope="col">Deskripsi</th>
             <th scope="col">Status</th>
             <th scope="col">Lampiran</th>
@@ -31,6 +32,7 @@
         <tbody>
           <tr v-for="(portfolio, index) in portfolios" :key="index">
             <td>{{ portfolio.title }}</td>
+            <td>{{ portfolio.type }}</td>
             <td>{{ portfolio.description }}</td>
             <td v-if="portfolio.status == 'publish'">
               <span class="badge badge-success">{{ portfolio.status }}</span>
@@ -47,16 +49,17 @@
               <router-link
                 :to="{ name: 'Portfolio-Edit', params: { id: portfolio.id } }"
               >
-                <button class="btn btn-info btn-sm">
+                <span class="badge bg-info text-white p-2 rounded-pill">
                   <i class="fa fa-pencil-alt"></i> Edit
-                </button>
+                </span>
               </router-link>
-              <button
+              <span
+                style="cursor:pointer"
                 @click="deletePortfolio(portfolio.id)"
-                class="btn btn-danger btn-sm ml-1"
+                class="badge bg-danger text-white p-2 rounded-pill ml-1"
               >
                 <i class="fa fa-trash"></i> Hapus
-              </button>
+              </span>
             </td>
           </tr>
         </tbody>
@@ -82,7 +85,8 @@ export default {
   methods: {
     ...mapActions(["fetchAllPortfolio", "deletePortfolioById"]),
     deletePortfolio(id) {
-      this.deletePortfolioById(id);
+      const confirm = window.confirm("Apakah anda yakin akan menghapus?");
+      confirm && this.deletePortfolioById(id);
     },
   },
   created() {

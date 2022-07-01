@@ -75,6 +75,11 @@
                     type="hidden"
                     class="form-control"
                   />
+                  <small
+                    v-if="messageError !== ''"
+                    class="text-danger d-block"
+                    >{{ messageError }}</small
+                  >
                   <input
                     @change="selectFile"
                     type="file"
@@ -151,6 +156,7 @@ export default {
       file: null,
       messageStatus: false,
       message: "",
+      messageError: "",
     };
   },
   methods: {
@@ -161,6 +167,7 @@ export default {
     },
     uploadingFile() {
       this.uploadFilePDF(this.file).then((res) => {
+        this.messageError = "";
         this.portfolio.attachment = res.url;
         this.messageStatus = true;
         this.message =
@@ -168,9 +175,13 @@ export default {
       });
     },
     portfolioAdd() {
-      this.addNewPortfolio(this.portfolio).then(() => {
-        this.$router.push("/user/portfolio");
-      });
+      if (this.portfolio.attachment === "") {
+        this.messageError = "Silahkan upload file portfolio terlebih dahulu";
+      } else {
+        this.addNewPortfolio(this.portfolio).then(() => {
+          this.$router.push("/user/portfolio");
+        });
+      }
     },
   },
 };
