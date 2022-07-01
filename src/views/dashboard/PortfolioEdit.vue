@@ -163,15 +163,15 @@ export default {
     ...mapActions([
       "fetchDetailPortfolio",
       "updateDetailPortfolio",
-      "uploadFilePDF",
+      "uploadFile",
     ]),
     selectFile(e) {
       const file = e.target.files[0];
       this.file = file;
     },
     uploadingFile() {
-      this.uploadFilePDF(this.file).then((res) => {
-        this.portfolio.attachment = res.url;
+      this.uploadFile(this.file).then((res) => {
+        this.portfolio.attachment = res.file;
         this.messageStatus = true;
         this.message =
           "Berhasil diupload, selanjutnya silahkan klik tombol simpan";

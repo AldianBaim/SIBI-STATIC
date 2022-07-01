@@ -160,15 +160,15 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addNewPortfolio", "uploadFilePDF"]),
+    ...mapActions(["addNewPortfolio", "uploadFile"]),
     selectFile(e) {
       const file = e.target.files[0];
       this.file = file;
     },
     uploadingFile() {
-      this.uploadFilePDF(this.file).then((res) => {
+      this.uploadFile(this.file).then((res) => {
         this.messageError = "";
-        this.portfolio.attachment = res.url;
+        this.portfolio.attachment = res.file;
         this.messageStatus = true;
         this.message =
           "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
