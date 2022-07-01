@@ -639,23 +639,35 @@ export default {
       }
     },
     postRegisterTraining() {
-      // Wrap and convert file portfolio & kerangka buku to JSON
-      const files = {
-        portfolio: this.fileUploaded.portfolio,
-        kerangka_buku: this.fileUploaded.kerangka_buku_anak,
-      };
-
-      this.register.studentMeta = JSON.stringify(files);
-
-      this.registerTraining(this.register).then((res) => {
-        if (res.data.status == "success") {
-          this.dataRegistered = res.data.data;
-          this.successRegistered = true;
-          this.userRegisteredStatus = "pending";
-        } else {
-          this.successRegistered = false;
+      if (this.policy.metadata !== "") {
+        if (this.fileUploaded.kerangka_buku_anak === "") {
+          this.message.kerangka_buku_anak.error =
+            "Silahkan upload file kerangka buku terlebih dahulu";
         }
-      });
+      } else {
+        if (this.fileUploaded.portfolio === "") {
+          this.message.portfolio.error =
+            "Silahkan upload file portfolio terlebih dahulu";
+        } else {
+          // Wrap and convert file portfolio & kerangka buku to JSON
+          const files = {
+            portfolio: this.fileUploaded.portfolio,
+            kerangka_buku: this.fileUploaded.kerangka_buku_anak,
+          };
+
+          this.register.studentMeta = JSON.stringify(files);
+
+          this.registerTraining(this.register).then((res) => {
+            if (res.data.status == "success") {
+              this.dataRegistered = res.data.data;
+              this.successRegistered = true;
+              this.userRegisteredStatus = "pending";
+            } else {
+              this.successRegistered = false;
+            }
+          });
+        }
+      }
     },
     setValue(data) {
       this.register.user_id = data.user_id;
