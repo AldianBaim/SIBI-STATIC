@@ -40,6 +40,17 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
+              <label>Type</label>
+              <select v-model="portfolio.type" class="form-control">
+                <option value="Buku">Buku</option>
+                <option value="Ilustrasi">Ilustrasi</option>
+                <option value="Foto">Foto</option>
+              </select>
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
               <label>Description</label
               ><textarea
                 v-model="portfolio.description"
@@ -137,6 +148,7 @@ export default {
       portfolio: {
         id: "",
         title: "",
+        type: "",
         description: "",
         attachment: "",
         year: "",
@@ -169,6 +181,7 @@ export default {
       portfolio = portfolio || this.$store.state.portfolio;
       this.portfolio.id = portfolio.id;
       this.portfolio.title = portfolio.title;
+      this.portfolio.type = portfolio.type;
       this.portfolio.description = portfolio.description;
       this.portfolio.attachment = portfolio.attachment;
       this.portfolio.year = portfolio.year;

@@ -22,7 +22,7 @@
         <thead>
           <tr>
             <th scope="col">Judul</th>
-            <th scope="col">Deskripsi</th>
+            <th scope="col">Tipe</th>
             <th scope="col">Status</th>
             <th scope="col">Lampiran</th>
             <th scope="col">Action</th>
@@ -31,7 +31,7 @@
         <tbody>
           <tr v-for="(portfolio, index) in portfolios" :key="index">
             <td>{{ portfolio.title }}</td>
-            <td>{{ portfolio.description }}</td>
+            <td>{{ portfolio.type }}</td>
             <td v-if="portfolio.status == 'publish'">
               <span class="badge badge-success">{{ portfolio.status }}</span>
             </td>
@@ -48,14 +48,14 @@
                 :to="{ name: 'Portfolio-Edit', params: { id: portfolio.id } }"
               >
                 <button class="btn btn-info btn-sm">
-                  <i class="fa fa-pencil-alt"></i> Edit
+                  <small><i class="fa fa-pencil-alt"></i> Edit</small>
                 </button>
               </router-link>
               <button
                 @click="deletePortfolio(portfolio.id)"
                 class="btn btn-danger btn-sm ml-1"
               >
-                <i class="fa fa-trash"></i> Hapus
+                <small><i class="fa fa-trash"></i> Hapus</small>
               </button>
             </td>
           </tr>
