@@ -44,6 +44,17 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
+              <label>Type</label>
+              <select v-model="portfolio.type" class="form-control">
+                <option value="Buku">Buku</option>
+                <option value="Ilustrasi">Ilustrasi</option>
+                <option value="Foto">Foto</option>
+              </select>
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
               <label>Description</label
               ><textarea
                 v-model="portfolio.description"
@@ -132,6 +143,7 @@ export default {
     return {
       portfolio: {
         title: "",
+        type: "Buku",
         attachment: "",
         description: "",
         year: "",
@@ -164,5 +176,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -499,6 +499,7 @@ export default new Vuex.Store({
       context.state.loadPage = true;
       var body = new FormData();
       body.append("title", payload.title);
+      body.append("type", payload.type);
       body.append("description", payload.description);
       body.append("attachment", payload.attachment);
       body.append("year", payload.year);
