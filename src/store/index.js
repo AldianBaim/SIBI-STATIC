@@ -217,7 +217,7 @@ export default new Vuex.Store({
     fetchAllTraining(context) {
       context.state.loadPage = true;
       axios
-        .get(BASE_URL + "api/entry/training_event?perpage=8&page=1")
+        .get(BASE_URL + "api/entry/training_event?perpage=8&page=1&orderby=start&direction=desc")
         .then((res) => {
           context.state.trainings = res.data.results;
           context.state.loadPage = false;

@@ -22,7 +22,7 @@
         <thead>
           <tr>
             <th scope="col">Judul</th>
-            <th scope="col">Type</th>
+            <th scope="col">Tipe</th>
             <th scope="col">Deskripsi</th>
             <th scope="col">Status</th>
             <th scope="col">Lampiran</th>

@@ -149,6 +149,7 @@ export default {
         id: "",
         type: "Buku",
         title: "",
+        type: "",
         description: "",
         attachment: "",
         year: "",
