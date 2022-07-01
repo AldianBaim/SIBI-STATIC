@@ -40,7 +40,7 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label>Type</label>
+              <label>Tipe</label>
               <select v-model="portfolio.type" class="form-control">
                 <option value="Buku">Buku</option>
                 <option value="Ilustrasi">Ilustrasi</option>
@@ -147,9 +147,8 @@ export default {
     return {
       portfolio: {
         id: "",
-        type: "Buku",
         title: "",
-        type: "",
+        type: "Buku",
         description: "",
         attachment: "",
         year: "",
