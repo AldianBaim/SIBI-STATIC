@@ -75,12 +75,17 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <label>Lampiran ~ PDF Maks 2MB</label>
+                  <label>Lampiran ~ PDF Maks 10MB</label>
                   <input
                     v-model="portfolio.attachment"
                     type="hidden"
                     class="form-control"
                   />
+                  <small
+                    v-if="messageError !== ''"
+                    class="text-danger d-block"
+                    >{{ messageError }}</small
+                  >
                   <input
                     @change="selectFile"
                     type="file"
@@ -156,6 +161,7 @@ export default {
       file: null,
       messageStatus: false,
       message: "",
+      messageError: "",
     };
   },
   name: "Portfolio Detail",
@@ -170,12 +176,27 @@ export default {
       this.file = file;
     },
     uploadingFile() {
-      this.uploadFile(this.file).then((res) => {
-        this.portfolio.attachment = res.file;
-        this.messageStatus = true;
-        this.message =
-          "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
-      });
+      if (this.file === null) {
+        this.messageError = "File portfolio harus diisi";
+      } else {
+        if (this.file.size >= 10000000) {
+          this.messageError = "Ukuran file terlalu besar, maksimal 10 mb";
+        } else {
+          this.messageError = "";
+          this.uploadFile(this.file)
+            .then((res) => {
+              this.portfolio.attachment = res.file;
+              this.messageStatus = true;
+              this.message =
+                "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
+            })
+            .catch((err) => {
+              this.messageError = "File gagal diupload";
+              this.$store.state.loadUploadFile = false;
+              console.log(err);
+            });
+        }
+      }
     },
     setValue(portfolio) {
       portfolio = portfolio || this.$store.state.portfolio;

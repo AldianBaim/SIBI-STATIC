@@ -608,16 +608,28 @@ export default {
       this.file.kerangka_buku_anak = file;
     },
     uploadFilePDF() {
+      // Check file size before upload
       if (this.file.portfolio == null) {
         this.message.portfolio.error = "File portfolio harus diisi";
       } else {
-        this.loading.portfolio = true;
-        this.message.portfolio.error = "";
-        this.uploadFile(this.file.portfolio).then((res) => {
-          this.loading.portfolio = false;
-          this.message.portfolio.uploaded = true;
-          this.fileUploaded.portfolio = res.file;
-        });
+        if (this.file.portfolio.size >= 10000000) {
+          this.message.portfolio.error =
+            "Ukuran file terlalu besar, maksimal 10 mb";
+        } else {
+          this.loading.portfolio = true;
+          this.message.portfolio.error = "";
+          this.uploadFile(this.file.portfolio)
+            .then((res) => {
+              this.loading.portfolio = false;
+              this.message.portfolio.uploaded = true;
+              this.fileUploaded.portfolio = res.file;
+            })
+            .catch((err) => {
+              this.message.portfolio.error = "File gagal diupload";
+              this.loading.portfolio = false;
+              console.log(err);
+            });
+        }
       }
     },
     uploadFileKerangka() {
@@ -626,14 +638,25 @@ export default {
           this.message.kerangka_buku_anak.error =
             "File kerangka buku anak harus diisi";
         } else {
-          this.loading.kerangka_buku_anak = true;
-          this.message.kerangka_buku_anak.error = "";
-          this.uploadFile(this.file.kerangka_buku_anak).then((res) => {
-            this.message.kerangka_buku_anak.uploaded = true;
-            this.loading.kerangka_buku_anak = false;
-            this.fileUploaded.kerangka_buku_anak = res.data.url;
-            // this.register.studentMeta = res.data.url;
-          });
+          if (this.file.kerangka_buku_anak >= 10000000) {
+            this.message.kerangka_buku_anak.error =
+              "Ukuran file terlalu besar, maksimal 10 mb";
+          } else {
+            this.loading.kerangka_buku_anak = true;
+            this.message.kerangka_buku_anak.error = "";
+            this.uploadFile(this.file.kerangka_buku_anak)
+              .then((res) => {
+                this.message.kerangka_buku_anak.uploaded = true;
+                this.loading.kerangka_buku_anak = false;
+                this.fileUploaded.kerangka_buku_anak = res.data.url;
+                // this.register.studentMeta = res.data.url;
+              })
+              .catch((err) => {
+                this.message.kerangka_buku_anak.error = "File gagal diupload";
+                this.loading.kerangka_buku_anak = false;
+                console.log(err);
+              });
+          }
         }
       }
     },
