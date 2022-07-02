@@ -175,10 +175,14 @@ export default {
           this.messageError = "";
           this.uploadFile(this.file)
             .then((res) => {
-              this.portfolio.attachment = res.file;
-              this.messageStatus = true;
-              this.message =
-                "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
+              if (res.status === "success") {
+                this.portfolio.attachment = res.file;
+                this.messageStatus = true;
+                this.message =
+                  "Berhasil diupload, selanjutnya silahkan klik tombol simpan";
+              } else {
+                this.messageError = res.message;
+              }
             })
             .catch((err) => {
               this.messageError = "File gagal diupload";

@@ -620,9 +620,13 @@ export default {
           this.message.portfolio.error = "";
           this.uploadFile(this.file.portfolio)
             .then((res) => {
-              this.loading.portfolio = false;
-              this.message.portfolio.uploaded = true;
-              this.fileUploaded.portfolio = res.file;
+              if (res.status === "success") {
+                this.loading.portfolio = false;
+                this.message.portfolio.uploaded = true;
+                this.fileUploaded.portfolio = res.file;
+              } else {
+                this.message.portfolio.error = res.message;
+              }
             })
             .catch((err) => {
               this.message.portfolio.error = "File gagal diupload";
