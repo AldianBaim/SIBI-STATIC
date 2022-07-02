@@ -75,7 +75,7 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <label>Lampiran ~ PDF Maks 10MB</label>
+                  <label>Lampiran (PDF/Zip) Maks 10MB</label>
                   <input
                     v-model="portfolio.attachment"
                     type="hidden"
