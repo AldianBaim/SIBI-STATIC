@@ -23,7 +23,6 @@
           <tr>
             <th scope="col">Judul</th>
             <th scope="col">Tipe</th>
-            <th scope="col">Deskripsi</th>
             <th scope="col">Status</th>
             <th scope="col">Lampiran</th>
             <th scope="col">Action</th>
@@ -33,7 +32,6 @@
           <tr v-for="(portfolio, index) in portfolios" :key="index">
             <td>{{ portfolio.title }}</td>
             <td>{{ portfolio.type }}</td>
-            <td>{{ portfolio.description }}</td>
             <td v-if="portfolio.status == 'publish'">
               <span class="badge badge-success">{{ portfolio.status }}</span>
             </td>
