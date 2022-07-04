@@ -43,12 +43,23 @@
                 />
               </div>
               <div class="form-group">
-                <input
-                  v-model="user.password"
-                  type="password"
-                  class="form-control"
-                  placeholder="Password"
-                />
+                <div class="input-group mb-3">
+                  <input
+                    v-model="user.password"
+                    :type="showPassword ? 'text' : 'password'"
+                    class="form-control border-right-0"
+                    placeholder="Password"
+                  />
+                  <div @click="setShowPassword()" class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-white border-left-0"
+                      id="basic-addon1"
+                    >
+                      <i v-if="!showPassword" class="fa fa-fw fa-eye"></i>
+                      <i v-else class="fa fa-fw fa-eye-slash"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
               <div class="form-group mt-4">
                 <button
@@ -89,10 +100,14 @@ export default {
         email: "",
         password: "",
       },
+      showPassword: false,
     };
   },
   methods: {
     ...mapActions(["login"]),
+    setShowPassword() {
+      this.showPassword = !this.showPassword;
+    },
     doLogin() {
       this.login(this.user);
     },
