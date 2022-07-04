@@ -97,23 +97,48 @@
                 />
               </div>
               <div class="form-group">
-                <input
-                  v-model="user.password"
-                  type="password"
-                  class="form-control"
-                  placeholder="Kata sandi"
-                /><span
-                  toggle="#password"
-                  class="zmdi zmdi-eye field-icon toggle-password"
-                ></span>
+                <div class="input-group mb-3">
+                  <input
+                    v-model="user.password"
+                    :type="showPassword ? 'text' : 'password'"
+                    class="form-control border-right-0"
+                    placeholder="Kata sandi"
+                  />
+                  <div @click="setShowPassword()" class="input-group-prepend">
+                    <span
+                      class="input-group-text bg-white border-left-0"
+                      id="basic-addon1"
+                    >
+                      <i v-if="!showPassword" class="fa fa-fw fa-eye"></i>
+                      <i v-else class="fa fa-fw fa-eye-slash"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
               <div class="form-group">
-                <input
-                  v-model="user.confirm_password"
-                  type="password"
-                  class="form-control"
-                  placeholder="Konfirmasi kata sandi"
-                />
+                <div class="input-group mb-3">
+                  <input
+                    v-model="user.confirm_password"
+                    :type="showConfirmPassword ? 'text' : 'password'"
+                    class="form-control border-right-0"
+                    placeholder="Konfirmasi kata sandi"
+                  />
+                  <div
+                    @click="setShowConfirmPassword()"
+                    class="input-group-prepend"
+                  >
+                    <span
+                      class="input-group-text bg-white border-left-0"
+                      id="basic-addon1"
+                    >
+                      <i
+                        v-if="!showConfirmPassword"
+                        class="fa fa-fw fa-eye"
+                      ></i>
+                      <i v-else class="fa fa-fw fa-eye-slash"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
               <!-- <div class="form-group">
                 <div
@@ -199,10 +224,18 @@ export default {
         role_id: "",
         // role_id: 3,
       },
+      showPassword: false,
+      showConfirmPassword: false,
     };
   },
   methods: {
     ...mapActions(["register"]),
+    setShowPassword() {
+      this.showPassword = !this.showPassword;
+    },
+    setShowConfirmPassword() {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    },
     doRegister() {
       this.register(this.user);
     },
