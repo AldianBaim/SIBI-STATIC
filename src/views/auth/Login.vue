@@ -75,6 +75,23 @@
                 </button>
               </div>
             </form>
+            <div>
+              <div class="mb-3">Atau</div>
+              <GoogleLogin
+                class="btn btn-light shadow-sm"
+                :params="params"
+                :onSuccess="onSuccess"
+                :onFailure="onFailure"
+              >
+                <img
+                  src="@/assets/google-logo.png"
+                  width="20"
+                  class="mr-3"
+                  alt="google"
+                />
+                <span>Login with google</span>
+              </GoogleLogin>
+            </div>
             <div class="mt-4">
               <router-link to="/recovery">
                 <a>Saya lupa kata sandi.</a>
@@ -92,7 +109,18 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapActions } from "vuex";
+import { GoogleLogin, LoaderPlugin } from "vue-google-login";
+import { gapi } from "gapi-script";
+
+const googleClientId =
+  "104944373110-hd7umobu1j3k66fnjm82l8gd32vnefm8.apps.googleusercontent.com";
+
+Vue.use(LoaderPlugin, {
+  client_id: googleClientId,
+});
+
 export default {
   data() {
     return {
@@ -101,16 +129,38 @@ export default {
         password: "",
       },
       showPassword: false,
+      params: {
+        client_id: googleClientId,
+      },
     };
+  },
+  components: {
+    GoogleLogin,
   },
   methods: {
     ...mapActions(["login"]),
+    onSuccess(response) {
+      if (response.xc.id_token) {
+        this.login({ id_token: response.xc.id_token });
+      }
+    },
+    onFailure(googleUser) {
+      console.log(googleUser);
+    },
     setShowPassword() {
       this.showPassword = !this.showPassword;
     },
     doLogin() {
       this.login(this.user);
     },
+  },
+  mounted() {
+    gapi.load("client:auth2", () => {
+      gapi.client.init({
+        clientId: googleClientId,
+        plugin_name: "SIBI",
+      });
+    });
   },
 };
 </script>

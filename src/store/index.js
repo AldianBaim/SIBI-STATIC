@@ -21,6 +21,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    googleClientId: "104944373110-hd7umobu1j3k66fnjm82l8gd32vnefm8.apps.googleusercontent.com",
     totalCatalogue: null,
     totalAssesment: null,
     totalRead: null,
@@ -144,8 +145,9 @@ export default new Vuex.Store({
     },
     login(context, payload) {
       context.state.loadPage = true;
+      const endpoint = payload.id_token ? 'sync' : 'login'
       axios
-        .post(BASE_URL + "api/user/login", payload)
+        .post(`${BASE_URL}api/user/${endpoint}`, JSON.stringify(payload))
         .then((res) => {
           if (res.data.status == "failed") {
             context.state.messageStatus = true;
@@ -154,6 +156,7 @@ export default new Vuex.Store({
             context.state.loadPage = false;
             router.push("/login");
           } else {
+            context.state.message = ""
             context.state.loadPage = false;
             context.commit("setDataUser", res.data.result);
             context.commit("setToken", res.data.token);
