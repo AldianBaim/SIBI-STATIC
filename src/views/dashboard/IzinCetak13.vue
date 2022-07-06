@@ -126,9 +126,7 @@
             id="defaultCheck3"
           />
           <label class="form-check-label" for="defaultCheck3">
-            Tidak mengubah konten/materi dan spesifikasi teknis buku sesuai
-            dengan SK Kepala BSKAP Nomor : 020/H/P/2022 tentang penetapan HET
-            Buku Teks Pelajaran Kurikulum Merdeka.
+            Tidak mengubah konten/materi dan spesifikasi teknis buku
           </label>
         </div>
         <div class="text-right">

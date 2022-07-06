@@ -757,6 +757,7 @@ export default new Vuex.Store({
       body.append("address", payload.address)
       body.append("role", payload.role)
       body.append("session", payload.session)
+      body.append("difable_status", payload.difable_status)
       body.append("studentmeta", payload.studentMeta)
 
       return new Promise((resolve, reject) => {

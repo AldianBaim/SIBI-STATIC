@@ -242,6 +242,22 @@
                     -->
                   </select>
                 </div>
+                <div class="form-group">
+                  <label for="role" class="form-label">Difabel Status</label>
+                  <div class="form-check">
+                    <input
+                      v-model="register.difable_status"
+                      value="yes"
+                      class="form-check-input"
+                      type="checkbox"
+                      id="difable_status"
+                      @click="setDifableStatus()"
+                    />
+                    <label class="form-check-label" for="difable_status">
+                      Ya
+                    </label>
+                  </div>
+                </div>
                 <div v-if="policy.event_type == 'hybrid'" class="form-group">
                   <label for="eventType" class="form-label"
                     >Mengikuti Event secara :</label
@@ -523,9 +539,10 @@ export default {
         email: "",
         phone: "",
         address: "",
+        difable_status: false,
         session: "online",
         studentMeta: "",
-        role: "Desainer",
+        role: "Ilustrator",
       },
       file: {
         portfolio: null,
@@ -599,6 +616,9 @@ export default {
       "registerTraining",
       "fetchRegisterTraining",
     ]),
+    setDifableStatus(){
+      this.register.difable_status = !this.register.difable_status
+    },
     selectFilePDF(e) {
       const file = e.target.files[0];
       this.file.portfolio = file;
