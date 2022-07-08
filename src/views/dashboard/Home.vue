@@ -10,7 +10,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="@/assets/banner/banner-het.jpeg"
+            src="https://image.web.id/images/2022/07/08/1cdb26a4c76344ce904e7256dcfc7005.jpg"
             class="d-block w-100"
             alt="..."
           />
