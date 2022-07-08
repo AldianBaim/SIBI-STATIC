@@ -10,7 +10,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="https://i.ibb.co/b6FkPKN/images-35.webp"
+            src="@/assets/banner/banner-het.jpeg"
             class="d-block w-100"
             alt="..."
           />
