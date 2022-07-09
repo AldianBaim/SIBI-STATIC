@@ -10,7 +10,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="https://image.web.id/images/2022/07/08/1cdb26a4c76344ce904e7256dcfc7005.jpg"
+            :src="banner"
             class="d-block w-100"
             alt="..."
           />
@@ -62,11 +62,22 @@
 <script>
 export default {
   name: "Home",
-  beforeCreate() {
+  data() {
+    return {
+      user: []
+    }
+  },
+  computed: {
+    banner: function() {
+      return this.user.role_name == 'Penerbit' ? 'https://image.web.id/images/2022/07/08/1cdb26a4c76344ce904e7256dcfc7005.jpg' : 'https://i.ibb.co/b6FkPKN/images-35.webp'
+    }
+  },
+  created() {
     const logged_in = localStorage.getItem("user");
     if (!logged_in) {
       this.$router.push("/login");
-    }
+    } 
+    this.user = JSON.parse(logged_in)
   },
 };
 </script>
