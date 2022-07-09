@@ -147,6 +147,12 @@
               >
                 Pengajuan HET
               </a>
+              <router-link
+                class="dropdown-item"
+                exact-active-class="active"
+                to="/login"
+                >Izin Cetak Buku
+              </router-link>
             </div>
           </li>
           <router-link class="nav-link" active-class="active" to="/kebijakan">
