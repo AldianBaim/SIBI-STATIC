@@ -117,6 +117,20 @@
                 >Pelaku Perbukuan Tersertifikasi
               </router-link>
 
+              <router-link
+                class="dropdown-item"
+                exact-active-class="active"
+                to="/pencetak-kurikulum-merdeka"
+                >Pencetak Buku Kurikulum Merdeka
+              </router-link>
+
+              <router-link
+                class="dropdown-item"
+                exact-active-class="active"
+                to="/pencetak-kurikulum-k13"
+                >Pencetak Buku K-13
+              </router-link>
+
               <div class="dropdown-divider"></div>
 
               <router-link
@@ -133,6 +147,12 @@
               >
                 Pengajuan HET
               </a>
+              <router-link
+                class="dropdown-item"
+                exact-active-class="active"
+                to="/login"
+                >Izin Cetak Buku
+              </router-link>
             </div>
           </li>
           <router-link class="nav-link" active-class="active" to="/kebijakan">
