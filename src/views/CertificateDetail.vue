@@ -64,14 +64,14 @@
                       </span>
                       yang diselenggarakan pada tanggal {{ trainingStartDate }}.
                     </div>
-                    <div class="float-right font-cert mr-5 mt-5">
+                    <div class="float-right font-cert mr-5 mt-5 position-relative">
                       <div>Jakarta, {{ regardDate }}</div>
-                      <div class="">Pusat Perbukuan</div>
+                      <div style="margin-bottom: 100px">Kepala Pusat Perbukuan,</div>
                       <img
                         src="../assets/TTD.png"
-                        width="100"
-                        class="my-2"
                         alt="regard"
+                        class="position-absolute"
+                        style="top:14px;left:-70px;width:210px;transform: rotate(-10deg)"
                       />
                       <div>Supriyatno, S. Pd., M. A.</div>
                       <div>NIP 196804051988121001</div>
